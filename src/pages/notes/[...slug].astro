@@ -19,12 +19,20 @@ const formattedDate = note.data.date.toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric'
 });
+
+const base = import.meta.env.BASE_URL || '/';
+const baseWithSlash = base.endsWith('/') ? base : `${base}/`;
+const breadcrumbItems = [
+  { label: 'Notes', href: `${baseWithSlash}notes/` },
+  { label: note.data.title }
+];
 ---
 
 <ArticleLayout
   title={`${note.data.title} - Notes`}
   description={note.data.description}
   headings={headings}
+  breadcrumbItems={breadcrumbItems}
 >
   <article class="prose dark:prose-invert max-w-none">
     <header class="mb-8">

@@ -1,0 +1,46 @@
+---
+// Breadcrumb component - Displays navigation breadcrumb trail
+interface Props {
+  items: Array<{
+    label: string;
+    href?: string;
+  }>;
+}
+
+const { items } = Astro.props;
+const base = import.meta.env.BASE_URL || '/';
+---
+
+<nav aria-label="Breadcrumb" class="mb-6">
+  <ol class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 flex-wrap">
+    <li class="flex items-center gap-2">
+      <a
+        href={base}
+        class="flex items-center gap-1 hover:text-primary dark:hover:text-primary transition-colors"
+        aria-label="Home"
+      >
+        <span class="material-symbols-outlined text-[18px]">home</span>
+        <span class="hidden sm:inline">Home</span>
+      </a>
+    </li>
+    {items.map((item, index) => (
+      <li class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[16px] text-slate-400 dark:text-slate-600">
+          chevron_right
+        </span>
+        {item.href && index < items.length - 1 ? (
+          <a
+            href={item.href}
+            class="hover:text-primary dark:hover:text-primary transition-colors max-w-[200px] sm:max-w-none truncate"
+          >
+            {item.label}
+          </a>
+        ) : (
+          <span class="text-slate-900 dark:text-slate-200 font-medium max-w-[200px] sm:max-w-none truncate">
+            {item.label}
+          </span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

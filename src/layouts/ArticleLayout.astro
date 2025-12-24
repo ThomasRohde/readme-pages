@@ -3,6 +3,7 @@ import Header from '../components/Header.astro';
 import Sidebar from '../components/Sidebar.astro';
 import Footer from '../components/Footer.astro';
 import Toc from '../components/Toc.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import CodeCopyButton from '../components/CodeCopyButton.astro';
 import '../styles/global.css';
 
@@ -14,12 +15,17 @@ interface Props {
     slug: string;
     text: string;
   }>;
+  breadcrumbItems?: Array<{
+    label: string;
+    href?: string;
+  }>;
 }
 
 const {
   title = "Thomas Rohde - Notes",
   description = "Personal notes and documentation",
-  headings = []
+  headings = [],
+  breadcrumbItems = []
 } = Astro.props;
 ---
 
@@ -64,6 +70,7 @@ const {
     <div class="flex-1 w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 flex items-start relative">
       <Sidebar />
       <main class="flex-1 min-w-0 py-10 lg:px-8 xl:px-12">
+        {breadcrumbItems.length > 0 && <Breadcrumb items={breadcrumbItems} />}
         <slot />
       </main>
       <Toc headings={headings} />
