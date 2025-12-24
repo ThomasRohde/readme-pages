@@ -8,12 +8,37 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article';
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  tags?: string[];
+  author?: string;
+  canonicalURL?: string;
 }
 
 const {
   title = "Thomas Rohde - Notes",
-  description = "Personal notes and documentation"
+  description = "Personal notes and documentation",
+  image = "/readme-pages/og-default.png",
+  imageAlt = "Thomas Rohde Notes",
+  type = "website",
+  publishedTime,
+  modifiedTime,
+  tags = [],
+  author = "Thomas Rohde",
+  canonicalURL
 } = Astro.props;
+
+// Construct full URLs for Open Graph
+const siteUrl = import.meta.env.SITE || 'https://thomasrohde.github.io';
+const currentUrl = canonicalURL || new URL(Astro.url.pathname, siteUrl).href;
+const imageUrl = image.startsWith('http') ? image : new URL(image, siteUrl).href;
+
+// Format title with site name suffix
+const siteName = "Thomas Rohde";
+const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 ---
 
 <!doctype html>
@@ -21,8 +46,34 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
     <meta name="description" content={description} />
-    <title>{title}</title>
+    <meta name="author" content={author} />
+    <link rel="canonical" href={currentUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:site_name" content="Thomas Rohde Notes" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime.toISOString()} />}
+    {author && type === 'article' && <meta property="article:author" content={author} />}
+    {tags.map(tag => <meta property="article:tag" content={tag} />)}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={currentUrl} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
 
     <!-- Theme initialization - runs before page renders to prevent flash -->
     <script is:inline>
@@ -59,6 +110,7 @@ const {
       <main class="flex-1 min-w-0 py-10 lg:px-8 xl:px-12">
         <slot />
       </main>
+      <slot name="sidebar-right" />
     </div>
     <Footer />
     <CodeCopyButton />

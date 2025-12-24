@@ -1,15 +1,18 @@
 ---
-import Header from '../components/Header.astro';
-import Sidebar from '../components/Sidebar.astro';
-import Footer from '../components/Footer.astro';
+import BaseLayout from './BaseLayout.astro';
 import Toc from '../components/Toc.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
-import CodeCopyButton from '../components/CodeCopyButton.astro';
-import '../styles/global.css';
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  imageAlt?: string;
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  tags?: string[];
+  author?: string;
+  canonicalURL?: string;
   headings?: Array<{
     depth: number;
     slug: string;
@@ -22,60 +25,34 @@ interface Props {
 }
 
 const {
-  title = "Thomas Rohde - Notes",
-  description = "Personal notes and documentation",
+  title,
+  description,
+  image,
+  imageAlt,
+  publishedTime,
+  modifiedTime,
+  tags = [],
+  author,
+  canonicalURL,
   headings = [],
   breadcrumbItems = []
 } = Astro.props;
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <title>{title}</title>
-
-    <!-- Theme initialization - runs before page renders to prevent flash -->
-    <script is:inline>
-      // Initialize theme from localStorage or system preference
-      const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme');
-        }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
-        }
-        return 'light';
-      })();
-
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    </script>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
-    <!-- Material Symbols -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-  </head>
-  <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-200 font-display antialiased min-h-screen flex flex-col">
-    <Header />
-    <div class="flex-1 w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 flex items-start relative">
-      <Sidebar />
-      <main class="flex-1 min-w-0 py-10 lg:px-8 xl:px-12">
-        {breadcrumbItems.length > 0 && <Breadcrumb items={breadcrumbItems} />}
-        <slot />
-      </main>
-      <Toc headings={headings} />
-    </div>
-    <Footer />
-    <CodeCopyButton />
-  </body>
-</html>
+<BaseLayout
+  title={title}
+  description={description}
+  image={image}
+  imageAlt={imageAlt}
+  type="article"
+  publishedTime={publishedTime}
+  modifiedTime={modifiedTime}
+  tags={tags}
+  author={author}
+  canonicalURL={canonicalURL}
+>
+  {breadcrumbItems.length > 0 && <Breadcrumb items={breadcrumbItems} />}
+  <slot />
+  
+  <Toc headings={headings} slot="sidebar-right" />
+</BaseLayout>

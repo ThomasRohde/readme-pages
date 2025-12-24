@@ -819,13 +819,13 @@
         "Configurable defaults and per-page overrides"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
+      "status": "in-progress",
       "passes": false,
       "verifiedAt": null,
       "verifiedBy": null,
       "evidenceLinks": [],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T11:32:06.756289",
       "notes": "Add to BaseLayout. Extract from frontmatter (og:title, og:image, description). Generate social preview images if time permits. Include canonical URLs."
     },
     {

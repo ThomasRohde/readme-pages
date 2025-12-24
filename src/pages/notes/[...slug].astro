@@ -55,7 +55,9 @@ const breadcrumbItems = [
 
 <ArticleLayout
   title={`${note.data.title} - Notes`}
-  description={note.data.description}
+  description={note.data.description || `A note from ${formattedDate}`}
+  publishedTime={note.data.date}
+  tags={note.data.tags}
   headings={headings}
   breadcrumbItems={breadcrumbItems}
 >
