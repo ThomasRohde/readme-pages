@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import PrevNext from '../../components/PrevNext.astro';
 import EditOnGitHub from '../../components/EditOnGitHub.astro';
+import { calculateReadingTime } from '../../utils/reading-time';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes', ({ data }) => {
@@ -40,6 +41,7 @@ export async function getStaticPaths() {
 
 const { note, prev, next } = Astro.props;
 const { Content, headings } = await note.render();
+const readingTime = calculateReadingTime(note.body);
 const formattedDate = note.data.date.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
@@ -70,6 +72,10 @@ const githubFilePath = `src/content/notes/${note.id}`;
       <h1>{note.data.title}</h1>
       <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
         <time datetime={note.data.date.toISOString()}>{formattedDate}</time>
+        <span class="flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px]">schedule</span>
+          {readingTime}
+        </span>
         {note.data.tags && note.data.tags.length > 0 && (
           <span class="flex flex-wrap gap-2">
             {note.data.tags.map(tag => (

@@ -800,11 +800,21 @@
         "Markdown syntax integration"
       ],
       "estimatedEffort": null,
-      "status": "in-progress",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T11:58:33.224141",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Callout components fully implemented with remark-directive plugin. Supports 5 types (note",
+        "tip",
+        "info",
+        "warning",
+        "danger) with icons",
+        "color-coded styling",
+        "and dark mode. Custom titles work via attributes. Demo page created showing all variants. Nested markdown fully supported including lists",
+        "code blocks",
+        "and quotes."
+      ],
       "blockedBy": null,
       "lastWorkedOn": "2025-12-24T11:56:07.808105",
       "notes": "Use remark plugin for :::note syntax. Match Stitch color palette. Support nested markdown. Include icons for each type. Reference: docusaurus admonitions."
@@ -919,13 +929,13 @@
         "Based on word count"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
+      "status": "in-progress",
       "passes": false,
       "verifiedAt": null,
       "verifiedBy": null,
       "evidenceLinks": [],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T11:58:38.743528",
       "notes": "Calculate ~200 words/minute. Add to ArticleLayout. Use remark plugin or custom function. Format: '5 min read'. Consider code blocks (slower reading)."
     },
     {
@@ -1047,8 +1057,8 @@
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T11:56:02.626964",
+    "lastUpdated": "2025-12-24T11:58:33.224152",
     "totalFeatures": 47,
-    "passingFeatures": 35
+    "passingFeatures": 36
   }
 }
