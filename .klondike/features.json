@@ -374,13 +374,15 @@
         "Caches node_modules for faster builds"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:50:21.823212",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "GitHub Actions workflow created at .github/workflows/deploy.yml. Triggers on push to main/master. Sets proper permissions for Pages. Caches npm dependencies. Builds with npm run build and deploys dist/ folder to GitHub Pages."
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:49:59.719918",
       "notes": "Use official Astro GitHub Pages deploy guide. Set permissions for GITHUB_TOKEN. Consider using pnpm or npm based on project setup."
     },
     {
@@ -701,8 +703,8 @@
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T08:49:45.902755",
+    "lastUpdated": "2025-12-24T08:50:21.823231",
     "totalFeatures": 32,
-    "passingFeatures": 22
+    "passingFeatures": 23
   }
 }

@@ -24,9 +24,9 @@ klondike feature list  # List all features
 ### Current Priority Features
 | ID | Description | Status |
 |----|-------------|--------|
-| F018 | GitHub Actions workflow for Pages deployment | ⏳ Not started |
 | F014 | Implement dark/light mode toggle | ⏳ Not started |
 | F015 | Responsive typography and prose styling | ⏳ Not started |
+| F016 | Mobile-responsive sidebar navigation | ⏳ Not started |
 
 ---
 

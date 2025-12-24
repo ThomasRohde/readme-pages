@@ -51,11 +51,6 @@
     ],
     "priorityFeatures": [
       {
-        "id": "F018",
-        "description": "GitHub Actions workflow for Pages deployment",
-        "status": "not-started"
-      },
-      {
         "id": "F014",
         "description": "Implement dark/light mode toggle",
         "status": "not-started"
@@ -63,6 +58,11 @@
       {
         "id": "F015",
         "description": "Responsive typography and prose styling",
+        "status": "not-started"
+      },
+      {
+        "id": "F016",
+        "description": "Mobile-responsive sidebar navigation",
         "status": "not-started"
       }
     ]
