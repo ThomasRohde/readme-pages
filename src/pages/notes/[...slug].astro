@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import PrevNext from '../../components/PrevNext.astro';
+import EditOnGitHub from '../../components/EditOnGitHub.astro';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes', ({ data }) => {
@@ -51,6 +52,9 @@ const breadcrumbItems = [
   { label: 'Notes', href: `${baseWithSlash}notes/` },
   { label: note.data.title }
 ];
+
+// Construct GitHub file path for edit link
+const githubFilePath = `src/content/notes/${note.id}`;
 ---
 
 <ArticleLayout
@@ -61,17 +65,20 @@ const breadcrumbItems = [
   headings={headings}
   breadcrumbItems={breadcrumbItems}
 >
-  <article class="prose dark:prose-invert max-w-none">
-    <header class="mb-8">
-      <h1>{note.data.title}</h1>
-      <div class="text-sm text-gray-600 dark:text-gray-400">
+  <article class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
         <time datetime={note.data.date.toISOString()}>{formattedDate}</time>
         {note.data.tags && note.data.tags.length > 0 && (
-          <span class="ml-4">
+          <span class="flex flex-wrap gap-2">
             {note.data.tags.map(tag => (
-              <span class="inline-block bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded mr-2">
+              <span class="inline-block bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">
                 {tag}
               </span>
+            ))}
+          </span>
+        )}
+        <div class="ml-auto">
+          <EditOnGitHub filePath={githubFilePath} />
+        </div>    </span>
             ))}
           </span>
         )}

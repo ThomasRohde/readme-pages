@@ -1,0 +1,40 @@
+---
+/**
+ * EditOnGitHub - Link to edit the source file on GitHub
+ * 
+ * Props:
+ * - filePath: Path to the file relative to repo root (e.g., "src/content/notes/2025-12-24-my-note.md")
+ */
+
+interface Props {
+  filePath: string;
+}
+
+const { filePath } = Astro.props;
+
+// GitHub repository details
+const owner = 'ThomasRohde';
+const repo = 'readme-pages';
+const branch = 'master';
+
+const editUrl = `https://github.com/${owner}/${repo}/edit/${branch}/${filePath}`;
+---
+
+<a
+  href={editUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="edit-on-github inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary bg-slate-50 dark:bg-surface-dark border border-slate-200 dark:border-border-dark rounded-lg hover:border-primary dark:hover:border-primary transition-all duration-200 hover:shadow-md"
+>
+  <span class="material-symbols-outlined text-[20px]">edit</span>
+  <span>Edit on GitHub</span>
+  <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+
+<style>
+  .edit-on-github {
+    /* Ensure it's tappable on mobile */
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+</style>
