@@ -851,13 +851,13 @@
         "Respects lastmod from git or frontmatter"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
+      "status": "in-progress",
       "passes": false,
       "verifiedAt": null,
       "verifiedBy": null,
       "evidenceLinks": [],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T11:54:57.370877",
       "notes": "Use @astrojs/sitemap integration. Configure in astro.config. Include changefreq and priority. Exclude draft pages."
     },
     {

@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { h } from 'hastscript';
+import sitemap from '@astrojs/sitemap';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -10,6 +11,15 @@ export default defineConfig({
   site: 'https://thomasrohde.github.io',
   base: '/readme-pages',
   compressHTML: true,
+  
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/draft/'),
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
+  ],
 
   markdown: {
     shikiConfig: {
