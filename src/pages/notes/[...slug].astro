@@ -65,7 +65,10 @@ const githubFilePath = `src/content/notes/${note.id}`;
   headings={headings}
   breadcrumbItems={breadcrumbItems}
 >
-  <article class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+  <article class="prose dark:prose-invert max-w-none">
+    <header class="mb-8">
+      <h1>{note.data.title}</h1>
+      <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
         <time datetime={note.data.date.toISOString()}>{formattedDate}</time>
         {note.data.tags && note.data.tags.length > 0 && (
           <span class="flex flex-wrap gap-2">
@@ -78,10 +81,7 @@ const githubFilePath = `src/content/notes/${note.id}`;
         )}
         <div class="ml-auto">
           <EditOnGitHub filePath={githubFilePath} />
-        </div>    </span>
-            ))}
-          </span>
-        )}
+        </div>
       </div>
     </header>
     <Content />
