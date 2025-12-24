@@ -24,9 +24,9 @@ klondike feature list  # List all features
 ### Current Priority Features
 | ID | Description | Status |
 |----|-------------|--------|
-| F021 | Link checking in CI | ⏳ Not started |
-| F044 | Frontmatter validation schema | ⏳ Not started |
-| F045 | Last updated timestamp | ⏳ Not started |
+| F020 | Client-side static search with Pagefind | ⏳ Not started |
+| F022 | Tag index page for notes | ⏳ Not started |
+| F042 | Related notes suggestion | ⏳ Not started |
 
 ---
 
@@ -269,6 +269,28 @@ klondike feature list  # List all features
 
 #### Recommended Next Steps
 1. F021 - Link checking in CI to validate all internal/external links
+
+#### Technical Notes
+- None
+
+---
+
+### Session 11 - 2025-12-24
+**Agent**: Coding Agent
+**Duration**: ~session
+**Focus**: F021, F044, F045 complete: Added link checking CI workflow with lychee, comprehensive frontmatter validation with Zod schemas, and git-based last modified timestamps with relative time formatting. All features tested and verified.
+
+#### Completed
+- None
+
+#### In Progress
+- None
+
+#### Blockers
+- None
+
+#### Recommended Next Steps
+1. F020 - Client-side static search with Pagefind for improved content discoverability
 
 #### Technical Notes
 - None
