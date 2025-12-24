@@ -174,9 +174,9 @@
         "status": "not-started"
       },
       {
-        "id": "F041",
-        "description": "Reading time estimate",
-        "status": "in-progress"
+        "id": "F044",
+        "description": "Frontmatter validation schema",
+        "status": "not-started"
       }
     ]
   }

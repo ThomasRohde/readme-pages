@@ -929,11 +929,14 @@
         "Based on word count"
       ],
       "estimatedEffort": null,
-      "status": "in-progress",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T11:59:43.807011",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Reading time utility implemented with 200 wpm calculation. Accounts for code blocks at reduced speed. Displays with clock icon in all note headers. Tested showing correct estimates (2 min for callout demo",
+        "1 min for shorter notes). Uses Material Symbols icon and matches existing header styling."
+      ],
       "blockedBy": null,
       "lastWorkedOn": "2025-12-24T11:58:38.743528",
       "notes": "Calculate ~200 words/minute. Add to ArticleLayout. Use remark plugin or custom function. Format: '5 min read'. Consider code blocks (slower reading)."
@@ -1045,20 +1048,20 @@
         "Matches site design"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
+      "status": "in-progress",
       "passes": false,
       "verifiedAt": null,
       "verifiedBy": null,
       "evidenceLinks": [],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T11:59:49.303656",
       "notes": "Create src/pages/404.astro. Include search if available. List popular pages. Add home/notes links. GitHub Pages requires special config."
     }
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T11:58:33.224152",
+    "lastUpdated": "2025-12-24T11:59:43.807019",
     "totalFeatures": 47,
-    "passingFeatures": 36
+    "passingFeatures": 37
   }
 }

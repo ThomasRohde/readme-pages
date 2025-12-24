@@ -26,7 +26,7 @@ klondike feature list  # List all features
 |----|-------------|--------|
 | F017 | Stitch-compatible component styling | ⏳ Not started |
 | F021 | Link checking in CI | ⏳ Not started |
-| F041 | Reading time estimate | 🔄 In progress |
+| F044 | Frontmatter validation schema | ⏳ Not started |
 
 ---
 
