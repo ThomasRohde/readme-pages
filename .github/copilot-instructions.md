@@ -168,9 +168,20 @@ const baseUrl = import.meta.env.BASE_URL;
 ```
 
 ### GitHub Pages Deployment
-- Workflow: [.github/workflows/pages.yml](.github/workflows/pages.yml)
+- Workflow: [.github/workflows/deploy.yml](.github/workflows/deploy.yml)
 - On push to `main`, GitHub Actions build → deploy to GitHub Pages
 - Site live at `https://thomasrohde.github.io/readme/`
+
+### Link Checking
+- Workflow: [.github/workflows/link-check.yml](.github/workflows/link-check.yml)
+- Runs on PRs and pushes to catch broken links early
+- Uses [lychee](https://lychee.cli.rs/) link checker
+- Configuration: [.lycheeignore](../../.lycheeignore)
+- Fails build on broken **internal** links
+- Ignores common false positives (localhost, social media, etc.)
+- Reports results in GitHub Actions job summary
+
+**To add link exceptions**: Edit `.lycheeignore` file with patterns to skip
 
 ## Required Artifacts & Klondike Rules
 
