@@ -4,6 +4,7 @@ import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import PrevNext from '../../components/PrevNext.astro';
 import EditOnGitHub from '../../components/EditOnGitHub.astro';
 import { calculateReadingTime } from '../../utils/reading-time';
+import { getLastModified, formatRelativeTime } from '../../utils/last-modified';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes', ({ data }) => {
@@ -57,12 +58,18 @@ const breadcrumbItems = [
 
 // Construct GitHub file path for edit link
 const githubFilePath = `src/content/notes/${note.id}`;
+
+// Get last modified date from git
+const lastModifiedDate = getLastModified(`src/content/notes/${note.id}`);
+const lastModifiedRelative = formatRelativeTime(lastModifiedDate);
+const showLastModified = lastModifiedDate.getTime() !== note.data.date.getTime();
 ---
 
 <ArticleLayout
   title={`${note.data.title} - Notes`}
   description={note.data.description || `A note from ${formattedDate}`}
   publishedTime={note.data.date}
+  modifiedTime={lastModifiedDate}
   tags={note.data.tags}
   headings={headings}
   breadcrumbItems={breadcrumbItems}
@@ -72,6 +79,12 @@ const githubFilePath = `src/content/notes/${note.id}`;
       <h1>{note.data.title}</h1>
       <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
         <time datetime={note.data.date.toISOString()}>{formattedDate}</time>
+        {showLastModified && (
+          <span class="flex items-center gap-1" title={`Last modified: ${lastModifiedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`}>
+            <span class="material-symbols-outlined text-[16px]">update</span>
+            Updated {lastModifiedRelative}
+          </span>
+        )}
         <span class="flex items-center gap-1">
           <span class="material-symbols-outlined text-[16px]">schedule</span>
           {readingTime}

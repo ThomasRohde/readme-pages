@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PrevNext from '../components/PrevNext.astro';
+import { getLastModified, formatRelativeTime } from '../utils/last-modified';
 
 export async function getStaticPaths() {
   const pages = await getCollection('pages');
@@ -39,10 +40,22 @@ export async function getStaticPaths() {
 
 const { page, prev, next } = Astro.props;
 const { Content } = await page.render();
+
+// Get last modified date from git
+const lastModifiedDate = getLastModified(`src/content/pages/${page.id}`);
+const lastModifiedRelative = formatRelativeTime(lastModifiedDate);
 ---
 
-<BaseLayout title={`${page.data.title} - Thomas Klok Rohde`} description={page.data.description}>
+<BaseLayout 
+  title={`${page.data.title} - Thomas Klok Rohde`} 
+  description={page.data.description}
+  modifiedTime={lastModifiedDate}
+>
   <article class="prose dark:prose-invert max-w-none">
+    <div class="mb-6 text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1" title={`Last modified: ${lastModifiedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`}>
+      <span class="material-symbols-outlined text-[16px]">update</span>
+      Updated {lastModifiedRelative}
+    </div>
     <Content />
   </article>
   <PrevNext prev={prev} next={next} collection="pages" />
