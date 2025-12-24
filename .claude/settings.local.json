@@ -20,7 +20,8 @@
       "Bash(curl:*)",
       "Bash(npm run dev:*)",
       "Bash(xargs cat:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(pkill:*)"
     ]
   }
 }

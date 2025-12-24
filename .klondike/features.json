@@ -727,13 +727,19 @@
         "Visual feedback on successful copy"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T10:23:30.510729",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Implemented copy button component with clipboard API. Built successfully (0 errors). Tested with 6 code blocks in test note. All acceptance criteria met: visual feedback (Copy \u2192 Copied!)",
+        "clipboard API",
+        "tooltip",
+        "top-right positioning",
+        "dark mode support. Commit: 63d8e46"
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T10:13:01.254847",
       "notes": "Use navigator.clipboard API. Add tooltip showing 'Copy' \u2192 'Copied\\!'. Consider syntax highlighting integration. Position button top-right of code block."
     },
     {
@@ -746,13 +752,19 @@
         "Displays on all article pages"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T10:27:34.943241",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Implemented breadcrumb navigation component. Built successfully (0 errors). Tested on multiple note pages. All acceptance criteria met: displays on all article pages",
+        "uses Material Symbols icons",
+        "includes Home icon",
+        "responsive with truncation",
+        "dark mode support. Commit: 4908e4d"
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T10:23:55.043382",
       "notes": "Generate from frontmatter hierarchy or file path. Style consistent with Stitch design. Include home icon for root. Consider mobile truncation for deep paths."
     },
     {
@@ -1005,8 +1017,8 @@
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T09:28:59.646776",
+    "lastUpdated": "2025-12-24T10:27:34.943251",
     "totalFeatures": 47,
-    "passingFeatures": 26
+    "passingFeatures": 28
   }
 }
