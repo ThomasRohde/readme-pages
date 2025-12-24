@@ -56,13 +56,13 @@
         "status": "not-started"
       },
       {
-        "id": "F028",
-        "description": "Convert Stitch article page to ArticleLayout.astro",
+        "id": "F014",
+        "description": "Implement dark/light mode toggle",
         "status": "not-started"
       },
       {
-        "id": "F031",
-        "description": "Create Card component from Stitch note listing design",
+        "id": "F015",
+        "description": "Responsive typography and prose styling",
         "status": "not-started"
       }
     ]

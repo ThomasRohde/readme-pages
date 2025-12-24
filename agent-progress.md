@@ -25,8 +25,8 @@ klondike feature list  # List all features
 | ID | Description | Status |
 |----|-------------|--------|
 | F018 | GitHub Actions workflow for Pages deployment | ⏳ Not started |
-| F028 | Convert Stitch article page to ArticleLayout.astro | ⏳ Not started |
-| F031 | Create Card component from Stitch note listing design | ⏳ Not started |
+| F014 | Implement dark/light mode toggle | ⏳ Not started |
+| F015 | Responsive typography and prose styling | ⏳ Not started |
 
 ---
 

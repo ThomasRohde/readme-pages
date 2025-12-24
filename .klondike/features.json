@@ -588,13 +588,18 @@
         "Matches Stitch article.html visual design"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:47:25.440803",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "ArticleLayout updated to match Stitch design with same structure as BaseLayout. Includes fonts",
+        "Material Symbols",
+        "dark mode",
+        "ToC in right sidebar. Matches Stitch article page aesthetic."
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:46:55.059860",
       "notes": "ArticleLayout is for markdown content pages. Extract article-specific structure from Stitch article.html. ToC goes in right rail."
     },
     {
@@ -649,13 +654,21 @@
         "Hover states preserved"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:47:57.260108",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Card component created with Stitch styling. Includes hover states (border color change to primary",
+        "shadow)",
+        "responsive layout",
+        "support for title",
+        "date",
+        "description",
+        "and tags. Matches Stitch card aesthetic."
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:47:31.160895",
       "notes": "Used for note previews on home page and notes index. Extract card/list-item pattern from Stitch notes.html or listing.html."
     },
     {
@@ -668,20 +681,28 @@
         "npm run build produces working dist/"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:49:45.902746",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Site visually matches Stitch design: Inter/JetBrains Mono fonts",
+        "primary blue color scheme",
+        "dark mode with proper backgrounds",
+        "Material Symbols icons",
+        "sticky header",
+        "responsive sidebar/ToC",
+        "Card components with hover states. Build produces 4 pages with consistent styling."
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:49:45.048925",
       "notes": "Final validation step for Stitch integration. Compare side-by-side with original Stitch HTML. Check both viewports."
     }
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T08:46:14.798128",
+    "lastUpdated": "2025-12-24T08:49:45.902755",
     "totalFeatures": 32,
-    "passingFeatures": 19
+    "passingFeatures": 22
   }
 }
