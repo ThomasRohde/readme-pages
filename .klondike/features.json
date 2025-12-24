@@ -699,12 +699,297 @@
       "blockedBy": null,
       "lastWorkedOn": "2025-12-24T08:49:45.048925",
       "notes": "Final validation step for Stitch integration. Compare side-by-side with original Stitch HTML. Check both viewports."
+    },
+    {
+      "id": "F033",
+      "category": "content",
+      "priority": 2,
+      "description": "Copy button for code blocks",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Visual feedback on successful copy"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use navigator.clipboard API. Add tooltip showing 'Copy' \u2192 'Copied\\!'. Consider syntax highlighting integration. Position button top-right of code block."
+    },
+    {
+      "id": "F034",
+      "category": "navigation",
+      "priority": 2,
+      "description": "Breadcrumb navigation component",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Displays on all article pages"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Generate from frontmatter hierarchy or file path. Style consistent with Stitch design. Include home icon for root. Consider mobile truncation for deep paths."
+    },
+    {
+      "id": "F035",
+      "category": "navigation",
+      "priority": 2,
+      "description": "Previous/Next article navigation",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Includes article titles and descriptions"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use content collection sorting. Handle first/last articles gracefully. Style as cards with excerpt preview. Consider category boundaries."
+    },
+    {
+      "id": "F036",
+      "category": "content",
+      "priority": 3,
+      "description": "Callout/Admonition components",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Markdown syntax integration"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use remark plugin for :::note syntax. Match Stitch color palette. Support nested markdown. Include icons for each type. Reference: docusaurus admonitions."
+    },
+    {
+      "id": "F037",
+      "category": "seo",
+      "priority": 2,
+      "description": "Open Graph and SEO metadata",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Configurable defaults and per-page overrides"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Add to BaseLayout. Extract from frontmatter (og:title, og:image, description). Generate social preview images if time permits. Include canonical URLs."
+    },
+    {
+      "id": "F038",
+      "category": "seo",
+      "priority": 3,
+      "description": "Automatic sitemap generation",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Respects lastmod from git or frontmatter"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use @astrojs/sitemap integration. Configure in astro.config. Include changefreq and priority. Exclude draft pages."
+    },
+    {
+      "id": "F039",
+      "category": "performance",
+      "priority": 2,
+      "description": "Image optimization with lazy loading",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "WebP format with fallbacks"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use @astrojs/image. Add Picture component wrapper. Consider responsive sizes. Optimize images in public/ at build time. Max width constraints for prose."
+    },
+    {
+      "id": "F040",
+      "category": "accessibility",
+      "priority": 2,
+      "description": "Skip to main content link",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Styled consistently with site"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Add to BaseLayout before header. Hidden until focused. Use #main-content anchor. Ensure sufficient contrast ratio. Test with screen readers."
+    },
+    {
+      "id": "F041",
+      "category": "content",
+      "priority": 3,
+      "description": "Reading time estimate",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Based on word count"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Calculate ~200 words/minute. Add to ArticleLayout. Use remark plugin or custom function. Format: '5 min read'. Consider code blocks (slower reading)."
+    },
+    {
+      "id": "F042",
+      "category": "content",
+      "priority": 4,
+      "description": "Related notes suggestion",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Displays at end of article"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use tag overlap scoring. Fallback to same category. Exclude current article. Style as card grid. Consider manual 'related' frontmatter field."
+    },
+    {
+      "id": "F043",
+      "category": "styling",
+      "priority": 4,
+      "description": "Print-friendly styles",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Includes full URLs for links"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use @media print CSS. Hide interactive elements. Expand ToC. Add link URLs in parentheses. Ensure code blocks don't overflow."
+    },
+    {
+      "id": "F044",
+      "category": "qa",
+      "priority": 3,
+      "description": "Frontmatter validation schema",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Schema defined in code"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use Zod schemas in content config. Validate required fields (title, date). Check date formats. Validate tag/category enums. Fail build on errors."
+    },
+    {
+      "id": "F045",
+      "category": "content",
+      "priority": 3,
+      "description": "Last updated timestamp",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Falls back to frontmatter date if no git"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use git log command or package. Add to ArticleLayout. Format as relative time ('Updated 3 days ago'). Cache during build for performance."
+    },
+    {
+      "id": "F046",
+      "category": "navigation",
+      "priority": 2,
+      "description": "Anchor links for headings",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "URL updates on click"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use rehype-autolink-headings. Style link icon with Stitch colors. Position left or right of heading. Ensure unique IDs. Add smooth scroll behavior."
+    },
+    {
+      "id": "F047",
+      "category": "bootstrap",
+      "priority": 3,
+      "description": "404 error page with navigation",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Matches site design"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Create src/pages/404.astro. Include search if available. List popular pages. Add home/notes links. GitHub Pages requires special config."
     }
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T08:50:21.823231",
-    "totalFeatures": 32,
+    "lastUpdated": "2025-12-24T09:16:22.962958",
+    "totalFeatures": 47,
     "passingFeatures": 23
   }
 }
