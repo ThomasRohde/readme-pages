@@ -1,0 +1,110 @@
+---
+// CodeCopyButton component - Adds copy buttons to all code blocks
+---
+
+<script>
+  function initCodeCopyButtons() {
+    // Find all pre elements that contain code blocks
+    const codeBlocks = document.querySelectorAll('pre');
+
+    codeBlocks.forEach((pre) => {
+      // Skip if button already added (for view transitions)
+      if (pre.parentElement?.classList.contains('code-block-wrapper')) {
+        return;
+      }
+
+      // Create wrapper for positioning
+      const wrapper = document.createElement('div');
+      wrapper.className = 'code-block-wrapper relative group';
+
+      // Wrap the pre element
+      pre.parentNode?.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+
+      // Create copy button
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className =
+        'copy-code-button absolute top-2 right-2 px-3 py-1.5 rounded-md text-xs font-medium ' +
+        'bg-slate-700/80 dark:bg-slate-800/80 text-slate-200 dark:text-slate-300 ' +
+        'hover:bg-slate-600 dark:hover:bg-slate-700 ' +
+        'transition-all duration-200 ' +
+        'opacity-0 group-hover:opacity-100 focus:opacity-100 ' +
+        'border border-slate-600 dark:border-slate-700 ' +
+        'backdrop-blur-sm';
+      button.setAttribute('aria-label', 'Copy code to clipboard');
+
+      // Button content with icon
+      const iconSpan = document.createElement('span');
+      iconSpan.className = 'material-symbols-outlined text-[16px] align-middle mr-1';
+      iconSpan.textContent = 'content_copy';
+
+      const textSpan = document.createElement('span');
+      textSpan.className = 'button-text';
+      textSpan.textContent = 'Copy';
+
+      button.appendChild(iconSpan);
+      button.appendChild(textSpan);
+
+      // Add button to wrapper
+      wrapper.appendChild(button);
+
+      // Copy functionality
+      button.addEventListener('click', async () => {
+        const code = pre.querySelector('code');
+        if (!code) return;
+
+        try {
+          // Get the text content, preserving line breaks
+          const text = code.textContent || '';
+          await navigator.clipboard.writeText(text);
+
+          // Show success feedback
+          textSpan.textContent = 'Copied!';
+          iconSpan.textContent = 'check';
+          button.classList.add('bg-green-700', 'dark:bg-green-800');
+          button.classList.remove('bg-slate-700/80', 'dark:bg-slate-800/80');
+
+          // Reset after 2 seconds
+          setTimeout(() => {
+            textSpan.textContent = 'Copy';
+            iconSpan.textContent = 'content_copy';
+            button.classList.remove('bg-green-700', 'dark:bg-green-800');
+            button.classList.add('bg-slate-700/80', 'dark:bg-slate-800/80');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy code:', err);
+          textSpan.textContent = 'Failed';
+
+          setTimeout(() => {
+            textSpan.textContent = 'Copy';
+          }, 2000);
+        }
+      });
+    });
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCodeCopyButtons);
+  } else {
+    initCodeCopyButtons();
+  }
+
+  // Re-initialize on view transitions (if using Astro view transitions)
+  document.addEventListener('astro:page-load', initCodeCopyButtons);
+</script>
+
+<style>
+  /* Ensure pre elements have enough padding for the button */
+  :global(.code-block-wrapper pre) {
+    padding-top: 2.5rem !important;
+  }
+
+  /* On mobile, always show the button */
+  @media (max-width: 640px) {
+    :global(.copy-code-button) {
+      opacity: 1;
+    }
+  }
+</style>
