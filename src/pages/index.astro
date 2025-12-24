@@ -27,7 +27,7 @@ const baseUrl = import.meta.env.BASE_URL;
         {latestNotes.map(note => (
           <Card
             title={note.data.title}
-            href={`${baseUrl}/notes/${note.slug}/`}
+            href={`${baseUrl}/notes/${note.id}/`}
             date={note.data.date}
             description={note.data.description}
             tags={note.data.tags}

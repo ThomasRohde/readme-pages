@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import PrevNext from '../../components/PrevNext.astro';
 import EditOnGitHub from '../../components/EditOnGitHub.astro';
@@ -24,19 +24,19 @@ export async function getStaticPaths() {
     const next = index < sortedNotes.length - 1 ? sortedNotes[index + 1] : null;
     
     // Find related notes
-    const related = findRelatedNotes(note.slug, note.data.tags, notes, 3);
+    const related = findRelatedNotes(note.id, note.data.tags, notes, 3);
     
     return {
-      params: { slug: note.slug },
+      params: { slug: note.id },
       props: {
         note,
         prev: prev ? {
-          slug: prev.slug,
+          slug: prev.id,
           title: prev.data.title,
           description: prev.data.description
         } : undefined,
         next: next ? {
-          slug: next.slug,
+          slug: next.id,
           title: next.data.title,
           description: next.data.description
         } : undefined,
@@ -47,8 +47,8 @@ export async function getStaticPaths() {
 }
 
 const { note, prev, next, related } = Astro.props;
-const { Content, headings } = await note.render();
-const readingTime = calculateReadingTime(note.body);
+const { Content, headings } = await render(note);
+const readingTime = calculateReadingTime(note.body || '');
 const formattedDate = note.data.date.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',

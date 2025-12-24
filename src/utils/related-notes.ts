@@ -32,7 +32,7 @@ export function findRelatedNotes(
 ): CollectionEntry<'notes'>[] {
   // Filter out current note and draft notes
   const candidates = allNotes.filter(
-    note => note.slug !== currentSlug && !note.data.draft
+    note => note.id !== currentSlug && !note.data.draft
   );
   
   // If current note has no tags, return most recent notes

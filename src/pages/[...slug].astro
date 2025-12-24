@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PrevNext from '../components/PrevNext.astro';
 import { getLastModified, formatRelativeTime } from '../utils/last-modified';
@@ -20,16 +20,16 @@ export async function getStaticPaths() {
     const next = index < sortedPages.length - 1 ? sortedPages[index + 1] : null;
     
     return {
-      params: { slug: page.slug },
+      params: { slug: page.id },
       props: {
         page,
         prev: prev ? {
-          slug: prev.slug,
+          slug: prev.id,
           title: prev.data.title,
           description: prev.data.description
         } : undefined,
         next: next ? {
-          slug: next.slug,
+          slug: next.id,
           title: next.data.title,
           description: next.data.description
         } : undefined
@@ -39,7 +39,7 @@ export async function getStaticPaths() {
 }
 
 const { page, prev, next } = Astro.props;
-const { Content } = await page.render();
+const { Content } = await render(page);
 
 // Get last modified date from git
 const lastModifiedDate = getLastModified(`src/content/pages/${page.id}`);

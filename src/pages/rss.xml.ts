@@ -24,7 +24,7 @@ export async function GET(context: APIContext) {
     items: sortedNotes.map((note) => ({
       title: note.data.title,
       description: note.data.description || '',
-      link: `${fullSiteUrl}/notes/${note.slug}/`,
+      link: `${fullSiteUrl}/notes/${note.id}/`,
       pubDate: new Date(note.data.date),
       categories: note.data.tags || [],
     })),
