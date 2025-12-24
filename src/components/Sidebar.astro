@@ -10,6 +10,61 @@ const sortedPages = pages.sort((a, b) => {
 });
 ---
 
+<!-- Mobile backdrop -->
+<div
+  id="mobile-backdrop"
+  class="lg:hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 hidden transition-opacity"
+  aria-hidden="true"
+></div>
+
+<!-- Mobile sidebar -->
+<aside
+  id="mobile-sidebar"
+  class="lg:hidden fixed top-16 right-0 bottom-0 w-72 bg-background-light dark:bg-background-dark border-l border-slate-200 dark:border-border-dark z-50 overflow-y-auto transform translate-x-full transition-transform duration-300 ease-in-out"
+>
+  <nav class="space-y-8 p-6">
+    <div>
+      <h5 class="mb-3 text-sm font-semibold text-slate-900 dark:text-white">Navigation</h5>
+      <ul class="space-y-1">
+        <li>
+          <a
+            href={baseUrl}
+            class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            href={`${baseUrl}/notes/`}
+            class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors"
+          >
+            Notes
+          </a>
+        </li>
+      </ul>
+    </div>
+    {sortedPages.length > 0 && (
+      <div>
+        <h5 class="mb-3 text-sm font-semibold text-slate-900 dark:text-white">Pages</h5>
+        <ul class="space-y-1">
+          {sortedPages.map(page => (
+            <li>
+              <a
+                href={`${baseUrl}/${page.slug}/`}
+                class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors"
+              >
+                {page.data.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </nav>
+</aside>
+
+<!-- Desktop sidebar -->
 <aside class="hidden lg:block w-64 xl:w-72 shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto no-scrollbar py-10 pr-6 border-r border-slate-200 dark:border-border-dark/50">
   <nav class="space-y-8">
     <div>

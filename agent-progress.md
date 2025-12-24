@@ -24,9 +24,9 @@ klondike feature list  # List all features
 ### Current Priority Features
 | ID | Description | Status |
 |----|-------------|--------|
-| F016 | Mobile-responsive sidebar navigation | ⏳ Not started |
 | F019 | Production build optimization | ⏳ Not started |
 | F033 | Copy button for code blocks | ⏳ Not started |
+| F034 | Breadcrumb navigation component | ⏳ Not started |
 
 ---
 

@@ -1,0 +1,78 @@
+---
+// Mobile menu toggle button
+---
+
+<button
+  id="mobile-menu-button"
+  type="button"
+  class="lg:hidden size-10 rounded-lg flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+  aria-label="Toggle menu"
+  aria-expanded="false"
+>
+  <span class="material-symbols-outlined text-[24px]" id="menu-icon">
+    menu
+  </span>
+</button>
+
+<script>
+  function initMobileMenu() {
+    const button = document.getElementById('mobile-menu-button');
+    const sidebar = document.getElementById('mobile-sidebar');
+    const backdrop = document.getElementById('mobile-backdrop');
+    const menuIcon = document.getElementById('menu-icon');
+
+    if (!button || !sidebar || !backdrop || !menuIcon) return;
+
+    function openMenu() {
+      sidebar!.classList.remove('translate-x-full');
+      sidebar!.classList.add('translate-x-0');
+      backdrop!.classList.remove('hidden');
+      button!.setAttribute('aria-expanded', 'true');
+      menuIcon!.textContent = 'close';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      sidebar!.classList.add('translate-x-full');
+      sidebar!.classList.remove('translate-x-0');
+      backdrop!.classList.add('hidden');
+      button!.setAttribute('aria-expanded', 'false');
+      menuIcon!.textContent = 'menu';
+      document.body.style.overflow = '';
+    }
+
+    button.addEventListener('click', () => {
+      const isOpen = button!.getAttribute('aria-expanded') === 'true';
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    backdrop.addEventListener('click', closeMenu);
+
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && button!.getAttribute('aria-expanded') === 'true') {
+        closeMenu();
+      }
+    });
+
+    // Close menu when clicking nav links
+    const navLinks = sidebar!.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
+
+  // Re-initialize on view transitions
+  document.addEventListener('astro:page-load', initMobileMenu);
+</script>
