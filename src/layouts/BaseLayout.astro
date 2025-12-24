@@ -104,7 +104,10 @@ const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     
     <!-- Pagefind UI CSS -->
-    <link href={`${import.meta.env.BASE_URL}pagefind/pagefind-ui.css`} rel="stylesheet" />
+    <link href={`${import.meta.env.BASE_URL}/pagefind/pagefind-ui.css`} rel="stylesheet" />
+    
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title="Thomas Rohde - Notes RSS Feed" href={`${import.meta.env.BASE_URL}/rss.xml`} />
   </head>
   <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-200 font-display antialiased min-h-screen flex flex-col">
     <!-- Skip to main content link for keyboard users -->

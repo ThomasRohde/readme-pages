@@ -505,13 +505,13 @@
         "Valid RSS 2.0 or Atom format"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
+      "status": "in-progress",
       "passes": false,
       "verifiedAt": null,
       "verifiedBy": null,
       "evidenceLinks": [],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T13:14:00.353783",
       "notes": "Optional nice-to-have. Use @astrojs/rss package. Generate at build time. Include in site footer/header."
     },
     {
