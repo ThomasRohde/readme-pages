@@ -9,8 +9,13 @@ interface Props {
 
 const { headings } = Astro.props;
 
-// Filter to only show h2 and h3
-const tocHeadings = headings.filter(h => h.depth <= 3);
+// Filter to only show h2 and h3, and clean up heading text (remove anchor symbols)
+const tocHeadings = headings
+  .filter(h => h.depth <= 3)
+  .map(h => ({
+    ...h,
+    text: h.text.replace(/^#\s*/, '') // Remove leading # and whitespace
+  }));
 ---
 
 {tocHeadings.length > 0 && (
