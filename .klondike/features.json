@@ -412,11 +412,13 @@
         "HTML minified"
       ],
       "estimatedEffort": null,
-      "status": "in-progress",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T11:13:38.951490",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Production build with compressHTML: true enabled. HTML output verified as minified. Init script health checks updated to use correct base path /readme-pages. Fixed PID variable conflict in init.ps1."
+      ],
       "blockedBy": null,
       "lastWorkedOn": "2025-12-24T10:52:31.936014",
       "notes": "Astro is static by default which is good. Verify no accidental client-side JS. Check bundle sizes. Test dist/ locally with preview command."
@@ -777,13 +779,15 @@
         "Includes article titles and descriptions"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T11:24:26.357647",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Prev/next navigation implemented. Builds with 0 errors. Tested on notes: handles first/last gracefully. Includes titles and descriptions with Stitch styling."
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T11:20:58.078903",
       "notes": "Use content collection sorting. Handle first/last articles gracefully. Style as cards with excerpt preview. Consider category boundaries."
     },
     {
@@ -1017,8 +1021,8 @@
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T10:27:34.943251",
+    "lastUpdated": "2025-12-24T11:24:26.357660",
     "totalFeatures": 47,
-    "passingFeatures": 28
+    "passingFeatures": 30
   }
 }
