@@ -477,13 +477,13 @@
         "Tags page lists all available tags"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
+      "status": "in-progress",
       "passes": false,
       "verifiedAt": null,
       "verifiedBy": null,
       "evidenceLinks": [],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T12:50:28.390919",
       "notes": "Optional MVP+ feature. Implement only after core notes functionality works. Consider tag cloud or simple list."
     },
     {

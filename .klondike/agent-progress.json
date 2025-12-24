@@ -1,7 +1,7 @@
 {
   "projectName": "readme-pages",
   "startedAt": "2025-12-24T08:03:50.300345",
-  "currentStatus": "Session Ended",
+  "currentStatus": "In Progress",
   "sessions": [
     {
       "sessionNumber": 1,
@@ -183,6 +183,20 @@
         "F020 - Client-side static search with Pagefind for improved content discoverability"
       ],
       "technicalNotes": []
+    },
+    {
+      "sessionNumber": 12,
+      "date": "2025-12-24",
+      "agent": "Coding Agent",
+      "duration": "(in progress)",
+      "focus": "F020, F022, F042 - Client search, tag index, and related notes",
+      "completed": [],
+      "inProgress": [
+        "Session started"
+      ],
+      "blockers": [],
+      "nextSteps": [],
+      "technicalNotes": []
     }
   ],
   "quickReference": {
@@ -202,7 +216,7 @@
       {
         "id": "F022",
         "description": "Tag index page for notes",
-        "status": "not-started"
+        "status": "in-progress"
       },
       {
         "id": "F042",

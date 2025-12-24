@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const notes = await getCollection('notes', ({ data }) => !data.draft);
+const baseUrl = import.meta.env.BASE_URL;
+
+// Gather all tags with their note counts
+const tagCounts = new Map<string, number>();
+notes.forEach(note => {
+  note.data.tags?.forEach(tag => {
+    tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+  });
+});
+
+// Sort tags alphabetically
+const sortedTags = Array.from(tagCounts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+---
+
+<BaseLayout title="Tags - Thomas Klok Rohde">
+  <div class="max-w-4xl">
+    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">Tags</h1>
+    <p class="text-slate-600 dark:text-slate-400 mb-10">Browse notes by topic</p>
+    
+    {sortedTags.length === 0 ? (
+      <p class="text-slate-600 dark:text-slate-400">No tags found.</p>
+    ) : (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {sortedTags.map(([tag, count]) => (
+          <a
+            href={`${baseUrl}/tags/${tag}/`}
+            class="group block p-6 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-primary dark:hover:border-primary transition-colors"
+          >
+            <div class="flex items-baseline justify-between mb-2">
+              <h2 class="text-lg font-semibold text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-primary transition-colors">
+                {tag}
+              </h2>
+              <span class="text-sm text-slate-500 dark:text-slate-400 ml-2">
+                {count} {count === 1 ? 'note' : 'notes'}
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>
