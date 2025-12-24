@@ -148,18 +148,18 @@
     ],
     "priorityFeatures": [
       {
-        "id": "F039",
-        "description": "Image optimization with lazy loading",
-        "status": "in-progress"
-      },
-      {
         "id": "F040",
         "description": "Skip to main content link",
-        "status": "not-started"
+        "status": "in-progress"
       },
       {
         "id": "F046",
         "description": "Anchor links for headings",
+        "status": "not-started"
+      },
+      {
+        "id": "F017",
+        "description": "Stitch-compatible component styling",
         "status": "not-started"
       }
     ]

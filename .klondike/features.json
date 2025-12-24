@@ -870,11 +870,16 @@
         "WebP format with fallbacks"
       ],
       "estimatedEffort": null,
-      "status": "in-progress",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T11:42:03.053770",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Implemented complete image optimization solution:\n- Rehype plugin adds lazy loading and async decoding to all markdown images\n- OptimizedImage component for Astro files with WebP support\n- Sharp image service configured for automatic optimization\n- Responsive styles with rounded corners",
+        "shadows",
+        "and layout shift prevention\n- Comprehensive documentation in IMAGE-OPTIMIZATION.md\n- Test page created with multiple examples\n- Build successful",
+        "lazy loading attributes verified in HTML output"
+      ],
       "blockedBy": null,
       "lastWorkedOn": "2025-12-24T11:37:57.368432",
       "notes": "Use @astrojs/image. Add Picture component wrapper. Consider responsive sizes. Optimize images in public/ at build time. Max width constraints for prose."
@@ -889,13 +894,13 @@
         "Styled consistently with site"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
+      "status": "in-progress",
       "passes": false,
       "verifiedAt": null,
       "verifiedBy": null,
       "evidenceLinks": [],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T11:42:17.099813",
       "notes": "Add to BaseLayout before header. Hidden until focused. Use #main-content anchor. Ensure sufficient contrast ratio. Test with screen readers."
     },
     {
@@ -1034,8 +1039,8 @@
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T11:34:54.888632",
+    "lastUpdated": "2025-12-24T11:42:03.053782",
     "totalFeatures": 47,
-    "passingFeatures": 31
+    "passingFeatures": 32
   }
 }

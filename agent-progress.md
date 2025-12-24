@@ -24,9 +24,9 @@ klondike feature list  # List all features
 ### Current Priority Features
 | ID | Description | Status |
 |----|-------------|--------|
-| F039 | Image optimization with lazy loading | 🔄 In progress |
-| F040 | Skip to main content link | ⏳ Not started |
+| F040 | Skip to main content link | 🔄 In progress |
 | F046 | Anchor links for headings | ⏳ Not started |
+| F017 | Stitch-compatible component styling | ⏳ Not started |
 
 ---
 

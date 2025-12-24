@@ -104,10 +104,18 @@ const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
   </head>
   <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-200 font-display antialiased min-h-screen flex flex-col">
+    <!-- Skip to main content link for keyboard users -->
+    <a 
+      href="#main-content" 
+      class="skip-link"
+    >
+      Skip to main content
+    </a>
+    
     <Header />
     <div class="flex-1 w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 flex items-start relative">
       <Sidebar />
-      <main class="flex-1 min-w-0 py-10 lg:px-8 xl:px-12">
+      <main id="main-content" class="flex-1 min-w-0 py-10 lg:px-8 xl:px-12">
         <slot />
       </main>
       <slot name="sidebar-right" />
