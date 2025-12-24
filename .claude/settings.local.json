@@ -14,7 +14,12 @@
       "Bash(npm run build:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(klondike session end:*)"
+      "Bash(klondike session end:*)",
+      "Bash(./init.ps1)",
+      "Bash(./init.sh:*)",
+      "Bash(curl:*)",
+      "Bash(npm run dev:*)",
+      "Bash(xargs cat:*)"
     ]
   }
 }

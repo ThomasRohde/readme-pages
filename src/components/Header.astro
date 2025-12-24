@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from './ThemeToggle.astro';
+
 const baseUrl = import.meta.env.BASE_URL;
 const { title = "Thomas Rohde" } = Astro.props;
 ---
@@ -13,6 +15,9 @@ const { title = "Thomas Rohde" } = Astro.props;
         </div>
         <span class="text-lg font-bold tracking-tight">{title}</span>
       </a>
+    </div>
+    <div class="flex items-center gap-2">
+      <ThemeToggle />
     </div>
   </div>
 </header>

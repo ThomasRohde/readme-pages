@@ -298,13 +298,18 @@
         "All components support both themes"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T09:24:21.653002",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Implemented theme toggle with localStorage persistence",
+        "dual-theme syntax highlighting (github-light/dark)",
+        "theme init script prevents flash",
+        "all components support both themes. Build passes with 0 errors."
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T09:19:48.836368",
       "notes": "Use Tailwind dark mode with class strategy. Add script in head to set theme before render to prevent flash. Consider prefers-color-scheme media query."
     },
     {
@@ -988,8 +993,8 @@
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T09:16:22.962958",
+    "lastUpdated": "2025-12-24T09:24:21.653025",
     "totalFeatures": 47,
-    "passingFeatures": 23
+    "passingFeatures": 24
   }
 }
