@@ -211,16 +211,16 @@
       {
         "id": "F020",
         "description": "Client-side static search with Pagefind",
-        "status": "not-started"
-      },
-      {
-        "id": "F042",
-        "description": "Related notes suggestion",
         "status": "in-progress"
       },
       {
         "id": "F043",
         "description": "Print-friendly styles",
+        "status": "not-started"
+      },
+      {
+        "id": "F023",
+        "description": "RSS feed for notes",
         "status": "not-started"
       }
     ]

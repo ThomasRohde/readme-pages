@@ -435,13 +435,13 @@
         "No server required"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
+      "status": "in-progress",
       "passes": false,
       "verifiedAt": null,
       "verifiedBy": null,
       "evidenceLinks": [],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T12:53:30.423002",
       "notes": "Add after MVP baseline is stable. Pagefind indexes at build time. Consider search UI placement - header or dedicated page. Test with real content."
     },
     {
@@ -962,11 +962,15 @@
         "Displays at end of article"
       ],
       "estimatedEffort": null,
-      "status": "in-progress",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T12:53:24.221482",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Created related-notes.ts utility with tag overlap scoring",
+        "RelatedNotes component displays 3 related notes at article end. Build succeeds",
+        "verified in HTML output."
+      ],
       "blockedBy": null,
       "lastWorkedOn": "2025-12-24T12:52:16.440274",
       "notes": "Use tag overlap scoring. Fallback to same category. Exclude current article. Style as card grid. Consider manual 'related' frontmatter field."
@@ -1085,8 +1089,8 @@
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T12:52:10.668290",
+    "lastUpdated": "2025-12-24T12:53:24.221503",
     "totalFeatures": 47,
-    "passingFeatures": 43
+    "passingFeatures": 44
   }
 }

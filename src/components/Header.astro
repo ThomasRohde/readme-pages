@@ -1,6 +1,7 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
 import MobileMenuButton from './MobileMenuButton.astro';
+import Search from './Search.astro';
 
 const baseUrl = import.meta.env.BASE_URL;
 const { title = "Thomas Klok Rohde" } = Astro.props;
@@ -19,6 +20,7 @@ const { title = "Thomas Klok Rohde" } = Astro.props;
       </a>
     </div>
     <div class="flex items-center gap-2">
+      <Search />
       <ThemeToggle />
     </div>
   </div>
