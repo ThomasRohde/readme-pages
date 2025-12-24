@@ -20,14 +20,14 @@ const collectionPath = collection === 'notes' ? 'notes/' : '';
 ---
 
 {(prev || next) && (
-  <nav class="mt-16 pt-8 border-t border-gray-200 dark:border-border-dark" aria-label="Article navigation">
+  <nav class="mt-16 pt-8 border-t border-slate-200 dark:border-border-dark" aria-label="Article navigation">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       {prev ? (
         <a
           href={`${baseWithSlash}${collectionPath}${prev.slug}/`}
-          class="group block p-6 rounded-lg border border-gray-200 dark:border-border-dark bg-white dark:bg-surface-dark hover:border-primary dark:hover:border-primary hover:shadow-lg transition-all duration-200"
+          class="group block p-6 rounded-lg border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark hover:border-primary dark:hover:border-primary hover:shadow-lg transition-all duration-200"
         >
-          <div class="flex items-center text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+          <div class="flex items-center text-sm font-medium text-slate-500 dark:text-slate-400 mb-2">
             <span class="material-symbols-outlined text-lg mr-1">arrow_back</span>
             Previous
           </div>
@@ -35,7 +35,7 @@ const collectionPath = collection === 'notes' ? 'notes/' : '';
             {prev.title}
           </div>
           {prev.description && (
-            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
               {prev.description}
             </p>
           )}
@@ -47,9 +47,9 @@ const collectionPath = collection === 'notes' ? 'notes/' : '';
       {next ? (
         <a
           href={`${baseWithSlash}${collectionPath}${next.slug}/`}
-          class="group block p-6 rounded-lg border border-gray-200 dark:border-border-dark bg-white dark:bg-surface-dark hover:border-primary dark:hover:border-primary hover:shadow-lg transition-all duration-200 text-right"
+          class="group block p-6 rounded-lg border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark hover:border-primary dark:hover:border-primary hover:shadow-lg transition-all duration-200 text-right"
         >
-          <div class="flex items-center justify-end text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+          <div class="flex items-center justify-end text-sm font-medium text-slate-500 dark:text-slate-400 mb-2">
             Next
             <span class="material-symbols-outlined text-lg ml-1">arrow_forward</span>
           </div>
@@ -57,7 +57,7 @@ const collectionPath = collection === 'notes' ? 'notes/' : '';
             {next.title}
           </div>
           {next.description && (
-            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
               {next.description}
             </p>
           )}

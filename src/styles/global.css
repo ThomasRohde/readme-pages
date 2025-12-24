@@ -57,6 +57,18 @@
     background: #475569;
 }
 
+/* Code block wrapper - ensure pre has top padding for copy button */
+.code-block-wrapper pre {
+    padding-top: 2.5rem;
+}
+
+/* On mobile, always show the copy button */
+@media (max-width: 640px) {
+    .copy-code-button {
+        opacity: 1;
+    }
+}
+
 /* Smooth scroll behavior for anchor links */
 html {
     scroll-behavior: smooth;

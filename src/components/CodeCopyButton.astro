@@ -36,7 +36,7 @@
 
       // Button content with icon
       const iconSpan = document.createElement('span');
-      iconSpan.className = 'material-symbols-outlined text-[16px] align-middle mr-1';
+      iconSpan.className = 'material-symbols-outlined text-base align-middle mr-1';
       iconSpan.textContent = 'content_copy';
 
       const textSpan = document.createElement('span');
@@ -94,17 +94,3 @@
   // Re-initialize on view transitions (if using Astro view transitions)
   document.addEventListener('astro:page-load', initCodeCopyButtons);
 </script>
-
-<style>
-  /* Ensure pre elements have enough padding for the button */
-  :global(.code-block-wrapper pre) {
-    padding-top: 2.5rem !important;
-  }
-
-  /* On mobile, always show the button */
-  @media (max-width: 640px) {
-    :global(.copy-code-button) {
-      opacity: 1;
-    }
-  }
-</style>

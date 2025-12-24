@@ -24,17 +24,9 @@ const editUrl = `https://github.com/${owner}/${repo}/edit/${branch}/${filePath}`
   href={editUrl}
   target="_blank"
   rel="noopener noreferrer"
-  class="edit-on-github inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary bg-slate-50 dark:bg-surface-dark border border-slate-200 dark:border-border-dark rounded-lg hover:border-primary dark:hover:border-primary transition-all duration-200 hover:shadow-md"
+  class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary bg-slate-50 dark:bg-surface-dark border border-slate-200 dark:border-border-dark rounded-lg hover:border-primary dark:hover:border-primary transition-all duration-200 hover:shadow-md min-h-11 touch-manipulation"
 >
-  <span class="material-symbols-outlined text-[20px]">edit</span>
+  <span class="material-symbols-outlined text-xl">edit</span>
   <span>Edit on GitHub</span>
-  <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+  <span class="material-symbols-outlined text-base">open_in_new</span>
 </a>
-
-<style>
-  .edit-on-github {
-    /* Ensure it's tappable on mobile */
-    min-height: 44px;
-    touch-action: manipulation;
-  }
-</style>

@@ -1,5 +1,24 @@
 import typography from '@tailwindcss/typography';
 
+/**
+ * Tailwind CSS Configuration for readme-pages
+ * 
+ * Custom Theme Extensions (for Stitch compatibility):
+ * - colors.primary: Brand primary color (#137fec)
+ * - colors.background-light/dark: Page background colors
+ * - colors.surface-dark: Card/component surface in dark mode
+ * - colors.border-dark: Border color for dark mode
+ * - fontFamily.display: Inter for UI text
+ * - fontFamily.mono: JetBrains Mono for code
+ * - borderRadius.DEFAULT: 0.25rem (4px) - all components use Tailwind scale
+ * 
+ * Typography plugin customizations:
+ * - Prose styling for markdown content
+ * - Code block theming
+ * - Heading scales and spacing
+ * - Dark mode (invert) variant
+ */
+
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],

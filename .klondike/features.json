@@ -372,13 +372,13 @@
         "Spacing consistent with Tailwind scale"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
+      "status": "in-progress",
       "passes": false,
       "verifiedAt": null,
       "verifiedBy": null,
       "evidenceLinks": [],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T12:03:39.645601",
       "notes": "Goal is Stitch export compatibility. Keep classes semantic. Avoid inline styles. Document any custom theme extensions in tailwind.config."
     },
     {
