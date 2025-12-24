@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(klondike status:*)",
+      "Bash(klondike feature:*)",
+      "Bash(klondike validate:*)",
+      "Bash(klondike session start:*)",
+      "Bash(git init:*)",
+      "Bash(node --version)",
+      "Bash(npm --version:*)",
+      "Bash(npm create astro@latest:*)",
+      "Bash(npm install:*)",
+      "Bash(npx astro add tailwind --yes)",
+      "Bash(npm run build:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

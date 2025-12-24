@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.astro/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Dev server logs
+.dev-server.log
+.dev-server.pid
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Astro
+.vercel/

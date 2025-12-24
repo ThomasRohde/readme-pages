@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Home - Thomas Rohde">
+  <div class="prose dark:prose-invert max-w-none">
+    <h1>Welcome</h1>
+    <p>
+      This is a minimal Astro site for publishing notes and documentation.
+    </p>
+    <p>
+      Navigate to <a href={`${import.meta.env.BASE_URL}/notes/`}>Notes</a> to see the notes index.
+    </p>
+  </div>
+</BaseLayout>

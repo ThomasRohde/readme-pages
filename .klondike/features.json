@@ -1,0 +1,636 @@
+{
+  "projectName": "readme-pages",
+  "version": "0.1.0",
+  "features": [
+    {
+      "id": "F001",
+      "category": "bootstrap",
+      "priority": 1,
+      "description": "Initialize Astro project with TypeScript",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "npm run build produces dist/ folder"
+      ],
+      "estimatedEffort": null,
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:27:40.924332",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Astro v5.1.7 initialized with TypeScript strict mode",
+        "astro.config.mjs created"
+      ],
+      "blockedBy": null,
+      "lastWorkedOn": "2025-12-24T08:27:40.127497",
+      "notes": "Use latest Astro version. Enable TypeScript for better DX. This is the foundation for everything else."
+    },
+    {
+      "id": "F002",
+      "category": "bootstrap",
+      "priority": 1,
+      "description": "Add Tailwind CSS integration",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "No CDN - local build only"
+      ],
+      "estimatedEffort": null,
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:27:50.497334",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Tailwind v4.1.18 added via @astrojs/vite integration",
+        "global.css created with @import tailwindcss"
+      ],
+      "blockedBy": null,
+      "lastWorkedOn": "2025-12-24T08:27:49.681550",
+      "notes": "Use official Astro Tailwind integration. Configure content paths for src/**/*.{astro,md,mdx}. Avoid CDN for production."
+    },
+    {
+      "id": "F003",
+      "category": "bootstrap",
+      "priority": 1,
+      "description": "Configure base path for GitHub Pages project site",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Build output respects base path"
+      ],
+      "estimatedEffort": null,
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:27:52.765033",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "astro.config.mjs configured with site and base path /readme for GitHub Pages project deployment"
+      ],
+      "blockedBy": null,
+      "lastWorkedOn": "2025-12-24T08:27:51.906150",
+      "notes": "Critical for project Pages deployment. Use import.meta.env.BASE_URL for dynamic links. Test thoroughly - base path issues are common."
+    },
+    {
+      "id": "F004",
+      "category": "bootstrap",
+      "priority": 1,
+      "description": "Create BaseLayout with header, sidebar, main, footer structure",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Responsive - works on mobile and desktop"
+      ],
+      "estimatedEffort": null,
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:29:13.097630",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "BaseLayout.astro created with Header",
+        "Sidebar",
+        "Footer components. Uses semantic HTML and Tailwind for responsive layout"
+      ],
+      "blockedBy": null,
+      "lastWorkedOn": "2025-12-24T08:28:11.525546",
+      "notes": "This is the shared layout for all pages. Sidebar should be collapsible on mobile. Use semantic HTML (header, nav, main, footer)."
+    },
+    {
+      "id": "F005",
+      "category": "bootstrap",
+      "priority": 1,
+      "description": "Create home page route",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Shows site welcome content"
+      ],
+      "estimatedEffort": null,
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:29:18.787857",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Home page index.astro uses BaseLayout and displays welcome content"
+      ],
+      "blockedBy": null,
+      "lastWorkedOn": "2025-12-24T08:29:16.604914",
+      "notes": "Initial home page - will be enhanced later to show latest notes. For now just needs to render correctly with the layout."
+    },
+    {
+      "id": "F006",
+      "category": "bootstrap",
+      "priority": 1,
+      "description": "Create notes index route",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Placeholder for notes listing"
+      ],
+      "estimatedEffort": null,
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:29:24.490230",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Notes index page at /notes/ uses BaseLayout and is ready for content collection integration"
+      ],
+      "blockedBy": null,
+      "lastWorkedOn": "2025-12-24T08:29:22.376595",
+      "notes": "Initial notes index - will be enhanced to list notes from content collection. For now just needs basic structure."
+    },
+    {
+      "id": "F007",
+      "category": "content",
+      "priority": 1,
+      "description": "Implement content collection for pages",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Pages render at /readme/<slug>/"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use Astro Content Collections API. Define Zod schema for front matter validation. Pages are evergreen docs like About, Projects."
+    },
+    {
+      "id": "F008",
+      "category": "content",
+      "priority": 1,
+      "description": "Implement content collection for notes",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Notes render at /readme/notes/<slug>/"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Notes are dated entries. Date is required unlike pages. Support optional tags array for future filtering."
+    },
+    {
+      "id": "F009",
+      "category": "content",
+      "priority": 1,
+      "description": "Create ArticleLayout with ToC support",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "ToC responsive - hidden on mobile or in drawer"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "ToC should extract headings from rendered content. Use IntersectionObserver for active section highlighting (optional but nice). Consider sticky positioning."
+    },
+    {
+      "id": "F010",
+      "category": "navigation",
+      "priority": 1,
+      "description": "Generate sidebar navigation from content collections",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Sidebar collapsible on mobile"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Sidebar should be derived from content collections, not hardcoded. Consider supporting explicit order via front matter. Mobile: hamburger menu or slide-out drawer."
+    },
+    {
+      "id": "F011",
+      "category": "content",
+      "priority": 2,
+      "description": "Display latest notes on home page",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Link to full notes index"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Query notes collection sorted by date. Consider Card component for note previews. Keep it simple - title, date, maybe first paragraph."
+    },
+    {
+      "id": "F012",
+      "category": "content",
+      "priority": 2,
+      "description": "Notes index page lists all notes",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Pagination if more than 20 notes (optional)"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "This replaces the placeholder notes index. Query all notes from collection. Consider grouping by year for long lists."
+    },
+    {
+      "id": "F013",
+      "category": "content",
+      "priority": 1,
+      "description": "Markdown rendering with syntax highlighting",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Links work (relative and absolute)"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Astro has built-in Markdown support with Shiki. Configure in astro.config.mjs. Ensure heading IDs are URL-friendly for ToC anchors."
+    },
+    {
+      "id": "F014",
+      "category": "styling",
+      "priority": 2,
+      "description": "Implement dark/light mode toggle",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "All components support both themes"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use Tailwind dark mode with class strategy. Add script in head to set theme before render to prevent flash. Consider prefers-color-scheme media query."
+    },
+    {
+      "id": "F015",
+      "category": "styling",
+      "priority": 2,
+      "description": "Responsive typography and prose styling",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Code blocks styled appropriately"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use @tailwindcss/typography for markdown prose. Customize prose colors for dark mode. Ensure code blocks don't overflow on mobile."
+    },
+    {
+      "id": "F016",
+      "category": "styling",
+      "priority": 2,
+      "description": "Mobile-responsive sidebar navigation",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Smooth transition animation"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Consider CSS-only solution or minimal JS. Ensure keyboard accessibility. Test on actual mobile viewport."
+    },
+    {
+      "id": "F017",
+      "category": "styling",
+      "priority": 3,
+      "description": "Stitch-compatible component styling",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Spacing consistent with Tailwind scale"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Goal is Stitch export compatibility. Keep classes semantic. Avoid inline styles. Document any custom theme extensions in tailwind.config."
+    },
+    {
+      "id": "F018",
+      "category": "deploy",
+      "priority": 1,
+      "description": "GitHub Actions workflow for Pages deployment",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Caches node_modules for faster builds"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use official Astro GitHub Pages deploy guide. Set permissions for GITHUB_TOKEN. Consider using pnpm or npm based on project setup."
+    },
+    {
+      "id": "F019",
+      "category": "deploy",
+      "priority": 2,
+      "description": "Production build optimization",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "HTML minified"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Astro is static by default which is good. Verify no accidental client-side JS. Check bundle sizes. Test dist/ locally with preview command."
+    },
+    {
+      "id": "F020",
+      "category": "search",
+      "priority": 4,
+      "description": "Client-side static search with Pagefind",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "No server required"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Add after MVP baseline is stable. Pagefind indexes at build time. Consider search UI placement - header or dedicated page. Test with real content."
+    },
+    {
+      "id": "F021",
+      "category": "qa",
+      "priority": 3,
+      "description": "Link checking in CI",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Reports which links are broken"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Use lychee, linkinator, or similar. Run after build step. Consider allowing external link failures as warnings only. Critical for maintaining site quality."
+    },
+    {
+      "id": "F022",
+      "category": "content",
+      "priority": 4,
+      "description": "Tag index page for notes",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Tags page lists all available tags"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Optional MVP+ feature. Implement only after core notes functionality works. Consider tag cloud or simple list."
+    },
+    {
+      "id": "F023",
+      "category": "content",
+      "priority": 5,
+      "description": "RSS feed for notes",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Valid RSS 2.0 or Atom format"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Optional nice-to-have. Use @astrojs/rss package. Generate at build time. Include in site footer/header."
+    },
+    {
+      "id": "F024",
+      "category": "stitch",
+      "priority": 1,
+      "description": "Inspect and inventory Stitch export",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Note any inline styles or custom CSS files"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "First step before integration. Create a checklist of what needs to be migrated. Look for index.html, article.html, notes.html patterns."
+    },
+    {
+      "id": "F025",
+      "category": "stitch",
+      "priority": 1,
+      "description": "Copy Stitch assets into Astro public folder",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Paths updated from relative to /assets/..."
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Assets in public/ are served at root. Update any Stitch HTML that used relative ./assets paths to absolute /assets paths."
+    },
+    {
+      "id": "F026",
+      "category": "stitch",
+      "priority": 1,
+      "description": "Convert Stitch HTML to BaseLayout.astro",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Tailwind classes preserved unchanged"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Take Stitch index.html body and convert to Astro layout. Replace page-specific content with <slot />. Keep all Tailwind classes exactly as exported."
+    },
+    {
+      "id": "F027",
+      "category": "stitch",
+      "priority": 1,
+      "description": "Extract Stitch header/footer/sidebar to components",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Tailwind classes preserved"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Copy Stitch markup blocks verbatim into components. Only parameterize what needs to be dynamic. Don't over-componentize."
+    },
+    {
+      "id": "F028",
+      "category": "stitch",
+      "priority": 1,
+      "description": "Convert Stitch article page to ArticleLayout.astro",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Matches Stitch article.html visual design"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "ArticleLayout is for markdown content pages. Extract article-specific structure from Stitch article.html. ToC goes in right rail."
+    },
+    {
+      "id": "F029",
+      "category": "stitch",
+      "priority": 1,
+      "description": "Remove Tailwind CDN from Stitch layouts",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "All Stitch classes render correctly"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Critical: CDN must be removed for production. Tailwind must scan all .astro, .md files. Verify no missing utility classes after removal."
+    },
+    {
+      "id": "F030",
+      "category": "stitch",
+      "priority": 1,
+      "description": "Configure fonts from Stitch export",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Typography matches Stitch design"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Keep Google Fonts links from Stitch. Add preconnect for fonts.googleapis.com and fonts.gstatic.com. Self-hosting is optional MVP+."
+    },
+    {
+      "id": "F031",
+      "category": "stitch",
+      "priority": 1,
+      "description": "Create Card component from Stitch note listing design",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "Hover states preserved"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Used for note previews on home page and notes index. Extract card/list-item pattern from Stitch notes.html or listing.html."
+    },
+    {
+      "id": "F032",
+      "category": "stitch",
+      "priority": 1,
+      "description": "Visual validation: site matches Stitch design",
+      "dependencies": [],
+      "acceptanceCriteria": [
+        "npm run build produces working dist/"
+      ],
+      "estimatedEffort": null,
+      "status": "not-started",
+      "passes": false,
+      "verifiedAt": null,
+      "verifiedBy": null,
+      "evidenceLinks": [],
+      "blockedBy": null,
+      "lastWorkedOn": null,
+      "notes": "Final validation step for Stitch integration. Compare side-by-side with original Stitch HTML. Check both viewports."
+    }
+  ],
+  "metadata": {
+    "createdAt": "2025-12-24T08:03:50.300345",
+    "lastUpdated": "2025-12-24T08:29:24.490248",
+    "totalFeatures": 32,
+    "passingFeatures": 6
+  }
+}

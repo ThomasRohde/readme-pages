@@ -1,0 +1,25 @@
+---
+// Sidebar navigation component
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<nav class="w-64 border-r border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-4">
+  <ul class="space-y-2">
+    <li>
+      <a
+        href={baseUrl}
+        class="block px-3 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white"
+      >
+        Home
+      </a>
+    </li>
+    <li>
+      <a
+        href={`${baseUrl}/notes/`}
+        class="block px-3 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white"
+      >
+        Notes
+      </a>
+    </li>
+  </ul>
+</nav>

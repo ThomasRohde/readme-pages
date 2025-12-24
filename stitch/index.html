@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Article Page Template</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#0f172a",
+                        "surface-dark": "#1e293b",
+                        "border-dark": "#334155",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+        
+        /* Hide scrollbar for sidebars but allow scroll */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-200 font-display antialiased min-h-screen flex flex-col">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-border-dark bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<!-- Mobile Menu Button -->
+<button class="lg:hidden p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Logo -->
+<a class="flex items-center gap-3 text-slate-900 dark:text-white" href="#">
+<div class="size-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">library_books</span>
+</div>
+<span class="text-lg font-bold tracking-tight">DocsPlatform</span>
+</a>
+<!-- Desktop Nav Links -->
+<nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+<a class="text-primary transition-colors" href="#">Documentation</a>
+<a class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200 transition-colors" href="#">API Reference</a>
+<a class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200 transition-colors" href="#">Showcase</a>
+<a class="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200 transition-colors" href="#">Blog</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<!-- Search Bar -->
+<div class="hidden sm:flex relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">search</span>
+</div>
+<input class="block w-full rounded-lg border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark py-1.5 pl-10 pr-3 text-sm text-slate-900 dark:text-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all w-64" placeholder="Search documentation..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<kbd class="hidden lg:inline-flex items-center gap-1 rounded border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-1.5 font-mono text-[10px] font-medium text-slate-500 dark:text-slate-400">
+<span class="text-xs">⌘</span>K
+                        </kbd>
+</div>
+</div>
+<!-- Social & Github -->
+<div class="flex items-center gap-3 border-l border-slate-200 dark:border-border-dark pl-4 ml-2">
+<a class="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200" href="#">
+<span class="sr-only">GitHub</span>
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</header>
+<div class="flex-1 w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 flex items-start relative">
+<!-- Left Sidebar: Navigation -->
+<aside class="hidden lg:block w-64 xl:w-72 shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto no-scrollbar py-10 pr-6 border-r border-slate-200 dark:border-border-dark/50">
+<nav class="space-y-8">
+<div>
+<h5 class="mb-3 text-sm font-semibold text-slate-900 dark:text-white">Getting Started</h5>
+<ul class="space-y-1">
+<li>
+<a class="block px-3 py-2 text-sm font-medium rounded-md bg-primary/10 text-primary dark:text-primary" href="#">
+                                Introduction
+                            </a>
+</li>
+<li>
+<a class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors" href="#">
+                                Installation
+                            </a>
+</li>
+<li>
+<a class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors" href="#">
+                                Project Structure
+                            </a>
+</li>
+</ul>
+</div>
+<div>
+<h5 class="mb-3 text-sm font-semibold text-slate-900 dark:text-white">Core Concepts</h5>
+<ul class="space-y-1">
+<li>
+<a class="flex justify-between items-center px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors" href="#">
+<span>Architecture</span>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</a>
+</li>
+<li>
+<a class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors" href="#">
+                                Data Flow
+                            </a>
+</li>
+<li>
+<a class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors" href="#">
+                                State Management
+                            </a>
+</li>
+</ul>
+</div>
+<div>
+<h5 class="mb-3 text-sm font-semibold text-slate-900 dark:text-white">Guides</h5>
+<ul class="space-y-1">
+<li>
+<a class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors" href="#">
+                                Authentication
+                            </a>
+</li>
+<li>
+<a class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors" href="#">
+                                Deployment
+                            </a>
+</li>
+<li>
+<a class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors" href="#">
+                                Testing
+                            </a>
+</li>
+</ul>
+</div>
+<div>
+<h5 class="mb-3 text-sm font-semibold text-slate-900 dark:text-white">Reference</h5>
+<ul class="space-y-1">
+<li>
+<a class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors" href="#">
+                                API Endpoints
+                            </a>
+</li>
+<li>
+<a class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors" href="#">
+                                Configuration
+                            </a>
+</li>
+</ul>
+</div>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 min-w-0 py-10 lg:px-8 xl:px-12">
+<!-- Breadcrumbs -->
+<nav class="flex mb-6 text-sm text-slate-500 dark:text-slate-400">
+<ol class="flex items-center space-x-2">
+<li><a class="hover:text-primary transition-colors" href="#">Docs</a></li>
+<li><span class="material-symbols-outlined text-[16px] text-slate-400">chevron_right</span></li>
+<li><a class="hover:text-primary transition-colors" href="#">Getting Started</a></li>
+<li><span class="material-symbols-outlined text-[16px] text-slate-400">chevron_right</span></li>
+<li class="font-medium text-slate-900 dark:text-white">Introduction</li>
+</ol>
+</nav>
+<!-- Page Header -->
+<div class="mb-10 pb-10 border-b border-slate-200 dark:border-border-dark">
+<div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+<h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Introduction to System Architecture</h1>
+<a class="inline-flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-lg border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+                        Edit on GitHub
+                    </a>
+</div>
+<p class="mt-4 text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
+                    Learn about the high-level design, data flow principles, and the core components that make up our documentation platform. This guide serves as a starting point for developers.
+                </p>
+<div class="mt-6 flex items-center gap-4 text-sm text-slate-500 dark:text-slate-500">
+<div class="flex items-center gap-1.5">
+<img alt="Author avatar" class="size-6 rounded-full border border-slate-200 dark:border-slate-700" data-alt="Small circular avatar of the author" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLJYw9sWVNHkpWHbZPfRwI0clCir1RvmbrUo-wzBapveQ2ljrvI_d5e2nq80AaJW-PvK479mKVOfX0ofoAtHuirs5Wur-Y0zFcu0zKeCpNDHRyS-qQbFoIsUZNOHkAts_yH-zkfTK4R0B_jlh6CeBV32M15qVp7djn-MjaKUYgMV-6w7_gw9RVGQeKIIccOx6PUqB0FRMxO413FCJna4mGqm7CbBdiPmRu1l78ngYZDxON2xluojUOcLV15L0NtKP40WEkkulvAw"/>
+<span>Sarah Jenkins</span>
+</div>
+<span>•</span>
+<time datetime="2023-10-24">Last updated October 24, 2023</time>
+<span>•</span>
+<span>5 min read</span>
+</div>
+</div>
+<!-- Content Body -->
+<div class="prose prose-slate dark:prose-invert max-w-none">
+<!-- Section 1 -->
+<div class="group/section relative scroll-mt-24" id="overview">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 group-hover/section:text-primary transition-colors">
+                        Overview
+                        <a aria-label="Link to this section" class="opacity-0 group-hover/section:opacity-100 text-slate-400 hover:text-primary transition-opacity" href="#overview">#</a>
+</h2>
+<p class="text-slate-600 dark:text-slate-300 leading-7 mb-6">
+                        The architecture is designed to be modular and scalable. At its core, it leverages a static site generation (SSG) approach to ensure maximum performance and security. By decoupling the content from the presentation layer, we achieve a flexible system that can be deployed to any CDN.
+                    </p>
+<p class="text-slate-600 dark:text-slate-300 leading-7 mb-6">
+                        Before diving into the code, it's essential to understand the <code class="font-mono text-sm bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-pink-500 dark:text-pink-400">config.json</code> file structure which dictates the behavior of the entire application.
+                    </p>
+</div>
+<!-- Callout / Admonition: Tip -->
+<div class="my-8 rounded-lg border-l-4 border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 p-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400 mt-0.5">lightbulb</span>
+<div>
+<h5 class="text-sm font-semibold text-emerald-800 dark:text-emerald-200 mb-1">Pro Tip</h5>
+<p class="text-sm text-emerald-700 dark:text-emerald-300">
+                                You can override default theme settings by creating a <code class="font-mono text-xs bg-emerald-100 dark:bg-emerald-900/40 px-1 rounded text-emerald-800 dark:text-emerald-200">theme.custom.js</code> file in your root directory. This prevents your changes from being overwritten during updates.
+                            </p>
+</div>
+</div>
+</div>
+<!-- Section 2: Code Example -->
+<div class="group/section relative scroll-mt-24" id="installation">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 group-hover/section:text-primary transition-colors">
+                        Installation
+                        <a aria-label="Link to this section" class="opacity-0 group-hover/section:opacity-100 text-slate-400 hover:text-primary transition-opacity" href="#installation">#</a>
+</h2>
+<p class="text-slate-600 dark:text-slate-300 leading-7 mb-4">
+                        To get started, clone the repository and install the dependencies using your preferred package manager.
+                    </p>
+<!-- Code Block -->
+<div class="relative my-6 rounded-lg bg-[#1e293b] ring-1 ring-white/10 overflow-hidden">
+<div class="flex items-center justify-between px-4 py-2 bg-[#0f172a] border-b border-white/5">
+<span class="text-xs font-mono text-slate-400">bash</span>
+<button class="text-xs text-slate-400 hover:text-white transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+                                Copy
+                            </button>
+</div>
+<div class="p-4 overflow-x-auto">
+<pre class="font-mono text-sm leading-6"><code class="language-bash"><span class="text-pink-400">git</span> clone https://github.com/example/docs-platform.git
+<span class="text-cyan-400">cd</span> docs-platform
+<span class="text-green-400">npm</span> install
+<span class="text-slate-400"># Start the development server</span>
+<span class="text-green-400">npm</span> run dev</code></pre>
+</div>
+</div>
+</div>
+<!-- Section 3: Configuration Table -->
+<div class="group/section relative scroll-mt-24" id="configuration">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 group-hover/section:text-primary transition-colors">
+                        Configuration
+                        <a aria-label="Link to this section" class="opacity-0 group-hover/section:opacity-100 text-slate-400 hover:text-primary transition-opacity" href="#configuration">#</a>
+</h2>
+<p class="text-slate-600 dark:text-slate-300 leading-7 mb-6">
+                        The following parameters are available in the main configuration object. Ensure types match the expected values to avoid runtime errors.
+                    </p>
+<!-- Table -->
+<div class="my-6 overflow-hidden rounded-lg border border-slate-200 dark:border-border-dark">
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="bg-slate-50 dark:bg-surface-dark border-b border-slate-200 dark:border-border-dark">
+<tr>
+<th class="px-6 py-3 font-semibold text-slate-900 dark:text-white" scope="col">Parameter</th>
+<th class="px-6 py-3 font-semibold text-slate-900 dark:text-white" scope="col">Type</th>
+<th class="px-6 py-3 font-semibold text-slate-900 dark:text-white" scope="col">Default</th>
+<th class="px-6 py-3 font-semibold text-slate-900 dark:text-white" scope="col">Description</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-border-dark bg-white dark:bg-background-dark">
+<tr>
+<td class="px-6 py-4 font-mono text-primary">siteUrl</td>
+<td class="px-6 py-4 text-pink-500 dark:text-pink-400 font-mono text-xs">string</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400 font-mono text-xs">"/"</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">Base URL for the documentation site.</td>
+</tr>
+<tr class="bg-slate-50/50 dark:bg-surface-dark/30">
+<td class="px-6 py-4 font-mono text-primary">nav.collapse</td>
+<td class="px-6 py-4 text-pink-500 dark:text-pink-400 font-mono text-xs">boolean</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400 font-mono text-xs">true</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">Whether navigation groups can be collapsed.</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-mono text-primary">theme</td>
+<td class="px-6 py-4 text-pink-500 dark:text-pink-400 font-mono text-xs">object</td>
+<td class="px-6 py-4 text-slate-500 dark:text-slate-400 font-mono text-xs">{}</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-300">Custom theme overrides for colors and fonts.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Callout / Admonition: Warning -->
+<div class="my-8 rounded-lg border-l-4 border-amber-500 bg-amber-50 dark:bg-amber-900/20 p-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-amber-600 dark:text-amber-400 mt-0.5">warning</span>
+<div>
+<h5 class="text-sm font-semibold text-amber-800 dark:text-amber-200 mb-1">Deprecation Warning</h5>
+<p class="text-sm text-amber-700 dark:text-amber-300">
+                                The <code class="font-mono text-xs bg-amber-100 dark:bg-amber-900/40 px-1 rounded text-amber-800 dark:text-amber-200">v1</code> API endpoints will be sunset on December 31st. Please migrate to v2 as soon as possible.
+                            </p>
+</div>
+</div>
+</div>
+<!-- Section 4: Advanced Usage -->
+<div class="group/section relative scroll-mt-24" id="advanced">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 group-hover/section:text-primary transition-colors">
+                        Advanced Usage
+                        <a aria-label="Link to this section" class="opacity-0 group-hover/section:opacity-100 text-slate-400 hover:text-primary transition-opacity" href="#advanced">#</a>
+</h2>
+<h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mt-8 mb-3" id="plugins">Plugins</h3>
+<p class="text-slate-600 dark:text-slate-300 leading-7 mb-4">
+                        The platform supports a robust plugin system. You can write your own plugins using standard JavaScript.
+                    </p>
+<blockquote class="border-l-4 border-primary/50 pl-4 my-6 italic text-slate-700 dark:text-slate-400">
+                        "The plugin system was designed to be as unopinionated as possible, giving developers full control over the build process." — Lead Architect
+                    </blockquote>
+</div>
+</div>
+<!-- Page Footer Navigation -->
+<div class="mt-16 pt-8 border-t border-slate-200 dark:border-border-dark flex justify-between items-center">
+<a class="group flex flex-col items-start gap-1 p-4 rounded-lg border border-transparent hover:border-slate-200 hover:bg-slate-50 dark:hover:border-border-dark dark:hover:bg-surface-dark transition-all max-w-[45%]" href="#">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Previous</span>
+<span class="text-base font-semibold text-primary group-hover:underline">Project Structure</span>
+</a>
+<a class="group flex flex-col items-end gap-1 p-4 rounded-lg border border-transparent hover:border-slate-200 hover:bg-slate-50 dark:hover:border-border-dark dark:hover:bg-surface-dark transition-all max-w-[45%] text-right" href="#">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Next</span>
+<span class="text-base font-semibold text-primary group-hover:underline">Authentication</span>
+</a>
+</div>
+<!-- Footer -->
+<footer class="mt-20 border-t border-slate-200 dark:border-border-dark py-10">
+<p class="text-center text-sm text-slate-500 dark:text-slate-400">
+                    © 2023 DocsPlatform Inc. All rights reserved.
+                </p>
+</footer>
+</main>
+<!-- Right Sidebar: Table of Contents -->
+<aside class="hidden xl:block w-64 shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto no-scrollbar py-10 pl-6 border-l border-slate-200 dark:border-border-dark/50">
+<h5 class="mb-4 text-sm font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                On this page
+            </h5>
+<ul class="space-y-3 text-sm">
+<li>
+<a class="block text-primary hover:text-primary transition-colors border-l-2 border-primary pl-3 -ml-[14px] font-medium" href="#overview">
+                        Overview
+                    </a>
+</li>
+<li>
+<a class="block text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200 transition-colors pl-3 border-l-2 border-transparent" href="#installation">
+                        Installation
+                    </a>
+</li>
+<li>
+<a class="block text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200 transition-colors pl-3 border-l-2 border-transparent" href="#configuration">
+                        Configuration
+                    </a>
+</li>
+<li>
+<a class="block text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200 transition-colors pl-3 border-l-2 border-transparent" href="#advanced">
+                        Advanced Usage
+                    </a>
+<ul class="mt-2 space-y-2 pl-4">
+<li>
+<a class="block text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200 transition-colors border-l-2 border-transparent pl-3 text-xs" href="#plugins">
+                                Plugins
+                            </a>
+</li>
+</ul>
+</li>
+</ul>
+<!-- Promo Widget -->
+<div class="mt-10 p-4 rounded-lg bg-slate-50 dark:bg-surface-dark border border-slate-200 dark:border-border-dark">
+<p class="text-xs font-semibold text-slate-900 dark:text-white mb-2">Need help?</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Join our Discord community to get answers faster.</p>
+<a class="block w-full text-center py-1.5 px-3 rounded text-xs font-semibold bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+                    Join Discord
+                </a>
+</div>
+</aside>
+</div>
+</body></html>
