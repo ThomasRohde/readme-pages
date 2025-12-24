@@ -800,13 +800,13 @@
         "Markdown syntax integration"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
+      "status": "in-progress",
       "passes": false,
       "verifiedAt": null,
       "verifiedBy": null,
       "evidenceLinks": [],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T11:56:07.808105",
       "notes": "Use remark plugin for :::note syntax. Match Stitch color palette. Support nested markdown. Include icons for each type. Reference: docusaurus admonitions."
     },
     {
@@ -851,11 +851,15 @@
         "Respects lastmod from git or frontmatter"
       ],
       "estimatedEffort": null,
-      "status": "in-progress",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T11:56:02.626949",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Sitemap integration installed and configured. Build generates sitemap-index.xml and sitemap-0.xml with all 7 pages correctly listed with base path /readme-pages. URLs properly formatted with site domain. Changefreq set to weekly",
+        "priority 0.7",
+        "lastmod timestamps included."
+      ],
       "blockedBy": null,
       "lastWorkedOn": "2025-12-24T11:54:57.370877",
       "notes": "Use @astrojs/sitemap integration. Configure in astro.config. Include changefreq and priority. Exclude draft pages."
@@ -1043,8 +1047,8 @@
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T11:45:37.265524",
+    "lastUpdated": "2025-12-24T11:56:02.626964",
     "totalFeatures": 47,
-    "passingFeatures": 34
+    "passingFeatures": 35
   }
 }

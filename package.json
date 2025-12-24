@@ -16,8 +16,10 @@
     "astro": "^5.1.7",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
+    "remark-directive": "^4.0.0",
     "sharp": "^0.34.5",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.0",

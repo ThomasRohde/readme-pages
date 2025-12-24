@@ -3,6 +3,8 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { h } from 'hastscript';
 import sitemap from '@astrojs/sitemap';
+import remarkDirective from 'remark-directive';
+import remarkAdmonitions from './src/plugins/remark-admonitions.mjs';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -29,6 +31,10 @@ export default defineConfig({
       },
       wrap: true,
     },
+    remarkPlugins: [
+      remarkDirective,
+      remarkAdmonitions,
+    ],
     rehypePlugins: [
       // Generate IDs for headings
       rehypeSlug,
