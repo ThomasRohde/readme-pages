@@ -1,4 +1,7 @@
 import { defineConfig } from 'astro/config';
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import { h } from 'hastscript';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -17,6 +20,20 @@ export default defineConfig({
       wrap: true,
     },
     rehypePlugins: [
+      // Generate IDs for headings
+      rehypeSlug,
+      // Add anchor links to headings
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: 'prepend',
+          properties: {
+            className: ['heading-anchor'],
+            ariaLabel: 'Link to this section',
+          },
+          content: h('span.anchor-icon', '#'),
+        },
+      ],
       // Add lazy loading and decoding attributes to images
       () => {
         return (tree) => {

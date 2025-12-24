@@ -24,9 +24,9 @@ klondike feature list  # List all features
 ### Current Priority Features
 | ID | Description | Status |
 |----|-------------|--------|
-| F040 | Skip to main content link | 🔄 In progress |
-| F046 | Anchor links for headings | ⏳ Not started |
+| F046 | Anchor links for headings | 🔄 In progress |
 | F017 | Stitch-compatible component styling | ⏳ Not started |
+| F021 | Link checking in CI | ⏳ Not started |
 
 ---
 

@@ -57,6 +57,50 @@
     background: #475569;
 }
 
+/* Smooth scroll behavior for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Anchor links for headings */
+.heading-anchor {
+    text-decoration: none;
+    margin-left: -1.5rem;
+    padding-right: 0.25rem;
+    color: #94a3b8;
+    opacity: 0;
+    transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.heading-anchor:hover {
+    color: #137fec;
+}
+
+.heading-anchor .anchor-icon {
+    font-weight: 400;
+}
+
+/* Show anchor link on heading hover or focus */
+:is(h1, h2, h3, h4, h5, h6):hover .heading-anchor,
+.heading-anchor:focus {
+    opacity: 1;
+}
+
+/* Dark mode anchor links */
+.dark .heading-anchor {
+    color: #64748b;
+}
+
+.dark .heading-anchor:hover {
+    color: #3b82f6;
+}
+
+/* Ensure headings with anchors have proper spacing */
+.prose :is(h1, h2, h3, h4, h5, h6) {
+    position: relative;
+    scroll-margin-top: 5rem;
+}
+
 /* Hide scrollbar but allow scroll */
 .no-scrollbar::-webkit-scrollbar {
     display: none;
