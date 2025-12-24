@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://thomasrohde.github.io',
-  base: '/readme',
+  base: '/readme-pages',
 
   markdown: {
     shikiConfig: {
