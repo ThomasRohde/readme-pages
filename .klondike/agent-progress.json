@@ -69,11 +69,6 @@
     ],
     "priorityFeatures": [
       {
-        "id": "F015",
-        "description": "Responsive typography and prose styling",
-        "status": "not-started"
-      },
-      {
         "id": "F016",
         "description": "Mobile-responsive sidebar navigation",
         "status": "not-started"
@@ -81,6 +76,11 @@
       {
         "id": "F019",
         "description": "Production build optimization",
+        "status": "not-started"
+      },
+      {
+        "id": "F033",
+        "description": "Copy button for code blocks",
         "status": "not-started"
       }
     ]
