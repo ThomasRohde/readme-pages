@@ -1,6 +1,6 @@
 ---
 title: "About"
-description: "About Thomas Rohde"
+description: "About Thomas Klok Rohde"
 order: 1
 ---
 

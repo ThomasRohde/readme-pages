@@ -1,6 +1,6 @@
 # PRD: Astro + Tailwind Markdown Publishing Site (GitHub Pages)
 
-Owner: Thomas Rohde  
+Owner: Thomas Klok Rohde  
 Repo target: `ThomasRohde/readme`  
 Deploy target: `https://thomasrohde.github.io/readme/` (project Pages)
 
