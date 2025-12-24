@@ -989,13 +989,13 @@
         "Includes full URLs for links"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
+      "status": "in-progress",
       "passes": false,
       "verifiedAt": null,
       "verifiedBy": null,
       "evidenceLinks": [],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T13:06:42.933286",
       "notes": "Use @media print CSS. Hide interactive elements. Expand ToC. Add link URLs in parentheses. Ensure code blocks don't overflow."
     },
     {

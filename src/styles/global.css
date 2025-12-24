@@ -246,3 +246,184 @@ img[loading="lazy"] {
 .admonition-danger .admonition-content {
     @apply text-red-900 dark:text-red-200;
 }
+
+/* Print-friendly styles */
+@media print {
+    /* Hide interactive and non-content elements */
+    header,
+    aside,
+    footer,
+    .sidebar,
+    .mobile-menu-button,
+    .theme-toggle,
+    .copy-code-button,
+    .skip-link,
+    .search-container,
+    nav,
+    .breadcrumb,
+    .prev-next-nav,
+    .edit-on-github {
+        display: none !important;
+    }
+
+    /* Ensure main content uses full width */
+    main {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 1cm !important;
+    }
+
+    /* Reset colors to black on white for better printing */
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+
+    /* Optimize typography for print */
+    .prose {
+        max-width: 100% !important;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: black !important;
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    h1 {
+        font-size: 24pt;
+        margin-top: 0;
+    }
+
+    h2 {
+        font-size: 18pt;
+    }
+
+    h3 {
+        font-size: 14pt;
+    }
+
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+
+    /* Avoid breaking these elements across pages */
+    img,
+    figure,
+    table,
+    pre,
+    blockquote,
+    .admonition {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* Show link URLs after link text */
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 90%;
+        color: #666;
+        word-break: break-all;
+    }
+
+    /* Don't show URLs for anchor links */
+    a[href^="#"]::after {
+        content: "";
+    }
+
+    /* Code blocks */
+    pre,
+    code {
+        background: #f5f5f5 !important;
+        border: 1px solid #ddd;
+        color: black !important;
+        font-size: 10pt;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    pre code {
+        border: none;
+    }
+
+    /* Table of contents */
+    .toc {
+        border: 1px solid #ddd;
+        padding: 1em;
+        margin-bottom: 2em;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .toc h2 {
+        margin-top: 0;
+    }
+
+    .toc a::after {
+        content: "";
+    }
+
+    /* Images */
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* Admonitions/Callouts - use grayscale borders */
+    .admonition {
+        border: 1px solid #333;
+        border-left-width: 4px;
+        background: #f9f9f9 !important;
+        color: black !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .admonition-title {
+        color: black !important;
+    }
+
+    .admonition-content,
+    .admonition-content * {
+        color: black !important;
+    }
+
+    /* Tables */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        border: 1px solid #333;
+        padding: 0.5em;
+        text-align: left;
+    }
+
+    th {
+        background: #f0f0f0 !important;
+        font-weight: bold;
+    }
+
+    /* Hide anchor link icons */
+    .heading-anchor {
+        display: none;
+    }
+
+    /* Related notes section */
+    .related-notes {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    /* Tag links - don't show URLs */
+    .tag::after,
+    [class*="tag-"]::after {
+        content: "";
+    }
+}
