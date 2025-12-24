@@ -2,7 +2,7 @@
 
 ## Project: readme-pages
 ## Started: 2025-12-24
-## Current Status: In Progress
+## Current Status: Session Ended
 ## PRD Source: [.\PRD.md](.\PRD.md)
 
 ---
@@ -24,9 +24,9 @@ klondike feature list  # List all features
 ### Current Priority Features
 | ID | Description | Status |
 |----|-------------|--------|
-| F046 | Anchor links for headings | 🔄 In progress |
 | F017 | Stitch-compatible component styling | ⏳ Not started |
 | F021 | Link checking in CI | ⏳ Not started |
+| F036 | Callout/Admonition components | ⏳ Not started |
 
 ---
 
@@ -206,20 +206,22 @@ klondike feature list  # List all features
 
 ### Session 8 - 2025-12-24
 **Agent**: Coding Agent
-**Duration**: (in progress)
-**Focus**: F039 - Image optimization with lazy loading
+**Duration**: ~session
+**Focus**: Completed 3 P2 features: F039 (image optimization with lazy loading), F040 (skip to main content link), and F046 (anchor links for headings). All features tested and verified with documentation. Site now at 72.3% completion with strong accessibility and performance improvements.
 
 #### Completed
 - None
 
 #### In Progress
-- Session started
+- None
 
 #### Blockers
 - None
 
 #### Recommended Next Steps
-1. Continue implementation
+1. Continue with F017 (Stitch-compatible component styling)
+2. F036 (Callout/Admonition components)
+3. or F038 (automatic sitemap generation)
 
 #### Technical Notes
 - None

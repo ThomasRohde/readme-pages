@@ -1010,11 +1010,13 @@
         "URL updates on click"
       ],
       "estimatedEffort": null,
-      "status": "in-progress",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T11:45:37.265505",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Implemented automatic anchor links for all headings:\n- rehype-slug generates unique IDs for all headings\n- rehype-autolink-headings adds clickable # links before headings\n- Smooth scroll behavior enabled globally\n- Anchor links styled to appear on hover with primary color\n- URL updates when anchor clicked\n- Scroll-margin-top accounts for sticky header\n- Tested on accessibility page - all headings have working anchors\n- Build successful with no errors"
+      ],
       "blockedBy": null,
       "lastWorkedOn": "2025-12-24T11:44:05.408588",
       "notes": "Use rehype-autolink-headings. Style link icon with Stitch colors. Position left or right of heading. Ensure unique IDs. Add smooth scroll behavior."
@@ -1041,8 +1043,8 @@
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T11:43:53.408345",
+    "lastUpdated": "2025-12-24T11:45:37.265524",
     "totalFeatures": 47,
-    "passingFeatures": 33
+    "passingFeatures": 34
   }
 }
