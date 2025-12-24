@@ -1,3 +1,4 @@
+
 ---
 title: "Building a Complete Website in One Day with Klondike"
 date: 2025-12-24
