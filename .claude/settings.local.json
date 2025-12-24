@@ -13,7 +13,8 @@
       "Bash(npx astro add tailwind --yes)",
       "Bash(npm run build:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(klondike session end:*)"
     ]
   }
 }
