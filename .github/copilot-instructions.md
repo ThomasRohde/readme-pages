@@ -1,200 +1,267 @@
-# Klondike Spec Agent Instructions
+# Copilot Instructions: readme-pages
 
-> Inspired by [Anthropic's research on effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
-> 
+AI agents should use this guide to understand the codebase architecture, development workflow, and project-specific conventions.
+
 > Managed by the `klondike` CLI tool - run `klondike` for available commands.
 
-## Core Philosophy
+## Quick Context: What Is This Project?
 
-This repository uses a **multi-context-window agent workflow** designed to maintain coherence across long-running coding sessions. The key insight: each agent session starts fresh, so we create structured artifacts that bridge context windows.
+**readme-pages** is an **Astro + Tailwind static site** for publishing Markdown content to GitHub Pages under `/readme/` base path.
+- Deployment target: `https://thomasrohde.github.io/readme/`
+- Built with: Astro 5.x, Tailwind CSS 4.x, TypeScript
+- Content managed via Astro Content Collections (Markdown front matter + collections)
+- No server-side runtime or database
 
-## Required Artifacts
+See [PRD.md](../../PRD.md) for full requirements and architecture context.
 
-### 1. Progress File (`agent-progress.md`)
-- **Purpose**: Handoff document between agent sessions
-- **Location**: Project root (auto-generated from `.klondike/agent-progress.json`)
-- **Update frequency**: Automatically updated by `klondike session end`
-- **Content**: What was done, what's next, any blockers
+## Core Architecture: Content Collections & Layouts
 
-### 2. Feature Registry (`.klondike/features.json`)
-- **Purpose**: Prevent premature "victory declaration" and track completion
-- **Location**: `.klondike/` directory
-- **Managed by**: `klondike feature` commands
-- **Rules**: 
-  - Use `klondike feature verify F00X` to mark as passing
-  - Use `klondike feature start F00X` to begin work
-  - Never manually edit - use CLI commands
+### Content Structure
+Content lives in `src/content/`:
+- **`pages/`**: Evergreen docs (about, projects). Schema: `title` (required), `description`, `order` (optional)
+- **`notes/`**: Dated entries. Schema: `title` (required), `date` (required), `description`, `tags` (optional), `draft` (optional)
 
-### 3. Init Script (`init.sh` / `init.ps1`)
-- **Purpose**: Reproducible environment startup
-- **Location**: Project root
-- **Must include**: 
-  - Dev server startup **in background** (using `&` in bash, `Start-Job` in PowerShell)
-  - Health checks with timeout
-  - Clean exit after server is ready (script should NOT block waiting for server)
+File: [src/content/config.ts](../../src/content/config.ts)
 
-## Agent Behavior Rules
+### Page Routing
+- **Home**: `src/pages/index.astro` → displays 3 latest notes + link to notes index
+- **Notes index**: `src/pages/notes/index.astro` → lists all published notes (newest first)
+- **Article pages**: `src/pages/[...slug].astro` (pages) and `src/pages/notes/[...slug].astro` (notes) → render markdown with ArticleLayout
+
+Key pattern: Use `getCollection()` to fetch and filter (e.g., `!data.draft` for notes). Always `.sort()` by date for notes.
+
+### Layout Hierarchy
+- **BaseLayout** [src/layouts/BaseLayout.astro](../../src/layouts/BaseLayout.astro): Root template with header, sidebar, footer, dark/light mode toggle
+  - Theme persists in localStorage; inline `<script is:inline>` prevents flash-of-wrong-theme
+  - Uses Material Symbols for icons (`<span class="material-symbols-outlined">`)
+  - Base styles imported: [src/styles/global.css](../../src/styles/global.css)
+- **ArticleLayout**: Builds on BaseLayout, adds table-of-contents (ToC) from headings
+
+## Tailwind & Styling Conventions
+
+### Configuration
+File: [tailwind.config.mjs](../../tailwind.config.mjs)
+- Dark mode via `darkMode: 'class'` (user toggles `.dark` on `<html>`)
+- Extended colors: `primary` (#137fec), `background-light/dark`, `surface-dark`, `border-dark`
+- Font families: `font-display` (Inter), `font-mono` (JetBrains Mono)
+- Custom border radius (0.25rem default, not 0.375rem)
+
+### Responsive Approach
+- Mobile-first (no forced desktop breakpoints)
+- Sidebar collapses on small screens; use `hidden lg:block` patterns
+- Prose/content: max-w-4xl container with padding adjustments per breakpoint
+
+### Dark Mode Convention
+```astro
+<!-- Always use the pattern: light class + dark:darkclass -->
+<div class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100" />
+```
+
+## Build & Dev Workflow
+
+### Key Commands
+| Command | Purpose |
+|---------|---------|
+| `npm run dev` | Start dev server on http://localhost:4321 |
+| `npm run build` | Compile TypeScript & build static dist/ (includes `astro check`) |
+| `npm run preview` | Serve dist/ locally for testing (runs after build) |
+| `npm run astro` | Run astro CLI directly |
+
+### Pre-Commit Verification (MANDATORY)
+
+```powershell
+# 1. Build and check TypeScript:
+npm run build
+
+# 2. No test suite exists yet; verification is manual/browser-based
+```
+
+**CRITICAL**: `npm run build` **MUST** succeed before committing. It includes TypeScript type checking via `astro check`.
+
+### Development Tips
+- When editing Markdown content: dev server auto-reloads, but sometimes requires hard refresh
+- When adding new routes: ensure `src/pages/` structure matches desired URL
+- Base path (`/readme/`) is configured in [astro.config.mjs](../../astro.config.mjs) and handled automatically by Astro for asset/link references
+
+## Content Publishing Workflow
+
+To add/edit content:
+
+1. **Add Markdown file**: Create `src/content/notes/YYYY-MM-DD-slug.md` or `src/content/pages/slug.md`
+2. **Front matter**: Include required fields:
+   ```markdown
+   ---
+   title: "Article Title"
+   date: 2025-12-24           # notes only
+   description: "Optional summary"
+   tags: ["tag1", "tag2"]     # notes only
+   draft: false               # optional, defaults to false
+   ---
+   ```
+3. **Commit & push**: Dev server auto-renders at `/notes/YYYY-MM-DD-slug/` or `/pages/slug/`
+4. **Verify**: Check sidebar navigation includes new content; click links to verify working
+
+## Agent Behavior Rules (Klondike Workflow)
+
+This repository uses a **multi-context-window agent workflow**. Each agent session starts fresh, so structured artifacts bridge context windows.
 
 ### Starting a Session
-1. Run `pwd` / `Get-Location` to confirm working directory
+1. Run `Get-Location` to confirm working directory
 2. Run `klondike status` to see project overview and recent work
 3. Run `klondike validate` to check artifact integrity
 4. Check `git log --oneline -10` for recent commits
 5. Run `klondike session start --focus "F00X - description"` to begin
-6. Run `init.sh`/`init.ps1` if project has dev server
-7. Run basic smoke test before new work
+6. Run `init.ps1` to start dev server (see [init.ps1](../../init.ps1))
+7. Verify browser shows `http://localhost:4321` with no errors
 
 ### During a Session
 - Work on **ONE feature at a time** - use `klondike feature start F00X` to track
-- Make atomic, reviewable commits with descriptive messages
-- Test incrementally - don't batch testing to the end
-- If you hit a blocker, use `klondike feature block F00X --reason "..."` and move to next task
+- Make atomic, reviewable commits after each meaningful change
+- **Test incrementally**: verify each change in browser or via `npm run build`
+- If blocked, use `klondike feature block F00X --reason "..."` and move to next task
 
 ### Ending a Session
-1. Ensure code compiles/passes linting
-2. Commit all changes with clear messages
+1. Run `npm run build` and verify no errors
+2. Commit all changes with clear messages (conventional format: `feat(sidebar): add collapsible nav`)
 3. For verified features, run `klondike feature verify F00X --evidence "..."`
-4. Run `klondike session end --summary "What was accomplished" --next "Recommended next steps"`
-5. Leave the environment in a **clean, mergeable state**
+4. Run `klondike session end --summary "..." --next "..."`
+5. Leave repository in **clean, mergeable state**
 
-## Prohibited Behaviors
-
-- ❌ One-shotting complex features
-- ❌ Declaring project complete without running `klondike status`
+### Prohibited Behaviors
+- ❌ Committing without running `npm run build` first
 - ❌ Manually editing `.klondike/features.json` (use CLI commands)
-- ❌ **Reading `.klondike/*.json` or `agent-progress.md` directly** (use CLI commands)
-- ❌ Leaving code in broken/half-implemented state
-- ❌ Making changes without committing and documenting
-- ❌ Using `klondike feature verify` without end-to-end verification
-- ❌ **Committing without running build checks first**
-- ❌ **Committing without running tests first**
-- ❌ **Leaving the repository with failing builds or tests**
+- ❌ Leaving broken TypeScript or build errors
+- ❌ Declaring feature complete without browser smoke test
 
-## Testing Standards
+## File Organization & Patterns
 
-- Always verify features as a user would (end-to-end)
-- For web apps: use browser automation / screenshots
-- For APIs: test actual endpoints, not just unit tests
-- For CLI tools: run actual commands, check output
-- Document any testing limitations in progress file
+### Components ([src/components/](../../src/components/))
+- **Card.astro**: Note/page summary card (used on home and notes index)
+- **Header.astro**: Top navigation, site title, theme toggle
+- **Sidebar.astro**: Folder-driven nav tree (reflects `src/content/` structure)
+- **Footer.astro**: Copyright, links
+- **Toc.astro**: Table of contents (renders heading list with anchor links)
+- **ThemeToggle.astro**: Light/dark mode button
 
-## Git Hygiene
+Pattern: Props for content, Tailwind classes for styling. No client-side JS except theme toggle.
 
-- Commit early, commit often
-- Use conventional commit messages
-- Tag stable checkpoints
-- Use `git revert` to recover from bad changes
-- Never force push without documenting why
+### When to Add Components
+- Reusable across multiple pages (like Card)
+- Encapsulates styling + markup tightly coupled (like Toc)
+- Simplifies a layout file (like Header)
 
-## Pre-Commit Verification (MANDATORY)
+**Avoid**: Single-use components; keep layouts simple and readable.
 
-### Step 1: Detect Project Stack and Tools
+## Deployment & Base Path Handling
 
-Before running checks, detect available commands:
+### Base Path `/readme/`
+- Configured in [astro.config.mjs](../../astro.config.mjs): `base: '/readme/'`
+- Astro **automatically** prepends base path to asset imports and `getCollection()` data
+- Internal links must be relative or use `import.meta.env.BASE_URL`
 
-1. **Python with uv**: Check for `pyproject.toml` with `[tool.uv]` or `uv.lock`
-   - Use `uv run` prefix for all commands
-2. **Python with pip**: Check for `pyproject.toml`, `setup.py`, or `requirements.txt`
-3. **Node.js**: Read `package.json` → look for `scripts.build`, `scripts.test`, `scripts.lint`
-4. **Rust**: Check for `Cargo.toml`
-5. **Go**: Check for `go.mod`
-
-### Step 2: Run Detected Commands
-
-| Check | Python (uv) | Python (pip) | Node.js | Rust | Go |
-|-------|-------------|--------------|---------|------|----|
-| Lint | `uv run ruff check src tests` | `ruff check` or `flake8` | `npm run lint` | `cargo clippy` | `golangci-lint` |
-| Format | `uv run ruff format --check src tests` | `ruff format --check` | `npm run format` | `cargo fmt --check` | `gofmt -l` |
-| Test | `uv run pytest` | `pytest` | `CI=true npm test` (PowerShell: `$env:CI='true'; npm test`) | `cargo test` | `go test` |
-| Build | N/A (interpreted) | N/A | `npm run build` | `cargo build` | `go build` |
-
-**Note on CI environment variable:**
-- **Bash/Linux/macOS**: `CI=true npm test`
-- **PowerShell/Windows**: `$env:CI='true'; npm test`
-- Setting `CI=true` prevents interactive prompts in test runners like Jest
-
-### Step 3: Record Results Before Commit
-
-**You MUST record each command's result:**
-
-```markdown
-#### Pre-Commit Verification
-| Command | Exit Code | Notes |
-|---------|-----------|-------|
-| <lint command> | 0 | ✅ |
-| <format command> | 0 | ✅ |
-| <test command> | 0 | ✅ N tests passed |
+Example (see [src/pages/index.astro](../../src/pages/index.astro)):
+```astro
+const baseUrl = import.meta.env.BASE_URL;
+<a href={`${baseUrl}/notes/`}>View all notes</a>
 ```
 
-### Step 4: Commit Only If All Pass
+### GitHub Pages Deployment
+- Workflow: [.github/workflows/pages.yml](.github/workflows/pages.yml)
+- On push to `main`, GitHub Actions build → deploy to GitHub Pages
+- Site live at `https://thomasrohde.github.io/readme/`
 
-If you skip verification and a build/test fails after commit:
-1. Immediately fix the issue
-2. Amend the commit or create a fix commit
-3. Never leave the repository in a broken state
+## Required Artifacts & Klondike Rules
 
----
+### 1. Progress File (`agent-progress.md`)
+- **Location**: Project root (auto-generated from `.klondike/agent-progress.json`)
+- **Update frequency**: Automatically updated by `klondike session end`
+- **Do not edit manually** — changes will be overwritten
 
-## Session Lifecycle (Embedded Behavior)
+### 2. Feature Registry (`.klondike/features.json`)
+- **Managed by**: `klondike feature` commands only
+- **Commands**:
+  - `klondike feature list` — List all features
+  - `klondike feature show F00X` — Show feature details
+  - `klondike feature start F00X` — Mark in-progress
+  - `klondike feature verify F00X --evidence "..."` — Mark verified
+  - `klondike feature block F00X --reason "..."` — Mark blocked
 
-When working on this project, automatically follow these patterns:
+**Forbidden**: Manually editing this file or reading it directly (use CLI commands)
 
-### On First Interaction of a Session
+### 3. Init Script (`init.ps1`)
+- **Purpose**: Reproducible environment startup
+- **What it does**:
+  - Checks Node.js installed
+  - Kills stale dev servers on port 4321
+  - Installs dependencies
+  - Starts dev server in background
+  - Polls localhost:4321 until ready (max 30 sec)
+  - Runs health check (HTTP GET to server)
 
-Before doing any coding work:
-1. Run `klondike status` to see project overview
-2. Run `klondike validate` to check artifact integrity
-3. Review `git log --oneline -10` for recent changes
-4. Run `klondike session start --focus "F00X - description"` to begin session
-5. If init script exists, run it and verify health checks pass
-6. Create a **Session Plan** (3-6 steps with status tracking)
-7. Use `klondike feature start F00X` to mark which feature you'll work on
-
-### While Working
-
-1. Focus on ONE feature at a time (tracked via `klondike feature start F00X`)
-2. Commit after each meaningful change
-3. Test as you go, not at the end
-4. If something breaks, fix it before continuing
-
-### Before Ending Work
-
-When the user indicates they're done or switching tasks:
-1. Ensure all changes are committed
-2. Use `klondike feature verify F00X --evidence "..."` for verified features
-3. Run `klondike session end --summary "..." --next "..."`
-4. Summarize the handoff for the next session
+**Note**: On Windows PowerShell, dev server runs as background job. To stop: `Stop-Job -Id <ID>`
 
 ---
 
-## Quick Reference: Artifact Rules
+## Git Practices
 
-### .klondike/features.json - MANAGED BY CLI
+### Commit Messages (Conventional Format)
+```
+feat(component): short description
 
-**Use these commands:**
-- `klondike feature add "description" --category X --priority N --criteria "..." --notes "..."` - Add feature
-- `klondike feature start F00X` - Mark in-progress
-- `klondike feature verify F00X --evidence "..."` - Mark verified
-- `klondike feature block F00X --reason "..."` - Mark blocked
-- `klondike feature list` - List all features
-- `klondike feature show F00X` - Show feature details
+Longer explanation if needed.
 
-> **⚠️ Always use `--notes`** when adding features. Include: implementation approach,
-> edge cases, dependencies, and gotchas. A weaker agent will implement—give them context.
+Closes #123
+```
 
-**Forbidden:**
-- Manually editing `.klondike/features.json`
-- **Reading `.klondike/features.json` directly** (use `klondike feature list` or `klondike feature show`)
-- Deleting features
-- Marking as passing without end-to-end testing
+**Types**: `feat`, `fix`, `refactor`, `docs`, `style`, `chore`
 
-### agent-progress.md - AUTO-GENERATED
+### When to Commit
+- After implementing one feature/fix
+- Before starting risky changes
+- End of session (always)
 
-This file is automatically generated by the klondike CLI from `.klondike/agent-progress.json`.
+### Example Session Flow
+```bash
+klondike session start --focus "F014 - dark mode toggle"
+# ... implement dark mode ...
+npm run build          # Verify no errors
+git add -A && git commit -m "feat(theme): implement dark/light mode toggle"
+klondike feature verify F014 --evidence "Dark mode toggle added to Header, works in browser"
+klondike session end --summary "F014 complete" --next "Continue with F015 typography"
+```
 
-**Use these commands:**
-- `klondike session start --focus "..."` - Start new session
-- `klondike session end --summary "..." --next "..."` - End session with summary
-- `klondike progress` - Regenerate and display progress file
+---
 
-**Do not manually edit** - changes will be overwritten.
+## Debugging Common Issues
+
+### Dev server won't start
+- Check port 4321 is free: `Get-NetTCPConnection -LocalPort 4321`
+- Run `npm run dev` manually to see error
+- Check `npm install` completed successfully
+
+### TypeScript errors on build
+- Run `npm run astro` to see full error details
+- Check for missing imports in `.astro` files
+- Verify front matter schema matches [src/content/config.ts](../../src/content/config.ts)
+
+### Styles not applying
+- Verify Tailwind class in [tailwind.config.mjs](../../tailwind.config.mjs) `content` array (should scan `src/**/*.astro`)
+- Check dark mode class: use `dark:class-name` not `dark:class-name:` (colon at end is wrong)
+- Clear browser cache (hard refresh Ctrl+Shift+R)
+
+### Links broken after deployment
+- Ensure all links use `${baseUrl}` prefix or relative paths
+- Check [astro.config.mjs](../../astro.config.mjs) `base: '/readme/'` is set
+- Test locally with `npm run build && npm run preview`
+
+---
+
+## Session End Checklist
+
+Before committing and ending session:
+- [ ] `npm run build` returns exit code 0
+- [ ] No TypeScript errors in terminal
+- [ ] Tested in browser (http://localhost:4321)
+- [ ] All changes committed with descriptive messages
+- [ ] No uncommitted changes (`git status` is clean)
+- [ ] Ran `klondike session end --summary "..." --next "..."`
