@@ -12,7 +12,8 @@
       "Bash(npm install:*)",
       "Bash(npx astro add tailwind --yes)",
       "Bash(npm run build:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }

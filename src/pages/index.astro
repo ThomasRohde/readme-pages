@@ -1,5 +1,12 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const notes = await getCollection('notes', ({ data }) => !data.draft);
+const latestNotes = notes
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 5);
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Home - Thomas Rohde">
@@ -8,8 +15,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p>
       This is a minimal Astro site for publishing notes and documentation.
     </p>
-    <p>
-      Navigate to <a href={`${import.meta.env.BASE_URL}/notes/`}>Notes</a> to see the notes index.
+
+    <h2>Latest Notes</h2>
+    {latestNotes.length === 0 ? (
+      <p>No notes published yet.</p>
+    ) : (
+      <ul class="space-y-3 list-none pl-0">
+        {latestNotes.map(note => (
+          <li>
+            <a href={`${baseUrl}/notes/${note.slug}/`} class="font-semibold no-underline hover:text-blue-600 dark:hover:text-blue-400">
+              {note.data.title}
+            </a>
+            <span class="text-sm text-gray-600 dark:text-gray-400 ml-2">
+              {note.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+            </span>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <p class="mt-6">
+      <a href={`${baseUrl}/notes/`}>View all notes →</a>
     </p>
   </div>
 </BaseLayout>

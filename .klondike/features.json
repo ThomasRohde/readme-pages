@@ -142,13 +142,17 @@
         "Pages render at /readme/<slug>/"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:38:13.726101",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Content collection for pages with Zod schema (title",
+        "description",
+        "order). Dynamic route generates pages at /<slug>/"
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:35:58.792986",
       "notes": "Use Astro Content Collections API. Define Zod schema for front matter validation. Pages are evergreen docs like About, Projects."
     },
     {
@@ -161,13 +165,18 @@
         "Notes render at /readme/notes/<slug>/"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:38:11.780599",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Content collection for notes with Zod schema (title",
+        "date",
+        "tags",
+        "description). Dynamic route generates pages at /notes/<slug>/"
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:38:10.978641",
       "notes": "Notes are dated entries. Date is required unlike pages. Support optional tags array for future filtering."
     },
     {
@@ -218,13 +227,16 @@
         "Link to full notes index"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:38:27.730998",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Home page displays 5 latest notes with title",
+        "date. Links to full note and all notes index"
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:38:26.906653",
       "notes": "Query notes collection sorted by date. Consider Card component for note previews. Keep it simple - title, date, maybe first paragraph."
     },
     {
@@ -237,13 +249,17 @@
         "Pagination if more than 20 notes (optional)"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:38:30.377714",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Notes index at /notes/ lists all notes sorted by date (newest first) with title",
+        "date",
+        "description"
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:38:29.591532",
       "notes": "This replaces the placeholder notes index. Query all notes from collection. Consider grouping by year for long lists."
     },
     {
@@ -256,13 +272,15 @@
         "Links work (relative and absolute)"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:38:16.386110",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Markdown rendering with Shiki syntax highlighting (github-dark theme). Code blocks in notes render with proper syntax coloring"
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:38:15.607441",
       "notes": "Astro has built-in Markdown support with Shiki. Configure in astro.config.mjs. Ensure heading IDs are URL-friendly for ToC anchors."
     },
     {
@@ -629,8 +647,8 @@
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T08:29:24.490248",
+    "lastUpdated": "2025-12-24T08:38:30.377725",
     "totalFeatures": 32,
-    "passingFeatures": 6
+    "passingFeatures": 11
   }
 }

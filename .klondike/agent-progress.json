@@ -51,18 +51,18 @@
     ],
     "priorityFeatures": [
       {
-        "id": "F007",
-        "description": "Implement content collection for pages",
-        "status": "not-started"
-      },
-      {
-        "id": "F008",
-        "description": "Implement content collection for notes",
-        "status": "not-started"
-      },
-      {
         "id": "F009",
         "description": "Create ArticleLayout with ToC support",
+        "status": "not-started"
+      },
+      {
+        "id": "F010",
+        "description": "Generate sidebar navigation from content collections",
+        "status": "not-started"
+      },
+      {
+        "id": "F018",
+        "description": "GitHub Actions workflow for Pages deployment",
         "status": "not-started"
       }
     ]

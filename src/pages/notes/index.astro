@@ -1,12 +1,33 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const notes = await getCollection('notes', ({ data }) => !data.draft);
+const sortedNotes = notes.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Notes - Thomas Rohde">
   <div class="prose dark:prose-invert max-w-none">
     <h1>Notes</h1>
-    <p>
-      Notes will be listed here once content collections are configured.
-    </p>
+    {sortedNotes.length === 0 ? (
+      <p>No notes published yet.</p>
+    ) : (
+      <ul class="space-y-4 list-none pl-0">
+        {sortedNotes.map(note => (
+          <li class="border-b border-gray-200 dark:border-gray-700 pb-4">
+            <a href={`${baseUrl}/notes/${note.slug}/`} class="text-xl font-semibold no-underline hover:text-blue-600 dark:hover:text-blue-400">
+              {note.data.title}
+            </a>
+            <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+              {note.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </div>
+            {note.data.description && (
+              <p class="mt-2 text-gray-700 dark:text-gray-300">{note.data.description}</p>
+            )}
+          </li>
+        ))}
+      </ul>
+    )}
   </div>
 </BaseLayout>

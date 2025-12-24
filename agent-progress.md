@@ -24,9 +24,9 @@ klondike feature list  # List all features
 ### Current Priority Features
 | ID | Description | Status |
 |----|-------------|--------|
-| F007 | Implement content collection for pages | ⏳ Not started |
-| F008 | Implement content collection for notes | ⏳ Not started |
 | F009 | Create ArticleLayout with ToC support | ⏳ Not started |
+| F010 | Generate sidebar navigation from content collections | ⏳ Not started |
+| F018 | GitHub Actions workflow for Pages deployment | ⏳ Not started |
 
 ---
 
