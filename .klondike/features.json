@@ -870,13 +870,13 @@
         "WebP format with fallbacks"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
+      "status": "in-progress",
       "passes": false,
       "verifiedAt": null,
       "verifiedBy": null,
       "evidenceLinks": [],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T11:37:57.368432",
       "notes": "Use @astrojs/image. Add Picture component wrapper. Consider responsive sizes. Optimize images in public/ at build time. Max width constraints for prose."
     },
     {

@@ -1,0 +1,61 @@
+---
+/**
+ * OptimizedImage - Responsive image with lazy loading and WebP support
+ * 
+ * Usage:
+ * <OptimizedImage src="/path/to/image.jpg" alt="Description" />
+ * 
+ * Props:
+ * - src: Image source (from src/assets or public/)
+ * - alt: Alt text (required for accessibility)
+ * - width: Optional width constraint
+ * - height: Optional height constraint
+ * - class: Optional CSS classes
+ * - loading: 'lazy' (default) or 'eager'
+ */
+
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata | string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+}
+
+const { 
+  src, 
+  alt, 
+  width, 
+  height, 
+  class: className = '', 
+  loading = 'lazy' 
+} = Astro.props;
+
+// Determine if src is from assets or public
+const isAssetImage = typeof src !== 'string';
+---
+
+{isAssetImage ? (
+  <Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    class={`rounded-lg ${className}`}
+    decoding="async"
+  />
+) : (
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    class={`rounded-lg ${className}`}
+    decoding="async"
+  />
+)}

@@ -38,3 +38,36 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+/* Image optimization and styling */
+.prose img,
+.prose picture {
+    @apply rounded-lg shadow-md my-6;
+    max-width: 100%;
+    height: auto;
+}
+
+.prose figure {
+    @apply my-6;
+}
+
+.prose figcaption {
+    @apply text-sm text-slate-600 dark:text-slate-400 text-center mt-2 italic;
+}
+
+/* Ensure images don't overflow their containers */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Image loading state - prevent layout shift */
+img[loading="lazy"] {
+    min-height: 200px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+}
+
+.dark img[loading="lazy"] {
+    background: linear-gradient(90deg, #1e293b 25%, #0f172a 50%, #1e293b 75%);
+}
