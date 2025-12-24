@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes', ({ data }) => {
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 const { note } = Astro.props;
-const { Content } = await note.render();
+const { Content, headings } = await note.render();
 const formattedDate = note.data.date.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
@@ -21,7 +21,11 @@ const formattedDate = note.data.date.toLocaleDateString('en-US', {
 });
 ---
 
-<BaseLayout title={`${note.data.title} - Notes`} description={note.data.description}>
+<ArticleLayout
+  title={`${note.data.title} - Notes`}
+  description={note.data.description}
+  headings={headings}
+>
   <article class="prose dark:prose-invert max-w-none">
     <header class="mb-8">
       <h1>{note.data.title}</h1>
@@ -40,4 +44,4 @@ const formattedDate = note.data.date.toLocaleDateString('en-US', {
     </header>
     <Content />
   </article>
-</BaseLayout>
+</ArticleLayout>

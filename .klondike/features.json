@@ -189,13 +189,15 @@
         "ToC responsive - hidden on mobile or in drawer"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:41:01.869944",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "ArticleLayout.astro created with Toc component. Headings extracted from markdown and displayed in right sidebar (hidden on mobile with lg:block). Sticky positioning at top."
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:39:02.044324",
       "notes": "ToC should extract headings from rendered content. Use IntersectionObserver for active section highlighting (optional but nice). Consider sticky positioning."
     },
     {
@@ -208,13 +210,16 @@
         "Sidebar collapsible on mobile"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:41:06.633808",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Sidebar.astro dynamically generates navigation from pages collection. Pages sorted by order field. Home and Notes are fixed",
+        "pages section shows all content collection pages."
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:39:54.173164",
       "notes": "Sidebar should be derived from content collections, not hardcoded. Consider supporting explicit order via front matter. Mobile: hamburger menu or slide-out drawer."
     },
     {
@@ -647,8 +652,8 @@
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T08:38:30.377725",
+    "lastUpdated": "2025-12-24T08:41:06.633831",
     "totalFeatures": 32,
-    "passingFeatures": 11
+    "passingFeatures": 13
   }
 }

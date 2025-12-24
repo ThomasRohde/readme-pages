@@ -51,18 +51,18 @@
     ],
     "priorityFeatures": [
       {
-        "id": "F009",
-        "description": "Create ArticleLayout with ToC support",
-        "status": "not-started"
-      },
-      {
-        "id": "F010",
-        "description": "Generate sidebar navigation from content collections",
-        "status": "not-started"
-      },
-      {
         "id": "F018",
         "description": "GitHub Actions workflow for Pages deployment",
+        "status": "not-started"
+      },
+      {
+        "id": "F024",
+        "description": "Inspect and inventory Stitch export",
+        "status": "not-started"
+      },
+      {
+        "id": "F025",
+        "description": "Copy Stitch assets into Astro public folder",
         "status": "not-started"
       }
     ]

@@ -1,6 +1,13 @@
 ---
-// Sidebar navigation component
+import { getCollection } from 'astro:content';
+
 const baseUrl = import.meta.env.BASE_URL;
+const pages = await getCollection('pages');
+const sortedPages = pages.sort((a, b) => {
+  const orderA = a.data.order ?? 999;
+  const orderB = b.data.order ?? 999;
+  return orderA - orderB;
+});
 ---
 
 <nav class="w-64 border-r border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 p-4">
@@ -21,5 +28,24 @@ const baseUrl = import.meta.env.BASE_URL;
         Notes
       </a>
     </li>
+    {sortedPages.length > 0 && (
+      <li class="pt-4 mt-4 border-t border-gray-300 dark:border-gray-600">
+        <p class="px-3 text-xs font-semibold uppercase tracking-wide text-gray-600 dark:text-gray-400 mb-2">
+          Pages
+        </p>
+        <ul class="space-y-1">
+          {sortedPages.map(page => (
+            <li>
+              <a
+                href={`${baseUrl}/${page.slug}/`}
+                class="block px-3 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-900 dark:text-white"
+              >
+                {page.data.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </li>
+    )}
   </ul>
 </nav>

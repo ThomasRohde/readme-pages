@@ -24,9 +24,9 @@ klondike feature list  # List all features
 ### Current Priority Features
 | ID | Description | Status |
 |----|-------------|--------|
-| F009 | Create ArticleLayout with ToC support | ⏳ Not started |
-| F010 | Generate sidebar navigation from content collections | ⏳ Not started |
 | F018 | GitHub Actions workflow for Pages deployment | ⏳ Not started |
+| F024 | Inspect and inventory Stitch export | ⏳ Not started |
+| F025 | Copy Stitch assets into Astro public folder | ⏳ Not started |
 
 ---
 
