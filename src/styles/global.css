@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Tailwind v4 configuration */
+@config "../../tailwind.config.mjs";
+
+/* Dark mode variant */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Custom scrollbar for webkit browsers */
 ::-webkit-scrollbar {
     width: 6px;

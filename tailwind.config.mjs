@@ -36,7 +36,7 @@ export default {
 						maxWidth: 'none',
 						fontSize: '1rem',
 						lineHeight: '1.75',
-						fontFamily: theme('fontFamily.display').join(', '),
+					fontFamily: 'Inter, sans-serif',
 						// Code blocks
 						pre: {
 							backgroundColor: 'var(--tw-prose-pre-bg)',
@@ -45,13 +45,13 @@ export default {
 							overflowX: 'auto',
 							fontSize: '0.875rem',
 							lineHeight: '1.7',
-							fontFamily: theme('fontFamily.mono').join(', '),
-						},
-						code: {
-							color: 'var(--tw-prose-code)',
-							fontWeight: '500',
-							fontSize: '0.875em',
-							fontFamily: theme('fontFamily.mono').join(', '),
+						fontFamily: 'JetBrains Mono, monospace',
+					},
+					code: {
+						color: 'var(--tw-prose-code)',
+						fontWeight: '500',
+						fontSize: '0.875em',
+						fontFamily: 'JetBrains Mono, monospace',
 							'&::before': { content: '""' },
 							'&::after': { content: '""' },
 						},
