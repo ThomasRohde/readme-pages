@@ -79,9 +79,11 @@ npm run build
 **CRITICAL**: `npm run build` **MUST** succeed before committing. It includes TypeScript type checking via `astro check`.
 
 ### Development Tips
+- **Dev Server Must Run in Background**: Always start dev server with `npm run dev 2>&1 &` or via `Start-Job` (PowerShell). Never run blocking foreground commands that prevent subsequent shell operations. The `init.ps1` script handles this correctly using `Start-Job`.
 - When editing Markdown content: dev server auto-reloads, but sometimes requires hard refresh
 - When adding new routes: ensure `src/pages/` structure matches desired URL
-- Base path (`/readme/`) is configured in [astro.config.mjs](../../astro.config.mjs) and handled automatically by Astro for asset/link references
+- Base path (`/readme-pages`) is configured in [astro.config.mjs](../../astro.config.mjs) and handled automatically by Astro for asset/link references
+- **Health Check Base Path**: When running health checks or previews, include the configured base path in URLs: `http://localhost:4321/readme-pages/` not `http://localhost:4321/`
 
 ## Content Publishing Workflow
 

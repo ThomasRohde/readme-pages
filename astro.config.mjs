@@ -6,6 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://thomasrohde.github.io',
   base: '/readme-pages',
+  compressHTML: true,
 
   markdown: {
     shikiConfig: {

@@ -5,6 +5,7 @@ $ErrorActionPreference = "Stop"  # Exit on any error
 
 # Configuration - adjust these for your project
 $DEV_PORT = 4321  # Astro default dev server port
+$BASE_PATH = "/readme-pages"  # Base path configured in astro.config.mjs
 
 Write-Host "🚀 Starting development environment..." -ForegroundColor Cyan
 Write-Host "================================================" -ForegroundColor Cyan
@@ -24,9 +25,9 @@ Write-Host "`n🔍 Checking for stale processes on port $DEV_PORT..." -Foregroun
 $staleProcesses = Get-NetTCPConnection -LocalPort $DEV_PORT -ErrorAction SilentlyContinue |
 Select-Object -ExpandProperty OwningProcess -Unique
 if ($staleProcesses) {
-    foreach ($pid in $staleProcesses) {
-        Write-Host "  Killing stale process PID: $pid" -ForegroundColor Yellow
-        Stop-Process -Id $pid -Force -ErrorAction SilentlyContinue
+    foreach ($procId in $staleProcesses) {
+        Write-Host "  Killing stale process PID: $procId" -ForegroundColor Yellow
+        Stop-Process -Id $procId -Force -ErrorAction SilentlyContinue
     }
     Start-Sleep -Seconds 1
     Write-Host "   ✅ Stale processes cleaned up" -ForegroundColor Green
@@ -91,8 +92,9 @@ Write-Host "   ✅ Dev server ready on port $DEV_PORT" -ForegroundColor Green
 
 # 6. Health check
 Write-Host "`n🏥 Running health check..." -ForegroundColor Yellow
+$healthUri = "http://localhost:$DEV_PORT$BASE_PATH/"
 try {
-    $response = Invoke-WebRequest -Uri "http://localhost:$DEV_PORT" -UseBasicParsing -TimeoutSec 10
+    $response = Invoke-WebRequest -Uri $healthUri -UseBasicParsing -TimeoutSec 10
     if ($response.StatusCode -eq 200) {
         Write-Host "   ✅ Health check passed (HTTP 200)" -ForegroundColor Green
     }
@@ -106,7 +108,7 @@ catch {
 Write-Host "`n================================================" -ForegroundColor Cyan
 Write-Host "✅ Environment ready!" -ForegroundColor Green
 Write-Host ""
-Write-Host "📍 Server running at: http://localhost:$DEV_PORT" -ForegroundColor White
+Write-Host "📍 Server running at: http://localhost:$DEV_PORT$BASE_PATH" -ForegroundColor White
 Write-Host "📖 To view output: Receive-Job -Id $($devJob.Id)" -ForegroundColor Gray
 Write-Host "📖 To stop: Stop-Job -Id $($devJob.Id); Remove-Job -Id $($devJob.Id)" -ForegroundColor Gray
 Write-Host ""

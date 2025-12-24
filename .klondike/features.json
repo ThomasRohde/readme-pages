@@ -412,13 +412,13 @@
         "HTML minified"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
+      "status": "in-progress",
       "passes": false,
       "verifiedAt": null,
       "verifiedBy": null,
       "evidenceLinks": [],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T10:52:31.936014",
       "notes": "Astro is static by default which is good. Verify no accidental client-side JS. Check bundle sizes. Test dist/ locally with preview command."
     },
     {
