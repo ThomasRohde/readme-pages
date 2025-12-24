@@ -819,11 +819,24 @@
         "Configurable defaults and per-page overrides"
       ],
       "estimatedEffort": null,
-      "status": "in-progress",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T11:34:54.888623",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "All pages include comprehensive SEO metadata: primary meta tags (title",
+        "description",
+        "author",
+        "canonical URL)",
+        "Open Graph tags (type",
+        "url",
+        "title",
+        "description",
+        "image",
+        "site_name",
+        "article metadata)",
+        "and Twitter Card tags. Notes include published_time and tags. ArticleLayout refactored to use BaseLayout. Verified in dist/index.html and dist/notes/2025-12-24-first-note/index.html"
+      ],
       "blockedBy": null,
       "lastWorkedOn": "2025-12-24T11:32:06.756289",
       "notes": "Add to BaseLayout. Extract from frontmatter (og:title, og:image, description). Generate social preview images if time permits. Include canonical URLs."
@@ -1021,8 +1034,8 @@
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T11:24:26.357660",
+    "lastUpdated": "2025-12-24T11:34:54.888632",
     "totalFeatures": 47,
-    "passingFeatures": 30
+    "passingFeatures": 31
   }
 }
