@@ -3,8 +3,10 @@ import { getCollection } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import PrevNext from '../../components/PrevNext.astro';
 import EditOnGitHub from '../../components/EditOnGitHub.astro';
+import RelatedNotes from '../../components/RelatedNotes.astro';
 import { calculateReadingTime } from '../../utils/reading-time';
 import { getLastModified, formatRelativeTime } from '../../utils/last-modified';
+import { findRelatedNotes } from '../../utils/related-notes';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes', ({ data }) => {
@@ -21,6 +23,9 @@ export async function getStaticPaths() {
     const prev = index > 0 ? sortedNotes[index - 1] : null;
     const next = index < sortedNotes.length - 1 ? sortedNotes[index + 1] : null;
     
+    // Find related notes
+    const related = findRelatedNotes(note.slug, note.data.tags, notes, 3);
+    
     return {
       params: { slug: note.slug },
       props: {
@@ -34,13 +39,14 @@ export async function getStaticPaths() {
           slug: next.slug,
           title: next.data.title,
           description: next.data.description
-        } : undefined
+        } : undefined,
+        related
       },
     };
   });
 }
 
-const { note, prev, next } = Astro.props;
+const { note, prev, next, related } = Astro.props;
 const { Content, headings } = await note.render();
 const readingTime = calculateReadingTime(note.body);
 const formattedDate = note.data.date.toLocaleDateString('en-US', {
@@ -105,5 +111,6 @@ const showLastModified = lastModifiedDate.getTime() !== note.data.date.getTime()
     </header>
     <Content />
   </article>
+  <RelatedNotes notes={related} baseUrl={base} />
   <PrevNext prev={prev} next={next} collection="notes" />
 </ArticleLayout>

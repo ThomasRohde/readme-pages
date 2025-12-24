@@ -25,8 +25,8 @@ klondike feature list  # List all features
 | ID | Description | Status |
 |----|-------------|--------|
 | F020 | Client-side static search with Pagefind | ⏳ Not started |
-| F022 | Tag index page for notes | 🔄 In progress |
-| F042 | Related notes suggestion | ⏳ Not started |
+| F042 | Related notes suggestion | 🔄 In progress |
+| F043 | Print-friendly styles | ⏳ Not started |
 
 ---
 

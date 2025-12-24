@@ -214,13 +214,13 @@
         "status": "not-started"
       },
       {
-        "id": "F022",
-        "description": "Tag index page for notes",
+        "id": "F042",
+        "description": "Related notes suggestion",
         "status": "in-progress"
       },
       {
-        "id": "F042",
-        "description": "Related notes suggestion",
+        "id": "F043",
+        "description": "Print-friendly styles",
         "status": "not-started"
       }
     ]

@@ -477,11 +477,16 @@
         "Tags page lists all available tags"
       ],
       "estimatedEffort": null,
-      "status": "in-progress",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T12:52:10.668280",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Created /tags/ index with tag list and count",
+        "/tags/[tag]/ dynamic routes for filtered notes",
+        "added Tags link to sidebar. Build succeeds",
+        "8 tag pages generated successfully."
+      ],
       "blockedBy": null,
       "lastWorkedOn": "2025-12-24T12:50:28.390919",
       "notes": "Optional MVP+ feature. Implement only after core notes functionality works. Consider tag cloud or simple list."
@@ -957,13 +962,13 @@
         "Displays at end of article"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
+      "status": "in-progress",
       "passes": false,
       "verifiedAt": null,
       "verifiedBy": null,
       "evidenceLinks": [],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T12:52:16.440274",
       "notes": "Use tag overlap scoring. Fallback to same category. Exclude current article. Style as card grid. Consider manual 'related' frontmatter field."
     },
     {
@@ -1080,8 +1085,8 @@
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T12:44:12.595901",
+    "lastUpdated": "2025-12-24T12:52:10.668290",
     "totalFeatures": 47,
-    "passingFeatures": 42
+    "passingFeatures": 43
   }
 }
