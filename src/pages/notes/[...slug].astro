@@ -1,18 +1,43 @@
 ---
 import { getCollection } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import PrevNext from '../../components/PrevNext.astro';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes', ({ data }) => {
     return !data.draft;
   });
-  return notes.map(note => ({
-    params: { slug: note.slug },
-    props: { note },
-  }));
+  
+  // Sort notes by date descending (newest first)
+  const sortedNotes = notes.sort((a, b) => 
+    b.data.date.valueOf() - a.data.date.valueOf()
+  );
+  
+  return sortedNotes.map((note, index) => {
+    // Previous = newer (index - 1), Next = older (index + 1)
+    const prev = index > 0 ? sortedNotes[index - 1] : null;
+    const next = index < sortedNotes.length - 1 ? sortedNotes[index + 1] : null;
+    
+    return {
+      params: { slug: note.slug },
+      props: {
+        note,
+        prev: prev ? {
+          slug: prev.slug,
+          title: prev.data.title,
+          description: prev.data.description
+        } : undefined,
+        next: next ? {
+          slug: next.slug,
+          title: next.data.title,
+          description: next.data.description
+        } : undefined
+      },
+    };
+  });
 }
 
-const { note } = Astro.props;
+const { note, prev, next } = Astro.props;
 const { Content, headings } = await note.render();
 const formattedDate = note.data.date.toLocaleDateString('en-US', {
   year: 'numeric',
@@ -52,4 +77,5 @@ const breadcrumbItems = [
     </header>
     <Content />
   </article>
+  <PrevNext prev={prev} next={next} collection="notes" />
 </ArticleLayout>

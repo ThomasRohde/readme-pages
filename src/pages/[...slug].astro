@@ -1,16 +1,43 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PrevNext from '../components/PrevNext.astro';
 
 export async function getStaticPaths() {
   const pages = await getCollection('pages');
-  return pages.map(page => ({
-    params: { slug: page.slug },
-    props: { page },
-  }));
+  
+  // Sort pages by order field (or title if no order)
+  const sortedPages = pages.sort((a, b) => {
+    const orderA = a.data.order ?? 999;
+    const orderB = b.data.order ?? 999;
+    if (orderA !== orderB) return orderA - orderB;
+    return a.data.title.localeCompare(b.data.title);
+  });
+  
+  return sortedPages.map((page, index) => {
+    const prev = index > 0 ? sortedPages[index - 1] : null;
+    const next = index < sortedPages.length - 1 ? sortedPages[index + 1] : null;
+    
+    return {
+      params: { slug: page.slug },
+      props: {
+        page,
+        prev: prev ? {
+          slug: prev.slug,
+          title: prev.data.title,
+          description: prev.data.description
+        } : undefined,
+        next: next ? {
+          slug: next.slug,
+          title: next.data.title,
+          description: next.data.description
+        } : undefined
+      },
+    };
+  });
 }
 
-const { page } = Astro.props;
+const { page, prev, next } = Astro.props;
 const { Content } = await page.render();
 ---
 
@@ -18,4 +45,5 @@ const { Content } = await page.render();
   <article class="prose dark:prose-invert max-w-none">
     <Content />
   </article>
+  <PrevNext prev={prev} next={next} collection="pages" />
 </BaseLayout>
