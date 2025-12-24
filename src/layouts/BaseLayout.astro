@@ -16,18 +16,26 @@ const {
 ---
 
 <!doctype html>
-<html lang="en">
+<html class="dark" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
   </head>
-  <body class="min-h-screen flex flex-col bg-white dark:bg-gray-900">
+  <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-200 font-display antialiased min-h-screen flex flex-col">
     <Header />
-    <div class="flex flex-1">
+    <div class="flex-1 w-full max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 flex items-start relative">
       <Sidebar />
-      <main class="flex-1 p-8">
+      <main class="flex-1 min-w-0 py-10 lg:px-8 xl:px-12">
         <slot />
       </main>
     </div>

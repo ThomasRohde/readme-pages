@@ -56,13 +56,13 @@
         "status": "not-started"
       },
       {
-        "id": "F024",
-        "description": "Inspect and inventory Stitch export",
+        "id": "F028",
+        "description": "Convert Stitch article page to ArticleLayout.astro",
         "status": "not-started"
       },
       {
-        "id": "F025",
-        "description": "Copy Stitch assets into Astro public folder",
+        "id": "F031",
+        "description": "Create Card component from Stitch note listing design",
         "status": "not-started"
       }
     ]

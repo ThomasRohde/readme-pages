@@ -488,13 +488,18 @@
         "Note any inline styles or custom CSS files"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:42:23.605591",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Stitch export inspected. Single index.html with complete article template. Uses Tailwind CDN (needs replacement)",
+        "Google Fonts (Inter",
+        "JetBrains Mono)",
+        "Material Symbols icons. No local assets folder. Custom colors and dark mode support."
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:41:48.021170",
       "notes": "First step before integration. Create a checklist of what needs to be migrated. Look for index.html, article.html, notes.html patterns."
     },
     {
@@ -507,13 +512,15 @@
         "Paths updated from relative to /assets/..."
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:43:02.535666",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "No assets folder in Stitch export. External images only (Google user avatar). Not applicable for this project."
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:42:47.853097",
       "notes": "Assets in public/ are served at root. Update any Stitch HTML that used relative ./assets paths to absolute /assets paths."
     },
     {
@@ -526,13 +533,22 @@
         "Tailwind classes preserved unchanged"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:45:54.758754",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "BaseLayout updated with Stitch design: Inter/JetBrains Mono fonts",
+        "Material Symbols",
+        "dark mode class strategy",
+        "Stitch color scheme (primary",
+        "background-dark",
+        "surface-dark",
+        "border-dark). Sticky header",
+        "max-w-8xl container."
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:43:30.946600",
       "notes": "Take Stitch index.html body and convert to Astro layout. Replace page-specific content with <slot />. Keep all Tailwind classes exactly as exported."
     },
     {
@@ -545,13 +561,21 @@
         "Tailwind classes preserved"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:46:02.319793",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Header: Sticky with logo icon",
+        "dark mode support",
+        "backdrop blur. Sidebar: Styled with Stitch classes",
+        "sticky positioning",
+        "no-scrollbar. Footer: Simplified with Stitch borders/colors. ToC: XL-only display",
+        "sticky",
+        "Stitch styling."
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:45:59.678907",
       "notes": "Copy Stitch markup blocks verbatim into components. Only parameterize what needs to be dynamic. Don't over-componentize."
     },
     {
@@ -583,13 +607,15 @@
         "All Stitch classes render correctly"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:46:09.845730",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "No Tailwind CDN in layouts. Using local Tailwind build via @tailwindcss/vite. Custom theme configured in tailwind.config.mjs with Stitch colors and fonts."
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:46:07.125262",
       "notes": "Critical: CDN must be removed for production. Tailwind must scan all .astro, .md files. Verify no missing utility classes after removal."
     },
     {
@@ -602,13 +628,15 @@
         "Typography matches Stitch design"
       ],
       "estimatedEffort": null,
-      "status": "not-started",
-      "passes": false,
-      "verifiedAt": null,
-      "verifiedBy": null,
-      "evidenceLinks": [],
+      "status": "verified",
+      "passes": true,
+      "verifiedAt": "2025-12-24T08:46:14.798104",
+      "verifiedBy": "coding-agent",
+      "evidenceLinks": [
+        "Google Fonts configured in BaseLayout: Inter (display font) and JetBrains Mono (monospace). Material Symbols Outlined for icons. Preconnect links added for performance."
+      ],
       "blockedBy": null,
-      "lastWorkedOn": null,
+      "lastWorkedOn": "2025-12-24T08:43:31.775320",
       "notes": "Keep Google Fonts links from Stitch. Add preconnect for fonts.googleapis.com and fonts.gstatic.com. Self-hosting is optional MVP+."
     },
     {
@@ -652,8 +680,8 @@
   ],
   "metadata": {
     "createdAt": "2025-12-24T08:03:50.300345",
-    "lastUpdated": "2025-12-24T08:41:06.633831",
+    "lastUpdated": "2025-12-24T08:46:14.798128",
     "totalFeatures": 32,
-    "passingFeatures": 13
+    "passingFeatures": 19
   }
 }

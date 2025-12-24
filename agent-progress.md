@@ -25,8 +25,8 @@ klondike feature list  # List all features
 | ID | Description | Status |
 |----|-------------|--------|
 | F018 | GitHub Actions workflow for Pages deployment | ⏳ Not started |
-| F024 | Inspect and inventory Stitch export | ⏳ Not started |
-| F025 | Copy Stitch assets into Astro public folder | ⏳ Not started |
+| F028 | Convert Stitch article page to ArticleLayout.astro | ⏳ Not started |
+| F031 | Create Card component from Stitch note listing design | ⏳ Not started |
 
 ---
 
