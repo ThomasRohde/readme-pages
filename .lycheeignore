@@ -1,31 +1,21 @@
 # Lychee ignore patterns for link checking
-# https://lychee.cli.rs/usage/config/ignore
-# Note: Lychee supports regex patterns, not glob wildcards
-
+[exclude]
 # Local development URLs
-^http://localhost
-^http://127\.0\.0\.1
-^https://localhost
-^https://127\.0\.0\.1
-
-# File URLs (handled by Astro build)
-^file://
-
-# JavaScript pseudo-links
-^javascript:
-
-# GitHub edit links (won't work from external checking)
-^https://github\.com/.*/edit/
-
-# Common false positives from CDNs/social media that block bots
-^https://fonts\.googleapis\.com/
-^https://fonts\.gstatic\.com/
-^https://twitter\.com/
-^https://x\.com/
-^https://linkedin\.com/
-^https://facebook\.com/
-
-# Placeholder/example domains
-example\.com
-example\.org
-^localhost
+regex = [
+  "^http://localhost",
+  "^http://127\\.0\\.0\\.1",
+  "^https://localhost",
+  "^https://127\\.0\\.0\\.1",
+  "^file://",
+  "^javascript:",
+  "^https://github\\.com/.*/edit/",
+  "^https://fonts\\.googleapis\\.com/",
+  "^https://fonts\\.gstatic\\.com/",
+  "^https://twitter\\.com/",
+  "^https://x\\.com/",
+  "^https://linkedin\\.com/",
+  "^https://facebook\\.com/",
+  "example\\.com",
+  "example\\.org",
+  "^localhost"
+]
