@@ -21,7 +21,9 @@
       "Bash(npm run dev:*)",
       "Bash(xargs cat:*)",
       "Bash(cat:*)",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Skill(skill-creator)",
+      "Skill(skill-creator:*)"
     ]
   }
 }
