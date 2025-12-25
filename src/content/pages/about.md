@@ -10,7 +10,7 @@ This is a personal site for publishing notes and documentation.
 
 ## Who am I?
 
-Software developer and technical writer.
+Enterprise Architect and tinkerer.
 
 ## What's this site?
 
