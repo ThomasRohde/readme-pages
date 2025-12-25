@@ -8,6 +8,9 @@
 ^javascript:
 ^localhost
 
+# 404 page (self-referential link is expected to return 404)
+/404/?$
+
 # GitHub edit links
 ^https://github\.com/.*/edit/
 
