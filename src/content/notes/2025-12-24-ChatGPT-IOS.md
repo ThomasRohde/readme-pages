@@ -4,7 +4,7 @@ date: 2025-12-24
 description: "A practical collection of ChatGPT-powered iPhone Shortcut ideas covering text handling, research, productivity, creative work, and advanced automations to streamline daily workflows without opening the ChatGPT app."
 tags: ["ios", "iphone-shortcuts", "chatgpt", "automation", "productivity", "ai-tools"]
 ---
-Here are a bunch of useful ChatGPT-powered iPhone Shortcuts you could build or adapt so you actually get stuff done without opening the ChatGPT app every time. These ideas are grounded in real community shortcuts and common automation patterns people are already using.  ￼
+Insert your content here...Here are a bunch of useful ChatGPT-powered iPhone Shortcuts you could build or adapt so you actually get stuff done without opening the ChatGPT app every time. These ideas are grounded in real community shortcuts and common automation patterns people are already using.  ￼
 
 Text and Content Helpers
 	1.	Quick Text Summarizer — feed selected text or a URL from your share sheet into ChatGPT and get back a concise summary (great for long articles or reports).  ￼
