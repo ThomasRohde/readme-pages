@@ -1,21 +1,17 @@
-# Lychee ignore patterns for link checking
-[exclude]
 # Local development URLs
-regex = [
-  "^http://localhost",
-  "^http://127\\.0\\.0\\.1",
-  "^https://localhost",
-  "^https://127\\.0\\.0\\.1",
-  "^file://",
-  "^javascript:",
-  "^https://github\\.com/.*/edit/",
-  "^https://fonts\\.googleapis\\.com/",
-  "^https://fonts\\.gstatic\\.com/",
-  "^https://twitter\\.com/",
-  "^https://x\\.com/",
-  "^https://linkedin\\.com/",
-  "^https://facebook\\.com/",
-  "example\\.com",
-  "example\\.org",
-  "^localhost"
-]
+^http://localhost
+^http://127\.0\.0\.1
+^https://localhost
+^https://127\.0\.0\.1
+^file://
+^javascript:
+^https://github\.com/.*/edit/
+^https://fonts\.googleapis\.com/
+^https://fonts\.gstatic\.com/
+^https://twitter\.com/
+^https://x\.com/
+^https://linkedin\.com/
+^https://facebook\.com/
+example\.com
+example\.org
+^localhost
