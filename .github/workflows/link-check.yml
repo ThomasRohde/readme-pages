@@ -30,7 +30,7 @@ jobs:
         uses: lycheeverse/lychee-action@v2
         with:
           # Check all HTML files in the built dist directory
-          args: --config .lycheeignore --verbose --no-progress --exclude-loopback --exclude-private --exclude-link-local --max-retries 3 --timeout 20 --accept 200,204,301,302,307,308,429,999 --base ${{ github.workspace }}/dist './dist/**/*.html'
+          args: --config .lycheeignore --verbose --no-progress --exclude-loopback --exclude-private --exclude-link-local --max-retries 3 --timeout 20 --accept 200,204,301,302,307,308,429,999 --base-url ${{ github.workspace }}/dist './dist/**/*.html'
           # Fail on broken links (internal links are critical)
           fail: true
           # Output format for GitHub annotations
