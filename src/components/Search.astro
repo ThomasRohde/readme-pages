@@ -75,8 +75,8 @@
 
 <script>
   // Load Pagefind UI
-  const baseUrl = import.meta.env.BASE_URL || '/';
-  const pagefindPath = `${baseUrl}pagefind/`;
+  const baseUrl = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+  const pagefindPath = `${baseUrl}/_pagefind/`;
   
   async function initializeSearch() {
     const dialog = document.getElementById('search-dialog') as HTMLDialogElement;
@@ -90,18 +90,48 @@
     
     async function loadPagefind() {
       if (pagefindUI) return;
-      
-      const { PagefindUI } = await import(
-        /* @vite-ignore */
-        `${pagefindPath}pagefind-ui.js`
-      );
-      
-      pagefindUI = new PagefindUI({
-        element: container,
-        baseUrl: pagefindPath,
-        showImages: false,
-        excerptLength: 15
-      });
+
+      try {
+        // Load CSS first
+        if (!document.querySelector('link[href*="pagefind-ui.css"]')) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = `${pagefindPath}pagefind-ui.css`;
+          document.head.appendChild(link);
+          await new Promise((resolve) => {
+            link.onload = resolve;
+            link.onerror = resolve;
+          });
+        }
+
+        // Load JS as script (UMD bundle)
+        if (!(window as any).PagefindUI) {
+          const script = document.createElement('script');
+          script.src = `${pagefindPath}pagefind-ui.js`;
+          document.head.appendChild(script);
+          await new Promise((resolve, reject) => {
+            script.onload = resolve;
+            script.onerror = reject;
+          });
+        }
+
+        const PagefindUI = (window as any).PagefindUI;
+        pagefindUI = new PagefindUI({
+          element: container,
+          bundlePath: pagefindPath,
+          baseUrl: baseUrl + '/',
+          showImages: false,
+          excerptLength: 15
+        });
+      } catch (e) {
+        if (!container) return;
+        container.innerHTML = `
+          <div style="padding: 2rem; text-align: center; color: #64748b;">
+            <p style="margin-bottom: 0.5rem; font-weight: 500;">Search unavailable</p>
+            <p style="font-size: 0.875rem;">Run <code style="background: #f1f5f9; padding: 0.25rem 0.5rem; border-radius: 0.25rem;">npm run build</code> first to generate the search index.</p>
+          </div>
+        `;
+      }
     }
     
     // Open dialog

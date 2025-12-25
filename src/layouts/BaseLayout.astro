@@ -103,8 +103,7 @@ const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
     <!-- Material Symbols -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     
-    <!-- Pagefind UI CSS -->
-    <link href={`${import.meta.env.BASE_URL}/pagefind/pagefind-ui.css`} rel="stylesheet" />
+    <!-- Pagefind UI CSS loaded dynamically by Search component -->
     
     <!-- RSS Feed -->
     <link rel="alternate" type="application/rss+xml" title="Thomas Rohde - Notes RSS Feed" href={`${import.meta.env.BASE_URL}/rss.xml`} />
