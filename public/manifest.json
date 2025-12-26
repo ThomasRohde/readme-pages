@@ -1,0 +1,31 @@
+{
+  "name": "Thomas Klok Rohde - Notes",
+  "short_name": "TKR Notes",
+  "description": "Personal notes and documentation by Thomas Klok Rohde",
+  "start_url": "/readme-pages/",
+  "scope": "/readme-pages/",
+  "display": "standalone",
+  "background_color": "#FAF8F5",
+  "theme_color": "#1e3a5f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/readme-pages/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/readme-pages/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/readme-pages/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

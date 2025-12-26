@@ -47,6 +47,11 @@ const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/favicon.svg`} />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${import.meta.env.BASE_URL}/favicon-32.png`} />
+    <link rel="icon" type="image/png" sizes="16x16" href={`${import.meta.env.BASE_URL}/favicon-16.png`} />
+    
     <!-- Primary Meta Tags -->
     <title>{fullTitle}</title>
     <meta name="title" content={fullTitle} />
@@ -74,6 +79,19 @@ const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
     <meta name="twitter:image:alt" content={imageAlt} />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href={`${import.meta.env.BASE_URL}/manifest.json`} />
+    
+    <!-- iOS PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="TKR Notes" />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${import.meta.env.BASE_URL}/icons/apple-touch-icon.png`} />
+    
+    <!-- Theme color for browser chrome -->
+    <meta name="theme-color" content="#FAF8F5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1e3a5f" media="(prefers-color-scheme: dark)" />
 
     <!-- Theme initialization - runs before page renders to prevent flash -->
     <script is:inline>
@@ -127,5 +145,41 @@ const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
     </div>
     <Footer />
     <CodeCopyButton />
+    
+    <!-- Service Worker Registration -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/readme-pages/sw.js')
+            .then((registration) => {
+              // Check for updates on page load
+              registration.update();
+              
+              // Listen for new service worker
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // New content available - activate immediately
+                    newWorker.postMessage('skipWaiting');
+                  }
+                });
+              });
+            })
+            .catch((error) => {
+              console.log('SW registration failed:', error);
+            });
+        });
+        
+        // Refresh page when new SW takes over
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (!refreshing) {
+            refreshing = true;
+            window.location.reload();
+          }
+        });
+      }
+    </script>
   </body>
 </html>

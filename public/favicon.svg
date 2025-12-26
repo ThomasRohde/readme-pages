@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#FAF8F5" rx="6"/>
+  <rect x="2" y="2" width="28" height="28" fill="none" stroke="#1e3a5f" stroke-width="2.5" rx="5"/>
+  <text x="16" y="22" font-family="Georgia, serif" font-size="16" font-weight="bold" fill="#1a2d47" text-anchor="middle">TR</text>
+</svg>
