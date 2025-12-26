@@ -6,9 +6,15 @@ interface Props {
   description?: string;
   tags?: string[];
   index?: number;
+  // Recipe-specific optional fields
+  prepTime?: string;
+  cookTime?: string;
+  servings?: number;
+  difficulty?: 'easy' | 'medium' | 'hard';
 }
 
-const { title, href, date, description, tags, index = 0 } = Astro.props;
+const { title, href, date, description, tags, index = 0, prepTime, cookTime, servings, difficulty } = Astro.props;
+const isRecipe = prepTime || cookTime || servings || difficulty;
 const formattedDate = date?.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
@@ -17,6 +23,13 @@ const formattedDate = date?.toLocaleDateString('en-US', {
 
 // Calculate animation delay based on index
 const animationDelay = `${index * 0.1}s`;
+
+// Difficulty badge colors
+const difficultyColors: Record<string, string> = {
+  easy: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
+  medium: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400',
+  hard: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400'
+};
 ---
 
 <article
@@ -51,6 +64,35 @@ const animationDelay = `${index * 0.1}s`;
       <p class="text-ink-light dark:text-cream-300 leading-relaxed mb-4 line-clamp-2">
         {description}
       </p>
+    )}
+
+    <!-- Recipe metadata -->
+    {isRecipe && (
+      <div class="flex flex-wrap items-center gap-3 mb-4 text-xs text-ink-muted dark:text-cream-400">
+        {prepTime && (
+          <span class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm text-accent dark:text-gold">timer</span>
+            {prepTime}
+          </span>
+        )}
+        {cookTime && (
+          <span class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm text-accent dark:text-gold">local_fire_department</span>
+            {cookTime}
+          </span>
+        )}
+        {servings && (
+          <span class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm text-accent dark:text-gold">group</span>
+            {servings} servings
+          </span>
+        )}
+        {difficulty && (
+          <span class={`px-2 py-0.5 rounded-full text-xs font-medium ${difficultyColors[difficulty]}`}>
+            {difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}
+          </span>
+        )}
+      </div>
     )}
 
     <!-- Tags with refined styling -->

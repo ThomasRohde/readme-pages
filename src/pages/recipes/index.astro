@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/Card.astro';
+
+const recipes = await getCollection('recipes', ({ data }) => !data.draft);
+const sortedRecipes = recipes.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Recipes - Thomas Klok Rohde">
+  <div class="max-w-4xl">
+    <!-- Page header with editorial styling -->
+    <header class="mb-12 animate-fade-up" style="opacity: 0;">
+      <div class="flex items-center gap-4 mb-4">
+        <div class="w-12 h-px bg-gradient-to-r from-accent to-transparent dark:from-gold"></div>
+        <span class="text-xs tracking-[0.3em] uppercase font-medium text-ink-muted dark:text-cream-400">Cookbook</span>
+      </div>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-tight text-primary-800 dark:text-cream-100 mb-4">
+        Recipes
+      </h1>
+      <p class="text-lg text-ink-light dark:text-cream-300 max-w-xl">
+        {sortedRecipes.length} {sortedRecipes.length === 1 ? 'recipe' : 'recipes'} for delicious meals and treats
+      </p>
+      {sortedRecipes.length > 0 && (
+        <a
+          href={`${baseUrl}/recipe-tags/`}
+          class="inline-flex items-center gap-2 mt-4 text-sm text-accent dark:text-gold hover:underline"
+        >
+          <span class="material-symbols-outlined text-base">label</span>
+          Browse by ingredient or cuisine
+        </a>
+      )}
+    </header>
+
+    {sortedRecipes.length === 0 ? (
+      <div class="text-center py-16 animate-fade-up" style="animation-delay: 0.1s; opacity: 0;">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-cream-200 dark:bg-surface-dark flex items-center justify-center">
+          <span class="material-symbols-outlined text-3xl text-ink-muted dark:text-cream-400">restaurant</span>
+        </div>
+        <p class="text-ink-light dark:text-cream-400">No recipes published yet.</p>
+      </div>
+    ) : (
+      <div class="grid gap-6">
+        {sortedRecipes.map((recipe, index) => (
+          <Card
+            title={recipe.data.title}
+            href={`${baseUrl}/recipes/${recipe.id.replace(/\.(md|mdx)$/, '')}/`}
+            date={recipe.data.date}
+            description={recipe.data.description}
+            tags={recipe.data.tags}
+            index={index}
+            prepTime={recipe.data.prepTime}
+            cookTime={recipe.data.cookTime}
+            servings={recipe.data.servings}
+            difficulty={recipe.data.difficulty}
+          />
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>

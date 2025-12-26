@@ -54,8 +54,26 @@ const notes = defineCollection({
   }),
 });
 
+// Recipes collection: cooking recipes with structured metadata
+const recipes = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: titleSchema,
+    description: descriptionSchema,
+    date: dateSchema,
+    tags: z.array(tagSchema).optional().default([]),
+    draft: z.boolean().optional().default(false),
+    // Recipe-specific fields
+    prepTime: z.string().optional(),
+    cookTime: z.string().optional(),
+    servings: z.number().int().min(1).optional(),
+    difficulty: z.enum(['easy', 'medium', 'hard']).optional(),
+  }),
+});
+
 // Exclude Templates directory by adding glob pattern
 export const collections = {
   pages,
   notes,
+  recipes,
 };

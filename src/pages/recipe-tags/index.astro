@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const recipes = await getCollection('recipes', ({ data }) => !data.draft);
+const baseUrl = import.meta.env.BASE_URL;
+
+// Gather all tags with their recipe counts
+const tagCounts = new Map<string, number>();
+recipes.forEach(recipe => {
+  recipe.data.tags?.forEach(tag => {
+    tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+  });
+});
+
+// Sort tags alphabetically
+const sortedTags = Array.from(tagCounts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+---
+
+<BaseLayout title="Recipe Tags - Thomas Klok Rohde">
+  <div class="max-w-4xl">
+    <!-- Back navigation -->
+    <nav class="mb-8 animate-fade-up" style="opacity: 0;">
+      <a
+        href={`${baseUrl}/recipes/`}
+        class="group inline-flex items-center text-sm text-ink-muted dark:text-cream-400 hover:text-accent dark:hover:text-gold transition-colors"
+      >
+        <span class="material-symbols-outlined text-base mr-2 group-hover:-translate-x-1 transition-transform">arrow_back</span>
+        All recipes
+      </a>
+    </nav>
+
+    <!-- Page header with editorial styling -->
+    <header class="mb-12 animate-fade-up" style="animation-delay: 0.1s; opacity: 0;">
+      <div class="flex items-center gap-4 mb-4">
+        <div class="w-12 h-px bg-gradient-to-r from-accent to-transparent dark:from-gold"></div>
+        <span class="text-xs tracking-[0.3em] uppercase font-medium text-ink-muted dark:text-cream-400">Cookbook</span>
+      </div>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-tight text-primary-800 dark:text-cream-100 mb-4">
+        Recipe Tags
+      </h1>
+      <p class="text-lg text-ink-light dark:text-cream-300">
+        Browse recipes by ingredient, cuisine, or category
+      </p>
+    </header>
+
+    {sortedTags.length === 0 ? (
+      <div class="text-center py-16 animate-fade-up" style="animation-delay: 0.2s; opacity: 0;">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-cream-200 dark:bg-surface-dark flex items-center justify-center">
+          <span class="material-symbols-outlined text-3xl text-ink-muted dark:text-cream-400">label</span>
+        </div>
+        <p class="text-ink-light dark:text-cream-400">No recipe tags found.</p>
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {sortedTags.map(([tag, count], index) => (
+          <a
+            href={`${baseUrl}/recipe-tags/${tag}/`}
+            class="group relative block p-6 bg-white dark:bg-surface-dark rounded-xl border border-cream-300 dark:border-border-dark hover:border-accent dark:hover:border-gold shadow-card hover:shadow-card-hover dark:shadow-card-dark dark:hover:shadow-card-dark-hover transition-all duration-300 animate-fade-up"
+            style={`animation-delay: ${0.2 + index * 0.05}s; opacity: 0;`}
+          >
+            <!-- Corner accent -->
+            <div class="absolute top-3 right-3 w-3 h-3 border-r-2 border-t-2 border-accent/30 dark:border-gold/30 group-hover:border-accent dark:group-hover:border-gold transition-colors"></div>
+
+            <div class="flex items-baseline justify-between">
+              <h2 class="font-display text-lg font-semibold text-primary-800 dark:text-cream-100 group-hover:text-accent dark:group-hover:text-gold transition-colors">
+                {tag}
+              </h2>
+              <span class="text-xs tracking-wider uppercase text-ink-muted dark:text-cream-400 ml-2">
+                {count} {count === 1 ? 'recipe' : 'recipes'}
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>

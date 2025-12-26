@@ -50,6 +50,14 @@ const sortedPages = pages.sort((a, b) => {
             Tags
           </a>
         </li>
+        <li>
+          <a
+            href={`${baseUrl}/recipes/`}
+            class="block px-4 py-2.5 text-sm font-medium rounded-lg text-ink-light hover:bg-cream-200 hover:text-primary-800 dark:text-cream-300 dark:hover:bg-surface-dark dark:hover:text-cream-100 transition-colors"
+          >
+            Recipes
+          </a>
+        </li>
       </ul>
     </div>
     {sortedPages.length > 0 && (
@@ -106,6 +114,15 @@ const sortedPages = pages.sort((a, b) => {
           >
             <span class="w-1.5 h-1.5 rounded-full bg-accent/0 group-hover:bg-accent dark:group-hover:bg-gold transition-colors"></span>
             Tags
+          </a>
+        </li>
+        <li>
+          <a
+            href={`${baseUrl}/recipes/`}
+            class="group flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-ink-light hover:bg-cream-200 hover:text-primary-800 dark:text-cream-300 dark:hover:bg-surface-dark dark:hover:text-cream-100 transition-colors"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-accent/0 group-hover:bg-accent dark:group-hover:bg-gold transition-colors"></span>
+            Recipes
           </a>
         </li>
       </ul>
