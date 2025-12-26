@@ -1,0 +1,116 @@
+---
+title: "No more slop: taste and accountability in the age of cheap tokens"
+date: 2025-12-26
+description: "Notes from a short keynote that frames low-quality output as an asymmetric problem—and argues for taste, accountability, and modularity to fight it."
+tags: ["ai", "llm", "ai-governance", "workflow", "productivity"]
+---
+
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+# No more slop: taste and accountability in the age of cheap tokens
+This note is my takeaway from a short conference-style keynote about "slop": low-quality, inauthentic, or inaccurate output (from humans *or* AI) that floods the ecosystem as generation gets cheaper. The speaker's core message is a mantra you can actually use in org conversations: **no more slop**.  
+
+<YouTube id="IoiHI7p12Ao" />
+
+## What “slop” is (and what it isn’t)
+
+- “Slop” is **not** synonymous with “AI-generated.”
+- It’s a **quality + authenticity failure mode**:
+  - low effort
+  - low taste
+  - low verification
+  - optimized for volume, engagement, or speed instead of correctness and usefulness
+
+The useful reframing: *anyone* can ship slop—AI just scales it.
+
+## Why it’s an asymmetric war
+
+The keynote uses Brandolini’s Law as the closest match: it’s much easier to produce nonsense than to refute it.
+
+In AI terms:
+- the marginal cost of generating output keeps dropping
+- the *cost of review, taste, and verification* does not drop at the same rate
+- so slop wins by default unless you build counter-measures into your workflow
+
+The speaker coins a meme-law along the lines of:
+
+> **The amount of taste needed to fight slop is an order of magnitude bigger than that needed to produce it.**
+
+Whether or not you buy the exact “order of magnitude,” the directional point matters: **quality work requires attention**.
+
+## Where slop shows up (beyond “content”)
+
+### Product + startup slop
+Same idea, wildly different outcomes:
+- a product can be “vibe-coded” into a demo
+- or engineered into something reliable, maintainable, and safe
+
+The delta is rarely “more output.” It’s clearer intent, better constraints, and stronger taste.
+
+### Code slop
+The talk calls out a modern reality:
+- a small team can now create **outsized tech debt**
+- or ship risk at scale (security/privacy failures) faster than the org can notice
+
+It also pushes a principle worth stealing:
+
+- **No autonomy without accountability.**
+
+If you’re letting agents run, you still need:
+- acceptance criteria
+- observability
+- rollbacks
+- audits
+
+### Social/media slop
+Engagement mechanics can push people (and models) toward:
+- bait
+- exaggeration
+- shortcuts that feel “productive” but degrade trust
+
+## Tactics for fighting slop with AI (instead of against it)
+
+The keynote’s optimistic thread: **use AI to raise the bar**, not just to crank the content lever.
+
+Patterns mentioned (and I agree with the intent even if the implementation differs by team):
+
+- **Prompting for anti-slop**
+  - explicitly ask the model to avoid hand-wavy claims
+  - request assumptions, risks, and checks
+  - force it to critique its own output
+
+- **Modularity**
+  - keep clear human-designed boundaries
+  - let AI fill in the “in-between” *with tests and constraints*
+  - reduces the “mystery meat” zone where slop hides
+
+- **Codebase understanding at scale**
+  - use AI to build maps/summaries of systems
+  - make architecture and dependency reality easier to see
+  - fight “context rot” (teams forgetting how the system actually works)
+
+- **Computer-use / automation**
+  - agents operating real apps can help with repetitive ops work
+  - but should be treated like production automation: permissioned, logged, reversible
+
+## A practical “no more slop” checklist
+
+Use this when you feel the org drifting into “more output” mode.
+
+- **Swap proxy metrics**
+  - “lines of code” → “measurable outcomes + defect rate + lead time”
+- **Define quality gates**
+  - tests, linting, security scanning, evals (for LLM features)
+- **Require accountability for autonomy**
+  - who approves runs, what’s logged, how to roll back, how to audit
+- **Make review cheaper**
+  - small PRs, better diffs, automated checks, clear ownership boundaries
+- **Create a taste loop**
+  - examples of “kino” vs “slop” in your domain (docs, code, product decisions)
+  - a shared bar people can point to
+
+## Next steps
+
+- Pick one “slop hotspot” in your org (docs, code reviews, agent runs, analytics, support macros) and add **one** explicit quality gate this week.
+- Write down your team’s definition of “done” for AI-assisted work (tests, evals, citations, threat model, rollback).
+- The next time someone pushes for speed without clarity, try the mantra—politely but firmly: **no more slop**.

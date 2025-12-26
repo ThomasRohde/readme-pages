@@ -36,7 +36,7 @@ const baseUrl = import.meta.env.BASE_URL;
         {sortedNotes.map((note, index) => (
           <Card
             title={note.data.title}
-            href={`${baseUrl}/notes/${note.id}/`}
+            href={`${baseUrl}/notes/${note.id.replace(/\.(md|mdx)$/, '')}/`}
             date={note.data.date}
             description={note.data.description}
             tags={note.data.tags}

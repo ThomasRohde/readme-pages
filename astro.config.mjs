@@ -5,6 +5,7 @@ import { h } from 'hastscript';
 import sitemap from '@astrojs/sitemap';
 import remarkDirective from 'remark-directive';
 import remarkAdmonitions from './src/plugins/remark-admonitions.mjs';
+import mdx from '@astrojs/mdx';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -15,6 +16,7 @@ export default defineConfig({
   compressHTML: true,
   
   integrations: [
+    mdx(),
     sitemap({
       filter: (page) => !page.includes('/draft/'),
       changefreq: 'weekly',

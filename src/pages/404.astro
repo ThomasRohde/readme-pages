@@ -72,7 +72,7 @@ const allPages = await getCollection('pages');
               });
               return (
                 <a
-                  href={`${baseWithSlash}notes/${note.id}/`}
+                  href={`${baseWithSlash}notes/${note.id.replace(/\.(md|mdx)$/, '')}/`}
                   class="group relative block p-5 bg-white dark:bg-surface-dark border border-cream-300 dark:border-border-dark rounded-xl hover:border-accent dark:hover:border-gold transition-all duration-300 shadow-card hover:shadow-card-hover dark:shadow-card-dark"
                 >
                   <div class="absolute top-3 right-3 w-3 h-3 border-r-2 border-t-2 border-accent/20 dark:border-gold/20 group-hover:border-accent dark:group-hover:border-gold transition-colors"></div>

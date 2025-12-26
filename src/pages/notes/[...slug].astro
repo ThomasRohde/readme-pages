@@ -26,17 +26,20 @@ export async function getStaticPaths() {
     // Find related notes
     const related = findRelatedNotes(note.id, note.data.tags, notes, 3);
     
+    // Remove file extension from slug
+    const slug = note.id.replace(/\.(md|mdx)$/, '');
+    
     return {
-      params: { slug: note.id },
+      params: { slug },
       props: {
         note,
         prev: prev ? {
-          slug: prev.id,
+          slug: prev.id.replace(/\.(md|mdx)$/, ''),
           title: prev.data.title,
           description: prev.data.description
         } : undefined,
         next: next ? {
-          slug: next.id,
+          slug: next.id.replace(/\.(md|mdx)$/, ''),
           title: next.data.title,
           description: next.data.description
         } : undefined,

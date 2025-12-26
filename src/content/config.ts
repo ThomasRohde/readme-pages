@@ -1,5 +1,5 @@
 import { defineCollection, z } from 'astro:content';
-import { notesLoader, pagesLoader } from '../loaders/content-loaders';
+// import { notesLoader, pagesLoader } from '../loaders/content-loaders';
 
 // Reusable schema components
 const titleSchema = z
@@ -34,7 +34,7 @@ const dateSchema = z.coerce
 
 // Pages collection: evergreen documentation
 const pages = defineCollection({
-  loader: pagesLoader({ pattern: '**/*.{md,mdx}', base: './src/content/pages' }),
+  type: 'content',
   schema: z.object({
     title: titleSchema,
     description: descriptionSchema,
@@ -44,7 +44,7 @@ const pages = defineCollection({
 
 // Notes collection: dated entries
 const notes = defineCollection({
-  loader: notesLoader({ pattern: '**/*.{md,mdx}', base: './src/content/notes' }),
+  type: 'content',
   schema: z.object({
     title: titleSchema,
     description: descriptionSchema,
@@ -54,6 +54,7 @@ const notes = defineCollection({
   }),
 });
 
+// Exclude Templates directory by adding glob pattern
 export const collections = {
   pages,
   notes,
