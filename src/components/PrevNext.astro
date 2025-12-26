@@ -10,20 +10,13 @@ interface Props {
     title: string;
     description?: string;
   };
-  collection: 'notes' | 'pages' | 'recipes';
+  collection: 'notes' | 'pages';
 }
 
 const { prev, next, collection } = Astro.props;
 const base = import.meta.env.BASE_URL || '/';
 const baseWithSlash = base.endsWith('/') ? base : `${base}/`;
-
-// Map collection to URL path
-const collectionPaths: Record<string, string> = {
-  notes: 'notes/',
-  recipes: 'recipes/',
-  pages: ''
-};
-const collectionPath = collectionPaths[collection] || '';
+const collectionPath = collection === 'notes' ? 'notes/' : '';
 ---
 
 {(prev || next) && (
