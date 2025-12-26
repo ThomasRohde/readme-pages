@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build && npx pagefind --site dist && mv dist/pagefind dist/_pagefind && rm -rf public/_pagefind && mkdir -p public/_pagefind && cp -r dist/_pagefind/* public/_pagefind/",
+    "build": "astro check && astro build && npx pagefind --site dist && pwsh -Command \"Move-Item -Path dist/pagefind -Destination dist/_pagefind -Force; if (Test-Path public/_pagefind) { Remove-Item -Recurse -Force public/_pagefind }; New-Item -ItemType Directory -Path public/_pagefind -Force | Out-Null; Copy-Item -Recurse dist/_pagefind/* public/_pagefind/\"",
     "preview": "astro preview",
     "astro": "astro"
   },
