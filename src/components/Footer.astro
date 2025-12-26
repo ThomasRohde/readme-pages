@@ -2,8 +2,26 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="mt-20 border-t border-slate-200 dark:border-border-dark py-10">
-  <p class="text-center text-sm text-slate-500 dark:text-slate-400">
-    &copy; {currentYear} Thomas Klok Rohde. All rights reserved.
-  </p>
+<footer class="mt-20 border-t border-cream-300 dark:border-border-dark py-12">
+  <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <!-- Copyright with decorative element -->
+      <div class="flex items-center gap-3 text-sm text-ink-muted dark:text-cream-400">
+        <div class="w-6 h-px bg-accent/50 dark:bg-gold/50"></div>
+        <p>&copy; {currentYear} Thomas Klok Rohde</p>
+      </div>
+
+      <!-- Decorative element -->
+      <div class="hidden sm:flex items-center gap-1">
+        <div class="w-1.5 h-1.5 rounded-full bg-accent/30 dark:bg-gold/30"></div>
+        <div class="w-1.5 h-1.5 rounded-full bg-accent/20 dark:bg-gold/20"></div>
+        <div class="w-1.5 h-1.5 rounded-full bg-accent/10 dark:bg-gold/10"></div>
+      </div>
+
+      <!-- Tagline -->
+      <p class="text-xs tracking-widest uppercase text-ink-faint dark:text-cream-500">
+        Built with precision
+      </p>
+    </div>
+  </div>
 </footer>

@@ -5,35 +5,59 @@ interface Props {
   date?: Date;
   description?: string;
   tags?: string[];
+  index?: number;
 }
 
-const { title, href, date, description, tags } = Astro.props;
+const { title, href, date, description, tags, index = 0 } = Astro.props;
 const formattedDate = date?.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric'
 });
+
+// Calculate animation delay based on index
+const animationDelay = `${index * 0.1}s`;
 ---
 
-<article class="group p-6 rounded-lg border border-slate-200 dark:border-border-dark hover:border-primary dark:hover:border-primary bg-white dark:bg-surface-dark transition-all hover:shadow-md">
+<article
+  class="group relative p-6 rounded-xl bg-white dark:bg-surface-dark border border-cream-300 dark:border-border-dark shadow-card dark:shadow-card-dark hover:shadow-card-hover dark:hover:shadow-card-dark-hover transition-all duration-300 ease-out hover:-translate-y-1 animate-fade-up"
+  style={`animation-delay: ${animationDelay}; opacity: 0;`}
+>
+  <!-- Architectural corner accent -->
+  <div class="absolute top-3 left-3 w-4 h-4 border-l-2 border-t-2 border-accent/30 dark:border-gold/30 group-hover:border-accent dark:group-hover:border-gold transition-colors duration-300"></div>
+  <div class="absolute bottom-3 right-3 w-4 h-4 border-r-2 border-b-2 border-accent/30 dark:border-gold/30 group-hover:border-accent dark:group-hover:border-gold transition-colors duration-300"></div>
+
   <a href={href} class="block">
-    <h3 class="text-xl font-semibold text-slate-900 dark:text-white group-hover:text-primary transition-colors mb-2">
-      {title}
-    </h3>
+    <!-- Date with elegant styling -->
     {date && (
-      <div class="text-sm text-slate-500 dark:text-slate-400 mb-3">
-        <time datetime={date.toISOString()}>{formattedDate}</time>
+      <div class="mb-3 flex items-center gap-2">
+        <div class="w-8 h-px bg-accent dark:bg-gold"></div>
+        <time
+          datetime={date.toISOString()}
+          class="text-xs tracking-widest uppercase font-medium text-ink-muted dark:text-cream-400"
+        >
+          {formattedDate}
+        </time>
       </div>
     )}
+
+    <!-- Title with serif display font -->
+    <h3 class="font-display text-xl font-semibold text-primary-800 dark:text-cream-100 group-hover:text-accent-600 dark:group-hover:text-gold transition-colors duration-200 mb-3 leading-tight">
+      {title}
+    </h3>
+
+    <!-- Description -->
     {description && (
-      <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+      <p class="text-ink-light dark:text-cream-300 leading-relaxed mb-4 line-clamp-2">
         {description}
       </p>
     )}
+
+    <!-- Tags with refined styling -->
     {tags && tags.length > 0 && (
-      <div class="flex flex-wrap gap-2">
+      <div class="flex flex-wrap gap-2 pt-4 border-t border-cream-200 dark:border-border-dark">
         {tags.map(tag => (
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary dark:text-primary">
+          <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-primary-50 dark:bg-navy-800 text-primary-700 dark:text-gold-400 border border-primary-100 dark:border-border-dark">
             {tag}
           </span>
         ))}
@@ -41,3 +65,12 @@ const formattedDate = date?.toLocaleDateString('en-US', {
     )}
   </a>
 </article>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

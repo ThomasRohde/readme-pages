@@ -13,23 +13,23 @@ const sortedPages = pages.sort((a, b) => {
 <!-- Mobile backdrop -->
 <div
   id="mobile-backdrop"
-  class="lg:hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 hidden transition-opacity"
+  class="lg:hidden fixed inset-0 bg-navy/60 backdrop-blur-sm z-40 hidden transition-opacity"
   aria-hidden="true"
 ></div>
 
 <!-- Mobile sidebar -->
 <aside
   id="mobile-sidebar"
-  class="lg:hidden fixed top-16 right-0 bottom-0 w-72 bg-background-light dark:bg-background-dark border-l border-slate-200 dark:border-border-dark z-50 overflow-y-auto transform translate-x-full transition-transform duration-300 ease-in-out"
+  class="lg:hidden fixed top-16 right-0 bottom-0 w-72 bg-cream dark:bg-navy border-l border-cream-300 dark:border-border-dark z-50 overflow-y-auto transform translate-x-full transition-transform duration-300 ease-in-out"
 >
   <nav class="space-y-8 p-6">
     <div>
-      <h5 class="mb-3 text-sm font-semibold text-slate-900 dark:text-white">Navigation</h5>
+      <h5 class="mb-4 text-xs font-semibold tracking-[0.2em] uppercase text-ink-muted dark:text-cream-400">Navigation</h5>
       <ul class="space-y-1">
         <li>
           <a
             href={baseUrl}
-            class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors"
+            class="block px-4 py-2.5 text-sm font-medium rounded-lg text-ink-light hover:bg-cream-200 hover:text-primary-800 dark:text-cream-300 dark:hover:bg-surface-dark dark:hover:text-cream-100 transition-colors"
           >
             Home
           </a>
@@ -37,7 +37,7 @@ const sortedPages = pages.sort((a, b) => {
         <li>
           <a
             href={`${baseUrl}/notes/`}
-            class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors"
+            class="block px-4 py-2.5 text-sm font-medium rounded-lg text-ink-light hover:bg-cream-200 hover:text-primary-800 dark:text-cream-300 dark:hover:bg-surface-dark dark:hover:text-cream-100 transition-colors"
           >
             Notes
           </a>
@@ -45,7 +45,7 @@ const sortedPages = pages.sort((a, b) => {
         <li>
           <a
             href={`${baseUrl}/tags/`}
-            class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors"
+            class="block px-4 py-2.5 text-sm font-medium rounded-lg text-ink-light hover:bg-cream-200 hover:text-primary-800 dark:text-cream-300 dark:hover:bg-surface-dark dark:hover:text-cream-100 transition-colors"
           >
             Tags
           </a>
@@ -54,13 +54,13 @@ const sortedPages = pages.sort((a, b) => {
     </div>
     {sortedPages.length > 0 && (
       <div>
-        <h5 class="mb-3 text-sm font-semibold text-slate-900 dark:text-white">Pages</h5>
+        <h5 class="mb-4 text-xs font-semibold tracking-[0.2em] uppercase text-ink-muted dark:text-cream-400">Pages</h5>
         <ul class="space-y-1">
           {sortedPages.map(page => (
             <li>
               <a
                 href={`${baseUrl}/${page.id}/`}
-                class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors"
+                class="block px-4 py-2.5 text-sm font-medium rounded-lg text-ink-light hover:bg-cream-200 hover:text-primary-800 dark:text-cream-300 dark:hover:bg-surface-dark dark:hover:text-cream-100 transition-colors"
               >
                 {page.data.title}
               </a>
@@ -73,32 +73,38 @@ const sortedPages = pages.sort((a, b) => {
 </aside>
 
 <!-- Desktop sidebar -->
-<aside class="hidden lg:block w-64 xl:w-72 shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto no-scrollbar py-10 pr-6 border-r border-slate-200 dark:border-border-dark/50">
+<aside class="hidden lg:block w-64 xl:w-72 shrink-0 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto no-scrollbar py-10 pr-6 border-r border-cream-300 dark:border-border-dark/50">
   <nav class="space-y-8">
     <div>
-      <h5 class="mb-3 text-sm font-semibold text-slate-900 dark:text-white">Navigation</h5>
+      <h5 class="mb-4 text-xs font-semibold tracking-[0.2em] uppercase text-ink-muted dark:text-cream-400 flex items-center gap-2">
+        <div class="w-4 h-px bg-accent dark:bg-gold"></div>
+        Navigation
+      </h5>
       <ul class="space-y-1">
         <li>
           <a
             href={baseUrl}
-            class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors"
+            class="group flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-ink-light hover:bg-cream-200 hover:text-primary-800 dark:text-cream-300 dark:hover:bg-surface-dark dark:hover:text-cream-100 transition-colors"
           >
+            <span class="w-1.5 h-1.5 rounded-full bg-accent/0 group-hover:bg-accent dark:group-hover:bg-gold transition-colors"></span>
             Home
           </a>
         </li>
         <li>
           <a
             href={`${baseUrl}/notes/`}
-            class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors"
+            class="group flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-ink-light hover:bg-cream-200 hover:text-primary-800 dark:text-cream-300 dark:hover:bg-surface-dark dark:hover:text-cream-100 transition-colors"
           >
+            <span class="w-1.5 h-1.5 rounded-full bg-accent/0 group-hover:bg-accent dark:group-hover:bg-gold transition-colors"></span>
             Notes
           </a>
         </li>
         <li>
           <a
             href={`${baseUrl}/tags/`}
-            class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors"
+            class="group flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-ink-light hover:bg-cream-200 hover:text-primary-800 dark:text-cream-300 dark:hover:bg-surface-dark dark:hover:text-cream-100 transition-colors"
           >
+            <span class="w-1.5 h-1.5 rounded-full bg-accent/0 group-hover:bg-accent dark:group-hover:bg-gold transition-colors"></span>
             Tags
           </a>
         </li>
@@ -106,14 +112,18 @@ const sortedPages = pages.sort((a, b) => {
     </div>
     {sortedPages.length > 0 && (
       <div>
-        <h5 class="mb-3 text-sm font-semibold text-slate-900 dark:text-white">Pages</h5>
+        <h5 class="mb-4 text-xs font-semibold tracking-[0.2em] uppercase text-ink-muted dark:text-cream-400 flex items-center gap-2">
+          <div class="w-4 h-px bg-accent dark:bg-gold"></div>
+          Pages
+        </h5>
         <ul class="space-y-1">
           {sortedPages.map(page => (
             <li>
               <a
                 href={`${baseUrl}/${page.id}/`}
-                class="block px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-surface-dark dark:hover:text-white transition-colors"
+                class="group flex items-center gap-3 px-4 py-2.5 text-sm font-medium rounded-lg text-ink-light hover:bg-cream-200 hover:text-primary-800 dark:text-cream-300 dark:hover:bg-surface-dark dark:hover:text-cream-100 transition-colors"
               >
+                <span class="w-1.5 h-1.5 rounded-full bg-accent/0 group-hover:bg-accent dark:group-hover:bg-gold transition-colors"></span>
                 {page.data.title}
               </a>
             </li>
@@ -122,4 +132,10 @@ const sortedPages = pages.sort((a, b) => {
       </div>
     )}
   </nav>
+
+  <!-- Decorative footer element -->
+  <div class="absolute bottom-8 left-0 right-6 flex items-center gap-2 text-ink-faint dark:text-cream-500">
+    <div class="w-4 h-4 border-l-2 border-b-2 border-accent/20 dark:border-gold/20"></div>
+    <div class="flex-1 h-px bg-cream-300 dark:bg-border-dark"></div>
+  </div>
 </aside>

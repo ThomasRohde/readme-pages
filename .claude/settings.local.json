@@ -25,7 +25,8 @@
       "Skill(skill-creator)",
       "Skill(skill-creator:*)",
       "Skill(create-content)",
-      "Skill(create-content:*)"
+      "Skill(create-content:*)",
+      "Skill(frontend-design:frontend-design)"
     ]
   }
 }

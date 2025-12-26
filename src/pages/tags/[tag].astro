@@ -6,13 +6,13 @@ import Card from '../../components/Card.astro';
 
 export const getStaticPaths = (async () => {
   const notes = await getCollection('notes', ({ data }) => !data.draft);
-  
+
   // Gather all unique tags
   const tags = new Set<string>();
   notes.forEach(note => {
     note.data.tags?.forEach(tag => tags.add(tag));
   });
-  
+
   // Generate a path for each tag
   return Array.from(tags).map(tag => ({
     params: { tag },
@@ -31,31 +31,40 @@ const baseUrl = import.meta.env.BASE_URL;
 
 <BaseLayout title={`Tag: ${tag} - Thomas Klok Rohde`}>
   <div class="max-w-4xl">
-    <nav class="mb-6">
-      <a 
+    <!-- Back navigation -->
+    <nav class="mb-8 animate-fade-up" style="opacity: 0;">
+      <a
         href={`${baseUrl}/tags/`}
-        class="inline-flex items-center text-sm text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors"
+        class="group inline-flex items-center text-sm text-ink-muted dark:text-cream-400 hover:text-accent dark:hover:text-gold transition-colors"
       >
-        <span class="material-symbols-outlined text-base mr-1">arrow_back</span>
+        <span class="material-symbols-outlined text-base mr-2 group-hover:-translate-x-1 transition-transform">arrow_back</span>
         All tags
       </a>
     </nav>
-    
-    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
-      Tag: <span class="text-primary">{tag}</span>
-    </h1>
-    <p class="text-slate-600 dark:text-slate-400 mb-10">
-      {notes.length} {notes.length === 1 ? 'note' : 'notes'}
-    </p>
-    
+
+    <!-- Page header -->
+    <header class="mb-12 animate-fade-up" style="animation-delay: 0.1s; opacity: 0;">
+      <div class="flex items-center gap-4 mb-4">
+        <div class="w-12 h-px bg-gradient-to-r from-accent to-transparent dark:from-gold"></div>
+        <span class="text-xs tracking-[0.3em] uppercase font-medium text-ink-muted dark:text-cream-400">Tag</span>
+      </div>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-tight text-primary-800 dark:text-cream-100 mb-4">
+        <span class="text-accent dark:text-gold">{tag}</span>
+      </h1>
+      <p class="text-lg text-ink-light dark:text-cream-300">
+        {notes.length} {notes.length === 1 ? 'note' : 'notes'} tagged with this topic
+      </p>
+    </header>
+
     <div class="grid gap-6">
-      {notes.map(note => (
+      {notes.map((note, index) => (
         <Card
           title={note.data.title}
           href={`${baseUrl}/notes/${note.id}/`}
           date={note.data.date}
           description={note.data.description}
           tags={note.data.tags}
+          index={index}
         />
       ))}
     </div>

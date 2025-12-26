@@ -10,18 +10,37 @@ const baseUrl = import.meta.env.BASE_URL;
 
 <BaseLayout title="Notes - Thomas Klok Rohde">
   <div class="max-w-4xl">
-    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-10">Notes</h1>
+    <!-- Page header with editorial styling -->
+    <header class="mb-12 animate-fade-up" style="opacity: 0;">
+      <div class="flex items-center gap-4 mb-4">
+        <div class="w-12 h-px bg-gradient-to-r from-accent to-transparent dark:from-gold"></div>
+        <span class="text-xs tracking-[0.3em] uppercase font-medium text-ink-muted dark:text-cream-400">Archive</span>
+      </div>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold tracking-tight text-primary-800 dark:text-cream-100 mb-4">
+        Notes
+      </h1>
+      <p class="text-lg text-ink-light dark:text-cream-300 max-w-xl">
+        {sortedNotes.length} {sortedNotes.length === 1 ? 'note' : 'notes'} on architecture, technology, and design
+      </p>
+    </header>
+
     {sortedNotes.length === 0 ? (
-      <p class="text-slate-600 dark:text-slate-400">No notes published yet.</p>
+      <div class="text-center py-16 animate-fade-up" style="animation-delay: 0.1s; opacity: 0;">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-cream-200 dark:bg-surface-dark flex items-center justify-center">
+          <span class="material-symbols-outlined text-3xl text-ink-muted dark:text-cream-400">edit_note</span>
+        </div>
+        <p class="text-ink-light dark:text-cream-400">No notes published yet.</p>
+      </div>
     ) : (
       <div class="grid gap-6">
-        {sortedNotes.map(note => (
+        {sortedNotes.map((note, index) => (
           <Card
             title={note.data.title}
             href={`${baseUrl}/notes/${note.id}/`}
             date={note.data.date}
             description={note.data.description}
             tags={note.data.tags}
+            index={index}
           />
         ))}
       </div>

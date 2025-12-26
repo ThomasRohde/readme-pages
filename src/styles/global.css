@@ -6,7 +6,100 @@
 /* Dark mode variant */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Skip to main content link - accessible keyboard navigation */
+/* ================================================================
+   ARCHITECT'S JOURNAL - Design System Styles
+   ================================================================ */
+
+/* Base typography defaults */
+html {
+    scroll-behavior: smooth;
+    font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+body {
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================================================================
+   DECORATIVE ELEMENTS
+   ================================================================ */
+
+/* Subtle paper texture for light mode */
+.paper-texture {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-blend-mode: soft-light;
+}
+
+/* Geometric corner mark - architectural accent */
+.corner-mark::before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-left: 2px solid currentColor;
+    border-top: 2px solid currentColor;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.corner-mark:hover::before {
+    opacity: 0.6;
+}
+
+/* Editorial divider */
+.editorial-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.editorial-divider::before,
+.editorial-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, currentColor 50%, transparent);
+    opacity: 0.2;
+}
+
+/* ================================================================
+   ANIMATIONS
+   ================================================================ */
+
+/* Stagger animation delay utilities */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* Initially hidden for animation */
+.animate-on-load {
+    opacity: 0;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .animate-on-load {
+        opacity: 1;
+    }
+}
+
+/* ================================================================
+   SKIP LINK - Accessible Navigation
+   ================================================================ */
+
 .skip-link {
     position: absolute;
     top: -100px;
@@ -14,7 +107,7 @@
     transform: translateX(-50%);
     z-index: 9999;
     padding: 1rem 2rem;
-    background: #137fec;
+    background: #1a1f4e;
     color: white;
     font-weight: 600;
     text-decoration: none;
@@ -25,7 +118,7 @@
 
 .skip-link:focus {
     top: 0;
-    outline: 3px solid #fbbf24;
+    outline: 3px solid #d4a957;
     outline-offset: 2px;
 }
 
@@ -33,31 +126,50 @@
     top: 0;
 }
 
-/* Custom scrollbar for webkit browsers */
+/* ================================================================
+   SCROLLBAR STYLING
+   ================================================================ */
+
 ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
 }
+
 ::-webkit-scrollbar-track {
     background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 3px;
+    background: #d9cbb7;
+    border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+    background: #c7b399;
 }
 
-/* Dark mode scrollbar */
 .dark ::-webkit-scrollbar-thumb {
-    background: #334155;
-}
-.dark ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    background: #2d3654;
 }
 
-/* Code block wrapper - ensure pre has top padding for copy button */
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #3d4664;
+}
+
+/* Hide scrollbar but allow scroll */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* ================================================================
+   CODE BLOCKS
+   ================================================================ */
+
 .code-block-wrapper pre {
     padding-top: 2.5rem;
 }
@@ -69,104 +181,109 @@
     }
 }
 
-/* Smooth scroll behavior for anchor links */
-html {
-    scroll-behavior: smooth;
-}
+/* ================================================================
+   ANCHOR LINKS FOR HEADINGS
+   ================================================================ */
 
-/* Anchor links for headings */
 .heading-anchor {
     text-decoration: none;
     margin-left: -1.5rem;
     padding-right: 0.25rem;
-    color: #94a3b8;
+    color: #9898a8;
     opacity: 0;
     transition: opacity 0.2s ease, color 0.2s ease;
 }
 
 .heading-anchor:hover {
-    color: #137fec;
+    color: #c9784e;
 }
 
 .heading-anchor .anchor-icon {
     font-weight: 400;
 }
 
-/* Show anchor link on heading hover or focus */
 :is(h1, h2, h3, h4, h5, h6):hover .heading-anchor,
 .heading-anchor:focus {
     opacity: 1;
 }
 
-/* Dark mode anchor links */
 .dark .heading-anchor {
-    color: #64748b;
+    color: #6e6e82;
 }
 
 .dark .heading-anchor:hover {
-    color: #3b82f6;
+    color: #d4a957;
 }
 
-/* Ensure headings with anchors have proper spacing */
 .prose :is(h1, h2, h3, h4, h5, h6) {
     position: relative;
     scroll-margin-top: 5rem;
 }
 
-/* Hide scrollbar but allow scroll */
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-.no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
+/* ================================================================
+   IMAGES & MEDIA
+   ================================================================ */
 
-/* Image optimization and styling */
 .prose img,
 .prose picture {
-    @apply rounded-lg shadow-md my-6;
+    @apply rounded-lg my-6;
     max-width: 100%;
     height: auto;
+    box-shadow: 0 4px 20px -4px rgba(26, 31, 78, 0.15);
+}
+
+.dark .prose img,
+.dark .prose picture {
+    box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.4);
 }
 
 .prose figure {
-    @apply my-6;
+    @apply my-8;
 }
 
 .prose figcaption {
-    @apply text-sm text-slate-600 dark:text-slate-400 text-center mt-2 italic;
+    @apply text-sm text-center mt-3 italic;
+    color: #6e6e82;
+    font-family: 'DM Sans', sans-serif;
 }
 
-/* Ensure images don't overflow their containers */
+.dark .prose figcaption {
+    color: #9898a8;
+}
+
 img {
     max-width: 100%;
     height: auto;
 }
 
-/* Image loading state - prevent layout shift */
 img[loading="lazy"] {
     min-height: 200px;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background: linear-gradient(90deg, #f5f0e8 25%, #ebe3d6 50%, #f5f0e8 75%);
     background-size: 200% 100%;
 }
 
 .dark img[loading="lazy"] {
-    background: linear-gradient(90deg, #1e293b 25%, #0f172a 50%, #1e293b 75%);
+    background: linear-gradient(90deg, #1c2340 25%, #0f1629 50%, #1c2340 75%);
 }
 
-/* Admonition / Callout Components */
+/* ================================================================
+   ADMONITIONS / CALLOUTS
+   ================================================================ */
+
 .admonition {
-    @apply my-6 p-4 rounded-lg border-l-4;
-    background: rgba(var(--admonition-bg), 0.1);
+    @apply my-6 p-5 rounded-lg;
+    border-left: 4px solid;
+    background: rgba(var(--admonition-bg), 0.08);
 }
 
 .admonition-title {
     @apply font-semibold mb-2 flex items-center gap-2;
+    font-family: 'DM Sans', sans-serif;
 }
 
 .admonition-content {
-    @apply prose-sm dark:prose-invert;
+    @apply text-sm;
+    line-height: 1.7;
 }
 
 .admonition-content > *:first-child {
@@ -177,79 +294,144 @@ img[loading="lazy"] {
     @apply mb-0;
 }
 
-/* Note - Blue */
+/* Note - Indigo */
 .admonition-note {
-    --admonition-bg: 59, 130, 246;
-    @apply border-blue-500 bg-blue-50 dark:bg-blue-950/20;
+    --admonition-bg: 26, 31, 78;
+    border-color: #454d99;
+    background: rgba(26, 31, 78, 0.05);
 }
 
 .admonition-note .admonition-title {
-    @apply text-blue-700 dark:text-blue-400;
+    color: #2d3266;
 }
 
 .admonition-note .admonition-content {
-    @apply text-blue-900 dark:text-blue-200;
+    color: #4a4a5c;
+}
+
+.dark .admonition-note {
+    background: rgba(69, 77, 153, 0.15);
+}
+
+.dark .admonition-note .admonition-title {
+    color: #9299cc;
+}
+
+.dark .admonition-note .admonition-content {
+    color: #c1c5e1;
 }
 
 /* Tip - Green */
 .admonition-tip {
     --admonition-bg: 34, 197, 94;
-    @apply border-green-500 bg-green-50 dark:bg-green-950/20;
+    @apply border-green-600 bg-green-50;
+}
+
+.dark .admonition-tip {
+    @apply bg-green-950/20;
 }
 
 .admonition-tip .admonition-title {
-    @apply text-green-700 dark:text-green-400;
+    @apply text-green-700;
+}
+
+.dark .admonition-tip .admonition-title {
+    @apply text-green-400;
 }
 
 .admonition-tip .admonition-content {
-    @apply text-green-900 dark:text-green-200;
+    @apply text-green-900;
 }
 
-/* Info - Cyan */
+.dark .admonition-tip .admonition-content {
+    @apply text-green-200;
+}
+
+/* Info - Copper accent */
 .admonition-info {
-    --admonition-bg: 6, 182, 212;
-    @apply border-cyan-500 bg-cyan-50 dark:bg-cyan-950/20;
+    --admonition-bg: 201, 120, 78;
+    border-color: #c9784e;
+    background: rgba(201, 120, 78, 0.08);
 }
 
 .admonition-info .admonition-title {
-    @apply text-cyan-700 dark:text-cyan-400;
+    color: #974e30;
 }
 
 .admonition-info .admonition-content {
-    @apply text-cyan-900 dark:text-cyan-200;
+    color: #4a4a5c;
 }
 
-/* Warning - Yellow */
+.dark .admonition-info {
+    background: rgba(212, 169, 87, 0.12);
+    border-color: #d4a957;
+}
+
+.dark .admonition-info .admonition-title {
+    color: #d4a957;
+}
+
+.dark .admonition-info .admonition-content {
+    color: #ead8a7;
+}
+
+/* Warning - Amber */
 .admonition-warning {
     --admonition-bg: 234, 179, 8;
-    @apply border-yellow-500 bg-yellow-50 dark:bg-yellow-950/20;
+    @apply border-amber-500 bg-amber-50;
+}
+
+.dark .admonition-warning {
+    @apply bg-amber-950/20;
 }
 
 .admonition-warning .admonition-title {
-    @apply text-yellow-700 dark:text-yellow-400;
+    @apply text-amber-700;
+}
+
+.dark .admonition-warning .admonition-title {
+    @apply text-amber-400;
 }
 
 .admonition-warning .admonition-content {
-    @apply text-yellow-900 dark:text-yellow-200;
+    @apply text-amber-900;
+}
+
+.dark .admonition-warning .admonition-content {
+    @apply text-amber-200;
 }
 
 /* Danger - Red */
 .admonition-danger {
     --admonition-bg: 239, 68, 68;
-    @apply border-red-500 bg-red-50 dark:bg-red-950/20;
+    @apply border-red-500 bg-red-50;
+}
+
+.dark .admonition-danger {
+    @apply bg-red-950/20;
 }
 
 .admonition-danger .admonition-title {
-    @apply text-red-700 dark:text-red-400;
+    @apply text-red-700;
+}
+
+.dark .admonition-danger .admonition-title {
+    @apply text-red-400;
 }
 
 .admonition-danger .admonition-content {
-    @apply text-red-900 dark:text-red-200;
+    @apply text-red-900;
 }
 
-/* Print-friendly styles */
+.dark .admonition-danger .admonition-content {
+    @apply text-red-200;
+}
+
+/* ================================================================
+   PRINT STYLES
+   ================================================================ */
+
 @media print {
-    /* Hide interactive and non-content elements */
     header,
     aside,
     footer,
@@ -266,14 +448,12 @@ img[loading="lazy"] {
         display: none !important;
     }
 
-    /* Ensure main content uses full width */
     main {
         max-width: 100% !important;
         margin: 0 !important;
         padding: 1cm !important;
     }
 
-    /* Reset colors to black on white for better printing */
     body {
         background: white !important;
         color: black !important;
@@ -281,7 +461,6 @@ img[loading="lazy"] {
         line-height: 1.5;
     }
 
-    /* Optimize typography for print */
     .prose {
         max-width: 100% !important;
     }
@@ -290,6 +469,7 @@ img[loading="lazy"] {
         color: black !important;
         page-break-after: avoid;
         break-after: avoid;
+        font-family: 'Playfair Display', Georgia, serif !important;
     }
 
     h1 {
@@ -310,7 +490,6 @@ img[loading="lazy"] {
         widows: 3;
     }
 
-    /* Avoid breaking these elements across pages */
     img,
     figure,
     table,
@@ -321,7 +500,6 @@ img[loading="lazy"] {
         break-inside: avoid;
     }
 
-    /* Show link URLs after link text */
     a[href^="http"]::after {
         content: " (" attr(href) ")";
         font-size: 90%;
@@ -329,12 +507,10 @@ img[loading="lazy"] {
         word-break: break-all;
     }
 
-    /* Don't show URLs for anchor links */
     a[href^="#"]::after {
         content: "";
     }
 
-    /* Code blocks */
     pre,
     code {
         background: #f5f5f5 !important;
@@ -349,7 +525,6 @@ img[loading="lazy"] {
         border: none;
     }
 
-    /* Table of contents */
     .toc {
         border: 1px solid #ddd;
         padding: 1em;
@@ -366,14 +541,12 @@ img[loading="lazy"] {
         content: "";
     }
 
-    /* Images */
     img {
         max-width: 100% !important;
         page-break-inside: avoid;
         break-inside: avoid;
     }
 
-    /* Admonitions/Callouts - use grayscale borders */
     .admonition {
         border: 1px solid #333;
         border-left-width: 4px;
@@ -392,7 +565,6 @@ img[loading="lazy"] {
         color: black !important;
     }
 
-    /* Tables */
     table {
         border-collapse: collapse;
         width: 100%;
@@ -410,18 +582,15 @@ img[loading="lazy"] {
         font-weight: bold;
     }
 
-    /* Hide anchor link icons */
     .heading-anchor {
         display: none;
     }
 
-    /* Related notes section */
     .related-notes {
         page-break-inside: avoid;
         break-inside: avoid;
     }
 
-    /* Tag links - don't show URLs */
     .tag::after,
     [class*="tag-"]::after {
         content: "";

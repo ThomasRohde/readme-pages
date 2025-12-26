@@ -12,33 +12,84 @@ const baseUrl = import.meta.env.BASE_URL;
 
 <BaseLayout title="Home - Thomas Klok Rohde">
   <div class="max-w-4xl">
-    <div class="mb-10 pb-10 border-b border-slate-200 dark:border-border-dark">
-      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">Welcome</h1>
-      <p class="mt-4 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-        A minimal Astro site for publishing notes and documentation. Built with TypeScript and Tailwind CSS.
-      </p>
-    </div>
-
-    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Latest Notes</h2>
-    {latestNotes.length === 0 ? (
-      <p class="text-slate-600 dark:text-slate-400">No notes published yet.</p>
-    ) : (
-      <div class="grid gap-6 mb-8">
-        {latestNotes.map(note => (
-          <Card
-            title={note.data.title}
-            href={`${baseUrl}/notes/${note.id}/`}
-            date={note.data.date}
-            description={note.data.description}
-            tags={note.data.tags}
-          />
-        ))}
+    <!-- Hero Section with Editorial Typography -->
+    <header class="mb-16 pb-12 border-b border-cream-300 dark:border-border-dark animate-fade-up" style="opacity: 0;">
+      <!-- Decorative element -->
+      <div class="flex items-center gap-4 mb-6">
+        <div class="w-12 h-px bg-gradient-to-r from-accent to-transparent dark:from-gold"></div>
+        <span class="text-xs tracking-[0.3em] uppercase font-medium text-ink-muted dark:text-cream-400">Welcome</span>
       </div>
-    )}
 
-    <a href={`${baseUrl}/notes/`} class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors font-medium">
-      View all notes
-      <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
-    </a>
+      <!-- Main headline with dramatic serif typography -->
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-display-lg font-bold tracking-tight text-primary-800 dark:text-cream-100 mb-6 leading-[1.1]">
+        Thoughts on Architecture,<br class="hidden sm:block" />
+        <span class="text-accent dark:text-gold">Technology</span> & Design
+      </h1>
+
+      <!-- Elegant intro paragraph -->
+      <p class="text-lg sm:text-xl text-ink-light dark:text-cream-300 leading-relaxed max-w-2xl">
+        A personal space for exploring ideas at the intersection of enterprise architecture,
+        emerging technologies, and the craft of building thoughtful systems.
+      </p>
+
+      <!-- Decorative line -->
+      <div class="mt-8 flex items-center gap-4">
+        <div class="flex gap-1">
+          <div class="w-2 h-2 rounded-full bg-accent dark:bg-gold"></div>
+          <div class="w-2 h-2 rounded-full bg-accent/50 dark:bg-gold/50"></div>
+          <div class="w-2 h-2 rounded-full bg-accent/25 dark:bg-gold/25"></div>
+        </div>
+        <div class="flex-1 h-px bg-gradient-to-r from-cream-300 to-transparent dark:from-border-dark"></div>
+      </div>
+    </header>
+
+    <!-- Latest Notes Section -->
+    <section>
+      <!-- Section header with editorial styling -->
+      <div class="flex items-center justify-between mb-8 animate-fade-up" style="animation-delay: 0.1s; opacity: 0;">
+        <div class="flex items-center gap-4">
+          <h2 class="font-display text-2xl sm:text-3xl font-semibold text-primary-800 dark:text-cream-100">
+            Latest Notes
+          </h2>
+          <div class="hidden sm:block w-16 h-px bg-cream-300 dark:bg-border-dark"></div>
+        </div>
+        <span class="text-xs tracking-widest uppercase text-ink-muted dark:text-cream-400 font-medium">
+          Recently Published
+        </span>
+      </div>
+
+      {latestNotes.length === 0 ? (
+        <div class="text-center py-16 animate-fade-up" style="animation-delay: 0.2s; opacity: 0;">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-cream-200 dark:bg-surface-dark flex items-center justify-center">
+            <span class="material-symbols-outlined text-3xl text-ink-muted dark:text-cream-400">edit_note</span>
+          </div>
+          <p class="text-ink-light dark:text-cream-400">No notes published yet.</p>
+        </div>
+      ) : (
+        <div class="grid gap-6 mb-12">
+          {latestNotes.map((note, index) => (
+            <Card
+              title={note.data.title}
+              href={`${baseUrl}/notes/${note.id}/`}
+              date={note.data.date}
+              description={note.data.description}
+              tags={note.data.tags}
+              index={index}
+            />
+          ))}
+        </div>
+      )}
+
+      <!-- View all button with refined styling -->
+      <div class="animate-fade-up" style="animation-delay: 0.5s; opacity: 0;">
+        <a
+          href={`${baseUrl}/notes/`}
+          class="group inline-flex items-center gap-3 px-6 py-3 rounded-lg bg-primary-800 dark:bg-gold-500 text-white dark:text-navy hover:bg-primary-700 dark:hover:bg-gold-400 transition-all duration-200 font-medium shadow-card hover:shadow-card-hover"
+        >
+          <span>View all notes</span>
+          <span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </a>
+      </div>
+    </section>
   </div>
 </BaseLayout>
