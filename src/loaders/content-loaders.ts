@@ -140,15 +140,24 @@ export function pagesLoader(options: LoaderOptions): Loader {
 }
 
 /**
- * Get all markdown files in a directory recursively
+ * Get all markdown files in a directory recursively.
+ * Excludes directories starting with '.' (like .obsidian) and 'Templates'.
  */
 function getMarkdownFiles(baseDir: string): string[] {
   const files: string[] = [];
-  
+
+  // Directories to skip (Obsidian internals, templates, etc.)
+  const excludeDirs = new Set(['.obsidian', 'Templates', '.templates']);
+
   function walk(dir: string) {
     try {
       const entries = readdirSync(dir);
       for (const entry of entries) {
+        // Skip hidden directories and excluded directories
+        if (entry.startsWith('.') || excludeDirs.has(entry)) {
+          continue;
+        }
+
         const fullPath = join(dir, entry);
         const stat = statSync(fullPath);
         if (stat.isDirectory()) {
@@ -161,7 +170,7 @@ function getMarkdownFiles(baseDir: string): string[] {
       // Directory doesn't exist or isn't accessible
     }
   }
-  
+
   walk(baseDir);
   return files;
 }
