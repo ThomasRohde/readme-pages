@@ -265,7 +265,3 @@ For every command:
 - Implement `--explain` and `--dry-run` for every mutating command.
 - Add `schema --json` so tools can discover your command surface without scraping text help.
 - Add golden tests for deterministic output and safety tests for non-interactive mode.
-
-## Sources
-
-- Internal PRD: “CLI Manifest for AI-Agent-Optimized Interfaces” fileciteturn0file0
