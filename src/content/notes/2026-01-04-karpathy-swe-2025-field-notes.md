@@ -173,15 +173,4 @@ Education follows: if you can’t detect AI in homework, you stop pretending. Yo
 
 That’s not moralizing. It’s resilience engineering.
 
-## What to do next
 
-- Pick one workflow and make it verifiable end-to-end (tests + CI + a small eval suite for AI-assisted changes).
-- Define your “maximum unverified chunk size” (diff size or LOC) for AI-generated code, and enforce it in review.
-- Add guardrails before agents: sandbox first, scoped permissions second, human approval for destructive actions always.
-- Track slop proxies (rollback rate, flaky tests, time-to-review) and treat regressions like incidents.
-- Keep one “minimal core” repo/tooling path that you understand without docs or dashboards.
-- Treat LLMs as simulators: ask for perspectives, alternatives, failure modes, and explicit assumptions—then verify.
-
-## Sources
-
-- Excerpts and dates based on a user-provided timeline of Andrej Karpathy’s 2025 tweets (@karpathy) focused on software engineering themes. Consider verifying the exact wording and context directly on the original posts.
