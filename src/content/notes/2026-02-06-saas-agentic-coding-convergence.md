@@ -17,7 +17,7 @@ For many product teams, the expensive part of a feature used to be “getting to
 
 That shift matters because SaaS competition has historically been powered by feature velocity. If feature velocity becomes abundant, feature checklists stop being a moat.
 
-If you want the adjacent argument—cheaper code can make engineering more expensive, not less—see: [Cheap code, expensive engineering](/notes/2026-01-31-cheap-code-expensive-engineering/).
+If you want the adjacent argument—cheaper code can make engineering more expensive, not less—see: [Cheap code, expensive engineering](https://thomasrohde.github.io/readme-pages/notes/2026-01-31-cheap-code-expensive-engineering/).
 
 ## Outcome 1: SaaS platforms converge in functionality
 
