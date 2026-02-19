@@ -5,6 +5,7 @@ import { h } from 'hastscript';
 import sitemap from '@astrojs/sitemap';
 import remarkDirective from 'remark-directive';
 import remarkAdmonitions from './src/plugins/remark-admonitions.mjs';
+import remarkVideo from './src/plugins/remark-video.mjs';
 import mdx from '@astrojs/mdx';
 
 import tailwindcss from '@tailwindcss/vite';
@@ -14,7 +15,7 @@ export default defineConfig({
   site: 'https://thomasrohde.github.io',
   base: '/readme-pages',
   compressHTML: true,
-  
+
   integrations: [
     mdx(),
     sitemap({
@@ -36,6 +37,7 @@ export default defineConfig({
     remarkPlugins: [
       remarkDirective,
       remarkAdmonitions,
+      [remarkVideo, { base: '/readme-pages' }],
     ],
     rehypePlugins: [
       // Generate IDs for headings
