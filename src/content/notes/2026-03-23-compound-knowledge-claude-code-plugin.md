@@ -5,8 +5,6 @@ description: "How the compound-knowledge plugin for Claude Code turns knowledge 
 tags: ["ai", "ai-agents", "knowledge-management", "workflow", "productivity", "claude-code"]
 ---
 
-# Compound Knowledge: A Claude Code Plugin That Treats Learning as Infrastructure
-
 Most AI-assisted knowledge work is transactional. You open a session, solve today's problem, close the session. Whatever you learned — about the domain, about what worked, about what was wrong — lives in a conversation log that nobody will read again. The next time a related question comes up, you start from scratch.
 
 The [compound-knowledge plugin](https://github.com/EveryInc/compound-knowledge-plugin) for Claude Code, built by [Every](https://every.to), takes a different position: knowledge work should be cumulative. Each cycle of planning, execution, and review should leave behind something that makes the next cycle faster and better informed. That sounds obvious. The interesting part is the mechanism.
