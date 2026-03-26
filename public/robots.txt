@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://thomasrohde.github.io/readme-pages/sitemap-0.xml

@@ -16,6 +16,7 @@ interface Props {
   tags?: string[];
   author?: string;
   canonicalURL?: string;
+  structuredData?: Record<string, any> | Record<string, any>[];
 }
 
 const {
@@ -28,7 +29,8 @@ const {
   modifiedTime,
   tags = [],
   author = "Thomas Klok Rohde",
-  canonicalURL
+  canonicalURL,
+  structuredData
 } = Astro.props;
 
 // Construct full URLs for Open Graph
@@ -134,6 +136,15 @@ const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
     
     <!-- RSS Feed -->
     <link rel="alternate" type="application/rss+xml" title="Thomas Rohde - Notes RSS Feed" href={`${import.meta.env.BASE_URL}/rss.xml`} />
+
+    <!-- Structured Data (JSON-LD) -->
+    {structuredData && (
+      Array.isArray(structuredData)
+        ? structuredData.map(data => (
+            <script type="application/ld+json" set:html={JSON.stringify(data)} />
+          ))
+        : <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    )}
   </head>
   <body class="bg-cream dark:bg-navy text-ink dark:text-cream-200 font-sans antialiased min-h-screen flex flex-col">
     <!-- Skip to main content link for keyboard users -->

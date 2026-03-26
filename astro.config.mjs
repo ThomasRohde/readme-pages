@@ -21,8 +21,29 @@ export default defineConfig({
     sitemap({
       filter: (page) => !page.includes('/draft/'),
       changefreq: 'weekly',
-      priority: 0.7,
       lastmod: new Date(),
+      serialize(item) {
+        const url = item.url;
+        // Homepage gets highest priority
+        if (url.endsWith('/readme-pages/') || url.endsWith('/readme-pages')) {
+          item.priority = 1.0;
+        } else if (url.includes('/tags/') || url.includes('/recipe-tags/')) {
+          // Tag archive pages — lowest priority (check before /notes/ and /recipes/)
+          item.priority = 0.4;
+        } else if (url.match(/\/notes\/[^/]+\//)) {
+          // Individual notes — primary content
+          item.priority = 0.8;
+        } else if (url.match(/\/recipes\/[^/]+\//)) {
+          // Individual recipes — primary content
+          item.priority = 0.8;
+        } else if (url.endsWith('/notes/') || url.endsWith('/recipes/')) {
+          // Collection index pages
+          item.priority = 0.9;
+        } else {
+          item.priority = 0.6;
+        }
+        return item;
+      },
     }),
   ],
 

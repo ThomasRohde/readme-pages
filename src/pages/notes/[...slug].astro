@@ -72,6 +72,58 @@ const githubFilePath = `src/content/notes/${note.id}`;
 const lastModifiedDate = getLastModified(`src/content/notes/${note.id}`);
 const lastModifiedRelative = formatRelativeTime(lastModifiedDate);
 const showLastModified = lastModifiedDate.getTime() !== note.data.date.getTime();
+
+// Structured data
+const siteUrl = import.meta.env.SITE || 'https://thomasrohde.github.io';
+const slug = note.id.replace(/\.(md|mdx)$/, '');
+const noteUrl = new URL(`${baseWithSlash}notes/${slug}/`, siteUrl).href;
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": note.data.title,
+  "description": note.data.description || `A note from ${formattedDate}`,
+  "datePublished": note.data.date.toISOString(),
+  "dateModified": lastModifiedDate.toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": "Thomas Klok Rohde",
+    "url": new URL(baseWithSlash, siteUrl).href
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Thomas Klok Rohde"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": noteUrl
+  },
+  ...(note.data.tags?.length ? { "keywords": note.data.tags.join(", ") } : {})
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": new URL(baseWithSlash, siteUrl).href
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Notes",
+      "item": new URL(`${baseWithSlash}notes/`, siteUrl).href
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": note.data.title
+    }
+  ]
+};
 ---
 
 <ArticleLayout
@@ -82,6 +134,7 @@ const showLastModified = lastModifiedDate.getTime() !== note.data.date.getTime()
   tags={note.data.tags}
   headings={headings}
   breadcrumbItems={breadcrumbItems}
+  structuredData={[articleJsonLd, breadcrumbJsonLd]}
 >
   <article class="prose dark:prose-invert max-w-none">
     <header class="mb-8">

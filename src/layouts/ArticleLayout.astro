@@ -22,6 +22,7 @@ interface Props {
     label: string;
     href?: string;
   }>;
+  structuredData?: Record<string, any> | Record<string, any>[];
 }
 
 const {
@@ -35,7 +36,8 @@ const {
   author,
   canonicalURL,
   headings = [],
-  breadcrumbItems = []
+  breadcrumbItems = [],
+  structuredData
 } = Astro.props;
 ---
 
@@ -50,6 +52,7 @@ const {
   tags={tags}
   author={author}
   canonicalURL={canonicalURL}
+  structuredData={structuredData}
 >
   {breadcrumbItems.length > 0 && <Breadcrumb items={breadcrumbItems} />}
   <slot />

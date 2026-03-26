@@ -71,6 +71,52 @@ const showLastModified = lastModifiedDate.getTime() !== recipe.data.date.getTime
 const { prepTime, cookTime, servings, difficulty } = recipe.data;
 const hasMeta = prepTime || cookTime || servings || difficulty;
 
+// Structured data
+const siteUrl = import.meta.env.SITE || 'https://thomasrohde.github.io';
+const recipeSlug = recipe.id.replace(/\.(md|mdx)$/, '');
+const recipeUrl = new URL(`${baseWithSlash}recipes/${recipeSlug}/`, siteUrl).href;
+
+const recipeJsonLd: Record<string, any> = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": recipe.data.title,
+  "description": recipe.data.description || `A recipe from ${formattedDate}`,
+  "datePublished": recipe.data.date.toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": "Thomas Klok Rohde"
+  },
+  ...(prepTime ? { "prepTime": prepTime } : {}),
+  ...(cookTime ? { "cookTime": cookTime } : {}),
+  ...(servings ? { "recipeYield": `${servings} servings` } : {}),
+  ...(difficulty ? { "recipeDifficulty": difficulty } : {}),
+  ...(recipe.data.tags?.length ? { "keywords": recipe.data.tags.join(", ") } : {})
+};
+
+const recipeBreadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": new URL(baseWithSlash, siteUrl).href
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Recipes",
+      "item": new URL(`${baseWithSlash}recipes/`, siteUrl).href
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": recipe.data.title
+    }
+  ]
+};
+
 // Difficulty badge colors
 const difficultyColors = {
   easy: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
@@ -87,6 +133,7 @@ const difficultyColors = {
   tags={recipe.data.tags}
   headings={headings}
   breadcrumbItems={breadcrumbItems}
+  structuredData={[recipeJsonLd, recipeBreadcrumbJsonLd]}
 >
   <article class="prose dark:prose-invert max-w-none">
     <header class="mb-8">
